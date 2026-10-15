@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Three-by-three colour key for the bivariate choropleth map.",
+  "data": {
+    "url": "data/bivariate_legend.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "interest_class": "number",
+        "grow_class": "number"
+      }
+    }
+  },
+  "width": 112,
+  "height": 112,
+  "mark": {
+    "type": "rect",
+    "stroke": "#FAF7F0",
+    "strokeWidth": 1.5
+  },
+  "encoding": {
+    "x": {
+      "field": "interest_class",
+      "type": "ordinal",
+      "title": "Searches \u2192",
+      "axis": {
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "titleFontSize": 10.5,
+        "titleColor": "#5E6E64",
+        "titlePadding": 6
+      }
+    },
+    "y": {
+      "field": "grow_class",
+      "type": "ordinal",
+      "sort": "descending",
+      "title": "Vegetable land \u2192",
+      "axis": {
+        "labels": false,
+        "ticks": false,
+        "domain": false,
+        "titleFontSize": 10.5,
+        "titleColor": "#5E6E64",
+        "titlePadding": 6
+      }
+    },
+    "color": {
+      "field": "bi_color",
+      "type": "nominal",
+      "scale": null,
+      "legend": null
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

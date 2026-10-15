@@ -1,0 +1,16 @@
+state,code,interest,grow_per_1000,interest_class,grow_class,bi_class,bi_color
+Johor,1,60.0,3.757,1,3,1-3,#5E9460
+Kedah,2,76.0,0.415,3,1,3-1,#D89A74
+Kelantan,3,100.0,4.586,3,3,3-3,#8A7A44
+Melaka,4,72.0,1.463,2,2,2-2,#A7A98A
+Negeri Sembilan,5,66.0,1.881,2,2,2-2,#A7A98A
+Pahang,6,81.0,16.54,3,3,3-3,#8A7A44
+Perak,8,70.0,1.948,2,3,2-3,#6E8C5A
+Perlis,9,93.0,0.529,3,1,3-1,#D89A74
+Pulau Pinang,7,47.0,0.373,1,1,1-1,#E8E6DF
+Sabah,12,72.0,1.259,2,2,2-2,#A7A98A
+Sarawak,13,75.0,1.992,2,3,2-3,#6E8C5A
+Selangor,10,40.0,0.309,1,1,1-1,#E8E6DF
+Terengganu,11,90.0,0.91,3,2,3-2,#C08A62
+W.P. Kuala Lumpur,14,40.0,0.0,1,1,1-1,#E8E6DF
+W.P. Labuan,15,0.0,0.934,1,2,1-2,#A9C6A6

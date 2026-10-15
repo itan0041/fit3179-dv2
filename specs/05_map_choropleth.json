@@ -1,0 +1,269 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Choropleth map: hectares of vegetable land per 1,000 residents by state, 2024. Drawn as two separately fitted panels so the peninsular states stay legible.",
+  "hconcat": [
+    {
+      "width": 330,
+      "height": 430,
+      "title": {
+        "text": "Peninsular Malaysia",
+        "fontSize": 13,
+        "dy": -6
+      },
+      "data": {
+        "url": "data/malaysia_states.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "projection": {
+        "type": "mercator",
+        "scale": 3500,
+        "center": [
+          102.1,
+          3.95
+        ],
+        "translate": [
+          165.0,
+          215.0
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "properties.code",
+          "from": {
+            "data": {
+              "url": "data/state_summary.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "veg_area_ha_per_1000": "number",
+                  "code": "number",
+                  "veg_area_ha": "number",
+                  "population": "number",
+                  "veg_prod_tonnes": "number",
+                  "veg_kg_per_person": "number"
+                }
+              }
+            },
+            "key": "code",
+            "fields": [
+              "state",
+              "year",
+              "veg_area_ha",
+              "veg_area_ha_per_1000",
+              "population"
+            ]
+          }
+        },
+        {
+          "filter": "datum.year == 2024"
+        },
+        {
+          "filter": "indexof([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 16], datum.properties.code) >= 0"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FAF7F0",
+        "strokeWidth": 1.1
+      },
+      "encoding": {
+        "color": {
+          "field": "veg_area_ha_per_1000",
+          "type": "quantitative",
+          "title": "Hectares of vegetable land per 1,000 residents",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              0.5,
+              1,
+              2,
+              5,
+              10
+            ],
+            "range": [
+              "#CFE2C4",
+              "#A6CB98",
+              "#78AE6B",
+              "#4C8D48",
+              "#2D6C35",
+              "#1A4A27"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleLimit": 1000,
+            "labelLimit": 220,
+            "titleColor": "#1C2B22",
+            "labelColor": "#5E6E64",
+            "titleFontSize": 11.5,
+            "titleAnchor": "start",
+            "symbolType": "square",
+            "symbolSize": 170
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "veg_area_ha",
+            "type": "quantitative",
+            "title": "Vegetable land (hectares)",
+            "format": ",.0f"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ",.0f"
+          },
+          {
+            "field": "veg_area_ha_per_1000",
+            "type": "quantitative",
+            "title": "Hectares per 1,000 people",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "width": 620,
+      "height": 430,
+      "title": {
+        "text": "Sabah, Sarawak and Labuan",
+        "fontSize": 13,
+        "dy": -6
+      },
+      "data": {
+        "url": "data/malaysia_states.topo.json",
+        "format": {
+          "type": "topojson",
+          "feature": "states"
+        }
+      },
+      "projection": {
+        "type": "mercator",
+        "scale": 3500,
+        "center": [
+          114.4,
+          4.12
+        ],
+        "translate": [
+          310.0,
+          215.0
+        ]
+      },
+      "transform": [
+        {
+          "lookup": "properties.code",
+          "from": {
+            "data": {
+              "url": "data/state_summary.csv",
+              "format": {
+                "type": "csv",
+                "parse": {
+                  "year": "number",
+                  "veg_area_ha_per_1000": "number",
+                  "code": "number",
+                  "veg_area_ha": "number",
+                  "population": "number",
+                  "veg_prod_tonnes": "number",
+                  "veg_kg_per_person": "number"
+                }
+              }
+            },
+            "key": "code",
+            "fields": [
+              "state",
+              "year",
+              "veg_area_ha",
+              "veg_area_ha_per_1000",
+              "population"
+            ]
+          }
+        },
+        {
+          "filter": "datum.year == 2024"
+        },
+        {
+          "filter": "indexof([12, 13, 15], datum.properties.code) >= 0"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#FAF7F0",
+        "strokeWidth": 1.1
+      },
+      "encoding": {
+        "color": {
+          "field": "veg_area_ha_per_1000",
+          "type": "quantitative",
+          "title": "Hectares of vegetable land per 1,000 residents",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              0.5,
+              1,
+              2,
+              5,
+              10
+            ],
+            "range": [
+              "#CFE2C4",
+              "#A6CB98",
+              "#78AE6B",
+              "#4C8D48",
+              "#2D6C35",
+              "#1A4A27"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "veg_area_ha",
+            "type": "quantitative",
+            "title": "Vegetable land (hectares)",
+            "format": ",.0f"
+          },
+          {
+            "field": "population",
+            "type": "quantitative",
+            "title": "Population",
+            "format": ",.0f"
+          },
+          {
+            "field": "veg_area_ha_per_1000",
+            "type": "quantitative",
+            "title": "Hectares per 1,000 people",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "shared",
+      "size": "shared"
+    }
+  },
+  "spacing": 26,
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

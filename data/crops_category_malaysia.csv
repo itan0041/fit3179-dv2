@@ -1,0 +1,100 @@
+year,crop_type,crop_label,planted_area_ha,production_tonnes,area_index_2014,prod_index_2014,is_edible_garden
+2014,cash_crops,Cash crops,18573.0,217440.0,100.0,100.0,yes
+2015,cash_crops,Cash crops,20565.0,227462.0,110.73,104.61,yes
+2016,cash_crops,Cash crops,20141.0,219067.0,108.44,100.75,yes
+2017,cash_crops,Cash crops,20763.1,217847.5,111.79,100.19,yes
+2018,cash_crops,Cash crops,19028.2,215087.6,102.45,98.92,yes
+2019,cash_crops,Cash crops,17082.0,221310.2,91.97,101.78,yes
+2020,cash_crops,Cash crops,19090.9,223506.8,102.79,102.79,yes
+2021,cash_crops,Cash crops,20070.3,239011.9,108.06,109.92,yes
+2022,cash_crops,Cash crops,18329.1,215632.4,98.69,99.17,yes
+2023,cash_crops,Cash crops,15158.3,188811.7,81.61,86.83,yes
+2024,cash_crops,Cash crops,16185.9,187323.0,87.15,86.15,yes
+2014,coconut,Coconut,88092.0,595097.0,100.0,100.0,no
+2015,coconut,Coconut,82001.0,505614.0,93.09,84.96,no
+2016,coconut,Coconut,84609.0,504773.0,96.05,84.82,no
+2017,coconut,Coconut,83250.1,517588.5,94.5,86.98,no
+2018,coconut,Coconut,83436.4,491465.4,94.72,82.59,no
+2019,coconut,Coconut,86466.3,536605.7,98.15,90.17,no
+2020,coconut,Coconut,84942.0,560984.3,96.42,94.27,no
+2021,coconut,Coconut,81469.5,557353.7,92.48,93.66,no
+2022,coconut,Coconut,84935.9,604428.4,96.42,101.57,no
+2023,coconut,Coconut,79646.6,626557.3,90.41,105.29,no
+2024,coconut,Coconut,86355.7,673553.4,98.03,113.18,no
+2014,flower,Flowers,2619.0,,100.0,,no
+2015,flower,Flowers,2610.0,,99.66,,no
+2016,flower,Flowers,2559.0,,97.71,,no
+2017,flower,Flowers,2605.1,,99.47,,no
+2018,flower,Flowers,2652.0,,101.26,,no
+2019,flower,Flowers,2702.3,,103.18,,no
+2020,flower,Flowers,2626.7,,100.29,,no
+2021,flower,Flowers,2554.4,,97.53,,no
+2022,flower,Flowers,2588.4,,98.83,,no
+2023,flower,Flowers,2597.3,,99.17,,no
+2024,flower,Flowers,2584.8,,98.69,,no
+2014,fruits,Fruits,199570.0,1621975.0,100.0,100.0,yes
+2015,fruits,Fruits,203562.0,1768722.0,102.0,109.05,yes
+2016,fruits,Fruits,194970.0,1664793.0,97.7,102.64,yes
+2017,fruits,Fruits,208590.1,1492600.9,104.52,92.02,yes
+2018,fruits,Fruits,195480.6,1543086.0,97.95,95.14,yes
+2019,fruits,Fruits,184549.5,1560906.0,92.47,96.23,yes
+2020,fruits,Fruits,191865.9,1550481.5,96.14,95.59,yes
+2021,fruits,Fruits,199419.8,1686875.5,99.92,104.0,yes
+2022,fruits,Fruits,203431.3,1827992.3,101.93,112.7,yes
+2023,fruits,Fruits,201230.2,1888845.7,100.83,116.45,yes
+2024,fruits,Fruits,203204.9,1968956.6,101.82,121.39,yes
+2014,herbs,Herbs,2181.0,13488.0,100.0,100.0,yes
+2015,herbs,Herbs,2378.0,13174.0,109.03,97.67,yes
+2016,herbs,Herbs,2312.0,11649.0,106.01,86.37,yes
+2017,herbs,Herbs,2424.2,11741.9,111.15,87.05,yes
+2018,herbs,Herbs,3010.5,12389.4,138.03,91.85,yes
+2019,herbs,Herbs,2315.7,9018.6,106.18,66.86,yes
+2020,herbs,Herbs,2079.6,9077.1,95.35,67.3,yes
+2021,herbs,Herbs,2017.7,9339.8,92.51,69.25,yes
+2022,herbs,Herbs,2108.0,9951.2,96.65,73.78,yes
+2023,herbs,Herbs,2468.3,11218.4,113.17,83.17,yes
+2024,herbs,Herbs,1804.2,8460.1,82.72,62.72,yes
+2014,industrial_crops,Industrial crops,144861.0,803367.0,100.0,100.0,no
+2015,industrial_crops,Industrial crops,148910.0,701945.0,102.8,87.38,no
+2016,industrial_crops,Industrial crops,133952.0,738318.0,92.47,91.9,no
+2017,industrial_crops,Industrial crops,133928.5,758335.0,92.45,94.39,no
+2018,industrial_crops,Industrial crops,132761.2,589940.1,91.65,73.43,no
+2019,industrial_crops,Industrial crops,138490.0,755630.0,95.6,94.06,no
+2020,industrial_crops,Industrial crops,159486.0,716977.6,110.1,89.25,no
+2021,industrial_crops,Industrial crops,156385.0,713949.5,107.96,88.87,no
+2022,industrial_crops,Industrial crops,127771.6,741168.3,88.2,92.26,no
+2023,industrial_crops,Industrial crops,116231.2,774376.1,80.24,96.39,no
+2024,industrial_crops,Industrial crops,119067.3,780846.9,82.19,97.2,no
+2014,paddy,Paddy (rice),679239.0,2844983.0,100.0,100.0,no
+2015,paddy,Paddy (rice),681559.0,2741404.0,100.34,96.36,no
+2016,paddy,Paddy (rice),688770.0,2739606.0,101.4,96.3,no
+2017,paddy,Paddy (rice),685548.0,2570513.0,100.93,90.35,no
+2018,paddy,Paddy (rice),699980.0,2639202.0,103.05,92.77,no
+2019,paddy,Paddy (rice),672084.0,2352870.0,98.95,82.7,no
+2020,paddy,Paddy (rice),644908.0,2356391.9,94.95,82.83,no
+2021,paddy,Paddy (rice),647936.0,2441597.0,95.39,85.82,no
+2022,paddy,Paddy (rice),637955.0,2281736.0,93.92,80.2,no
+2023,paddy,Paddy (rice),614082.0,2175149.0,90.41,76.46,no
+2024,paddy,Paddy (rice),579706.0,2059101.0,85.35,72.38,no
+2014,spices,Spices,6163.0,56105.0,100.0,100.0,yes
+2015,spices,Spices,6309.0,56998.0,102.37,101.59,yes
+2016,spices,Spices,6723.0,53212.0,109.09,94.84,yes
+2017,spices,Spices,7467.3,60457.8,121.16,107.76,yes
+2018,spices,Spices,6552.6,55195.1,106.32,98.38,yes
+2019,spices,Spices,5815.6,51336.7,94.36,91.5,yes
+2020,spices,Spices,5958.6,52541.3,96.68,93.65,yes
+2021,spices,Spices,5978.1,54037.9,97.0,96.32,yes
+2022,spices,Spices,5913.8,53727.4,95.96,95.76,yes
+2023,spices,Spices,5964.0,56753.8,96.77,101.16,yes
+2024,spices,Spices,6227.8,62013.3,101.05,110.53,yes
+2014,vegetables,Vegetables,71460.0,1452846.0,100.0,100.0,yes
+2015,vegetables,Vegetables,68927.0,1373086.0,96.46,94.51,yes
+2016,vegetables,Vegetables,63569.0,1195642.0,88.96,82.3,yes
+2017,vegetables,Vegetables,62538.5,1003536.5,87.52,69.07,yes
+2018,vegetables,Vegetables,58817.7,997745.4,82.31,68.68,yes
+2019,vegetables,Vegetables,62025.9,1020713.7,86.8,70.26,yes
+2020,vegetables,Vegetables,61613.6,1030064.1,86.22,70.9,yes
+2021,vegetables,Vegetables,65911.0,1088038.6,92.23,74.89,yes
+2022,vegetables,Vegetables,68111.6,1163793.3,95.31,80.1,yes
+2023,vegetables,Vegetables,64347.7,1164935.0,90.05,80.18,yes
+2024,vegetables,Vegetables,75795.2,1340110.1,106.07,92.24,yes

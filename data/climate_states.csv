@@ -1,0 +1,193 @@
+state,code,city,month,month_name,rain_mm_day,rain_mm_month,temp_c,tmax_c,solar_mj_m2_day
+Johor,1,Johor Bahru,1,Jan,7.57,234.7,25.94,31.04,16.23
+Johor,1,Johor Bahru,2,Feb,3.62,101.4,26.17,32.05,18.55
+Johor,1,Johor Bahru,3,Mar,5.43,168.3,27.01,32.91,18.53
+Johor,1,Johor Bahru,4,Apr,6.43,192.9,27.82,33.65,17.9
+Johor,1,Johor Bahru,5,May,6.41,198.7,28.08,33.86,16.63
+Johor,1,Johor Bahru,6,Jun,5.45,163.5,27.59,32.6,15.89
+Johor,1,Johor Bahru,7,Jul,5.62,174.2,27.14,32.17,15.88
+Johor,1,Johor Bahru,8,Aug,5.58,173.0,27.09,31.44,16.24
+Johor,1,Johor Bahru,9,Sep,5.56,166.8,27.15,32.58,16.06
+Johor,1,Johor Bahru,10,Oct,6.76,209.6,27.31,33.89,16.2
+Johor,1,Johor Bahru,11,Nov,9.44,283.2,26.94,32.31,15.49
+Johor,1,Johor Bahru,12,Dec,9.69,300.4,26.29,30.95,14.93
+Kedah,2,Alor Setar,1,Jan,3.63,112.5,25.38,32.29,17.83
+Kedah,2,Alor Setar,2,Feb,1.76,49.3,25.96,33.32,20.85
+Kedah,2,Alor Setar,3,Mar,3.78,117.2,26.85,34.83,21.27
+Kedah,2,Alor Setar,4,Apr,5.26,157.8,27.45,35.32,20.84
+Kedah,2,Alor Setar,5,May,6.51,201.8,27.19,35.56,18.5
+Kedah,2,Alor Setar,6,Jun,5.15,154.5,26.79,33.1,17.84
+Kedah,2,Alor Setar,7,Jul,5.52,171.1,26.42,31.87,17.59
+Kedah,2,Alor Setar,8,Aug,6.42,199.0,26.4,31.94,17.86
+Kedah,2,Alor Setar,9,Sep,7.84,235.2,26.12,32.5,17.31
+Kedah,2,Alor Setar,10,Oct,9.61,297.9,26.0,32.25,16.57
+Kedah,2,Alor Setar,11,Nov,11.35,340.5,25.89,31.85,15.6
+Kedah,2,Alor Setar,12,Dec,8.56,265.4,25.37,31.13,15.1
+Kelantan,3,Kota Bharu,1,Jan,6.24,193.4,25.71,30.18,17.19
+Kelantan,3,Kota Bharu,2,Feb,2.23,62.4,25.94,30.84,20.77
+Kelantan,3,Kota Bharu,3,Mar,3.74,115.9,26.86,32.79,21.8
+Kelantan,3,Kota Bharu,4,Apr,3.25,97.5,28.06,34.21,21.69
+Kelantan,3,Kota Bharu,5,May,4.98,154.4,28.66,33.98,19.5
+Kelantan,3,Kota Bharu,6,Jun,5.07,152.1,28.43,33.28,18.49
+Kelantan,3,Kota Bharu,7,Jul,5.21,161.5,28.16,33.3,18.51
+Kelantan,3,Kota Bharu,8,Aug,5.53,171.4,28.07,33.3,19.1
+Kelantan,3,Kota Bharu,9,Sep,5.97,179.1,27.83,33.01,19.13
+Kelantan,3,Kota Bharu,10,Oct,8.19,253.9,27.4,32.85,16.78
+Kelantan,3,Kota Bharu,11,Nov,16.44,493.2,26.91,32.57,14.61
+Kelantan,3,Kota Bharu,12,Dec,16.23,503.1,26.25,30.76,14.63
+Melaka,4,Melaka,1,Jan,4.98,154.4,26.45,31.7,16.51
+Melaka,4,Melaka,2,Feb,3.69,103.3,26.74,32.57,18.8
+Melaka,4,Melaka,3,Mar,5.14,159.3,27.5,33.42,18.97
+Melaka,4,Melaka,4,Apr,6.72,201.6,28.18,34.89,18.69
+Melaka,4,Melaka,5,May,5.65,175.2,28.46,33.86,17.55
+Melaka,4,Melaka,6,Jun,5.63,168.9,28.08,33.65,16.9
+Melaka,4,Melaka,7,Jul,6.03,186.9,27.62,31.95,16.76
+Melaka,4,Melaka,8,Aug,6.64,205.8,27.57,32.08,17.24
+Melaka,4,Melaka,9,Sep,5.63,168.9,27.56,33.04,17.01
+Melaka,4,Melaka,10,Oct,7.14,221.3,27.61,34.83,16.96
+Melaka,4,Melaka,11,Nov,8.67,260.1,27.32,32.22,16.04
+Melaka,4,Melaka,12,Dec,7.41,229.7,26.75,31.6,15.07
+Negeri Sembilan,5,Seremban,1,Jan,5.71,177.0,26.33,31.52,17.01
+Negeri Sembilan,5,Seremban,2,Feb,4.92,137.8,26.6,32.12,19.58
+Negeri Sembilan,5,Seremban,3,Mar,5.88,182.3,27.27,33.0,19.78
+Negeri Sembilan,5,Seremban,4,Apr,7.89,236.7,27.83,34.95,18.98
+Negeri Sembilan,5,Seremban,5,May,5.51,170.8,28.04,34.4,17.79
+Negeri Sembilan,5,Seremban,6,Jun,5.51,165.3,27.68,32.92,17.3
+Negeri Sembilan,5,Seremban,7,Jul,5.74,177.9,27.26,32.16,17.23
+Negeri Sembilan,5,Seremban,8,Aug,6.32,195.9,27.25,32.26,17.79
+Negeri Sembilan,5,Seremban,9,Sep,6.17,185.1,27.21,31.63,17.34
+Negeri Sembilan,5,Seremban,10,Oct,7.89,244.6,27.22,32.28,17.31
+Negeri Sembilan,5,Seremban,11,Nov,9.76,292.8,26.99,31.56,16.53
+Negeri Sembilan,5,Seremban,12,Dec,7.67,237.8,26.58,31.45,15.74
+Pahang,6,Kuantan,1,Jan,8.88,275.3,24.73,30.09,15.68
+Pahang,6,Kuantan,2,Feb,4.35,121.8,25.0,30.94,18.71
+Pahang,6,Kuantan,3,Mar,4.8,148.8,25.94,32.46,19.59
+Pahang,6,Kuantan,4,Apr,4.89,146.7,26.75,33.94,19.68
+Pahang,6,Kuantan,5,May,6.16,191.0,26.93,33.89,18.49
+Pahang,6,Kuantan,6,Jun,5.28,158.4,26.38,32.1,17.83
+Pahang,6,Kuantan,7,Jul,5.46,169.3,26.05,31.38,17.92
+Pahang,6,Kuantan,8,Aug,6.15,190.7,26.03,30.83,18.69
+Pahang,6,Kuantan,9,Sep,6.42,192.6,26.05,31.23,18.3
+Pahang,6,Kuantan,10,Oct,8.67,268.8,26.01,31.86,16.95
+Pahang,6,Kuantan,11,Nov,11.35,340.5,25.65,31.2,14.96
+Pahang,6,Kuantan,12,Dec,19.7,610.7,25.12,30.33,13.55
+Perak,8,Ipoh,1,Jan,6.76,209.6,22.93,28.8,16.04
+Perak,8,Ipoh,2,Feb,4.13,115.6,23.26,29.59,18.94
+Perak,8,Ipoh,3,Mar,5.64,174.8,23.89,30.48,19.64
+Perak,8,Ipoh,4,Apr,6.7,201.0,24.34,30.79,19.41
+Perak,8,Ipoh,5,May,5.95,184.5,24.29,30.49,18.46
+Perak,8,Ipoh,6,Jun,4.47,134.1,23.8,29.44,18.23
+Perak,8,Ipoh,7,Jul,4.71,146.0,23.48,29.02,17.86
+Perak,8,Ipoh,8,Aug,5.4,167.4,23.46,29.55,18.06
+Perak,8,Ipoh,9,Sep,6.6,198.0,23.4,29.89,17.57
+Perak,8,Ipoh,10,Oct,9.33,289.2,23.37,29.88,16.82
+Perak,8,Ipoh,11,Nov,10.97,329.1,23.42,28.92,15.68
+Perak,8,Ipoh,12,Dec,10.33,320.2,23.03,29.02,14.58
+Perlis,9,Kangar,1,Jan,2.47,76.6,26.5,33.36,17.83
+Perlis,9,Kangar,2,Feb,1.26,35.3,27.22,34.66,20.85
+Perlis,9,Kangar,3,Mar,3.7,114.7,28.15,36.25,21.27
+Perlis,9,Kangar,4,Apr,5.55,166.5,28.63,36.92,20.84
+Perlis,9,Kangar,5,May,6.67,206.8,28.41,36.05,18.5
+Perlis,9,Kangar,6,Jun,5.86,175.8,28.09,32.86,17.84
+Perlis,9,Kangar,7,Jul,6.25,193.8,27.72,31.93,17.59
+Perlis,9,Kangar,8,Aug,7.27,225.4,27.65,32.12,17.86
+Perlis,9,Kangar,9,Sep,8.57,257.1,27.27,32.14,17.31
+Perlis,9,Kangar,10,Oct,9.8,303.8,27.05,32.46,16.57
+Perlis,9,Kangar,11,Nov,8.93,267.9,26.94,32.3,15.6
+Perlis,9,Kangar,12,Dec,5.62,174.2,26.5,31.99,15.1
+Pulau Pinang,7,George Town,1,Jan,3.82,118.4,25.3,31.31,18.22
+Pulau Pinang,7,George Town,2,Feb,2.38,66.6,25.77,31.67,20.72
+Pulau Pinang,7,George Town,3,Mar,4.44,137.6,26.59,33.53,20.8
+Pulau Pinang,7,George Town,4,Apr,6.08,182.4,27.13,33.74,19.94
+Pulau Pinang,7,George Town,5,May,6.96,215.8,26.99,34.13,18.41
+Pulau Pinang,7,George Town,6,Jun,4.99,149.7,26.63,31.85,18.13
+Pulau Pinang,7,George Town,7,Jul,5.62,174.2,26.31,32.0,17.96
+Pulau Pinang,7,George Town,8,Aug,6.44,199.6,26.25,31.16,17.83
+Pulau Pinang,7,George Town,9,Sep,8.29,248.7,26.02,31.93,17.01
+Pulau Pinang,7,George Town,10,Oct,10.02,310.6,25.91,31.73,16.8
+Pulau Pinang,7,George Town,11,Nov,10.55,316.5,25.92,31.46,16.48
+Pulau Pinang,7,George Town,12,Dec,7.5,232.5,25.44,31.22,16.36
+Sabah,12,Kota Kinabalu,1,Jan,6.37,197.5,24.04,29.19,15.63
+Sabah,12,Kota Kinabalu,2,Feb,3.48,97.4,23.9,29.02,17.64
+Sabah,12,Kota Kinabalu,3,Mar,3.97,123.1,24.47,30.34,19.05
+Sabah,12,Kota Kinabalu,4,Apr,4.59,137.7,25.35,31.34,19.74
+Sabah,12,Kota Kinabalu,5,May,7.03,217.9,25.43,31.14,19.03
+Sabah,12,Kota Kinabalu,6,Jun,8.76,262.8,24.97,30.66,18.43
+Sabah,12,Kota Kinabalu,7,Jul,8.37,259.5,24.59,29.52,18.31
+Sabah,12,Kota Kinabalu,8,Aug,7.72,239.3,24.65,29.9,18.98
+Sabah,12,Kota Kinabalu,9,Sep,9.08,272.4,24.6,30.03,18.59
+Sabah,12,Kota Kinabalu,10,Oct,11.49,356.2,24.5,29.86,17.36
+Sabah,12,Kota Kinabalu,11,Nov,9.4,282.0,24.64,29.58,16.83
+Sabah,12,Kota Kinabalu,12,Dec,8.7,269.7,24.49,29.8,15.69
+Sarawak,13,Kuching,1,Jan,17.64,546.8,25.95,31.18,14.95
+Sarawak,13,Kuching,2,Feb,14.26,399.3,25.93,30.94,16.08
+Sarawak,13,Kuching,3,Mar,9.73,301.6,26.51,31.89,18.1
+Sarawak,13,Kuching,4,Apr,9.4,282.0,27.09,31.67,18.48
+Sarawak,13,Kuching,5,May,7.7,238.7,27.49,32.15,17.93
+Sarawak,13,Kuching,6,Jun,7.64,229.2,27.16,31.21,17.42
+Sarawak,13,Kuching,7,Jul,6.94,215.1,26.86,31.24,17.85
+Sarawak,13,Kuching,8,Aug,7.11,220.4,26.98,31.73,17.85
+Sarawak,13,Kuching,9,Sep,8.03,240.9,26.85,31.86,16.59
+Sarawak,13,Kuching,10,Oct,10.3,319.3,26.74,31.52,16.36
+Sarawak,13,Kuching,11,Nov,11.51,345.3,26.54,31.35,16.62
+Sarawak,13,Kuching,12,Dec,14.86,460.7,26.29,31.25,15.67
+Selangor,10,Shah Alam,1,Jan,6.75,209.2,27.2,31.35,16.65
+Selangor,10,Shah Alam,2,Feb,5.65,158.2,27.52,31.69,18.63
+Selangor,10,Shah Alam,3,Mar,6.9,213.9,27.99,32.38,18.98
+Selangor,10,Shah Alam,4,Apr,8.9,267.0,28.35,33.16,18.57
+Selangor,10,Shah Alam,5,May,6.14,190.3,28.56,32.35,17.97
+Selangor,10,Shah Alam,6,Jun,5.13,153.9,28.34,31.74,17.55
+Selangor,10,Shah Alam,7,Jul,5.6,173.6,27.97,30.85,17.24
+Selangor,10,Shah Alam,8,Aug,5.82,180.4,27.96,31.21,17.43
+Selangor,10,Shah Alam,9,Sep,6.86,205.8,27.79,31.55,16.91
+Selangor,10,Shah Alam,10,Oct,8.91,276.2,27.65,31.41,16.49
+Selangor,10,Shah Alam,11,Nov,10.8,324.0,27.46,31.17,15.81
+Selangor,10,Shah Alam,12,Dec,8.89,275.6,27.29,31.04,15.17
+Terengganu,11,Kuala Terengganu,1,Jan,7.69,238.4,25.76,29.31,16.59
+Terengganu,11,Kuala Terengganu,2,Feb,2.99,83.7,25.99,29.89,20.24
+Terengganu,11,Kuala Terengganu,3,Mar,4.14,128.3,26.92,30.95,21.59
+Terengganu,11,Kuala Terengganu,4,Apr,3.62,108.6,28.1,33.1,21.04
+Terengganu,11,Kuala Terengganu,5,May,5.45,169.0,28.65,32.94,19.08
+Terengganu,11,Kuala Terengganu,6,Jun,5.54,166.2,28.37,32.04,18.13
+Terengganu,11,Kuala Terengganu,7,Jul,5.97,185.1,28.02,31.36,18.09
+Terengganu,11,Kuala Terengganu,8,Aug,6.16,191.0,27.96,31.65,18.76
+Terengganu,11,Kuala Terengganu,9,Sep,6.6,198.0,27.84,31.44,18.76
+Terengganu,11,Kuala Terengganu,10,Oct,8.72,270.3,27.53,31.21,16.53
+Terengganu,11,Kuala Terengganu,11,Nov,16.98,509.4,27.06,30.26,14.71
+Terengganu,11,Kuala Terengganu,12,Dec,19.65,609.1,26.39,29.53,14.51
+W.P. Kuala Lumpur,14,Kuala Lumpur,1,Jan,6.64,205.8,24.72,31.63,16.65
+W.P. Kuala Lumpur,14,Kuala Lumpur,2,Feb,5.56,155.7,25.03,33.46,18.63
+W.P. Kuala Lumpur,14,Kuala Lumpur,3,Mar,6.27,194.4,25.75,33.37,18.98
+W.P. Kuala Lumpur,14,Kuala Lumpur,4,Apr,8.34,250.2,26.24,33.92,18.57
+W.P. Kuala Lumpur,14,Kuala Lumpur,5,May,5.55,172.0,26.27,34.4,17.97
+W.P. Kuala Lumpur,14,Kuala Lumpur,6,Jun,5.16,154.8,25.77,34.15,17.55
+W.P. Kuala Lumpur,14,Kuala Lumpur,7,Jul,5.45,169.0,25.33,32.42,17.24
+W.P. Kuala Lumpur,14,Kuala Lumpur,8,Aug,5.93,183.8,25.38,33.09,17.43
+W.P. Kuala Lumpur,14,Kuala Lumpur,9,Sep,6.51,195.3,25.41,32.43,16.91
+W.P. Kuala Lumpur,14,Kuala Lumpur,10,Oct,8.47,262.6,25.46,32.74,16.49
+W.P. Kuala Lumpur,14,Kuala Lumpur,11,Nov,10.46,313.8,25.31,32.96,15.81
+W.P. Kuala Lumpur,14,Kuala Lumpur,12,Dec,8.47,262.6,24.84,31.92,15.17
+W.P. Labuan,15,Victoria,1,Jan,7.6,235.6,27.28,29.27,17.59
+W.P. Labuan,15,Victoria,2,Feb,4.3,120.4,26.79,28.6,19.8
+W.P. Labuan,15,Victoria,3,Mar,4.3,133.3,27.22,29.34,21.3
+W.P. Labuan,15,Victoria,4,Apr,5.78,173.4,28.28,30.31,21.98
+W.P. Labuan,15,Victoria,5,May,6.97,216.1,28.79,30.97,19.93
+W.P. Labuan,15,Victoria,6,Jun,8.26,247.8,28.67,30.99,18.59
+W.P. Labuan,15,Victoria,7,Jul,7.54,233.7,28.47,30.31,18.68
+W.P. Labuan,15,Victoria,8,Aug,6.6,204.6,28.52,30.66,19.4
+W.P. Labuan,15,Victoria,9,Sep,7.78,233.4,28.34,30.25,18.92
+W.P. Labuan,15,Victoria,10,Oct,8.64,267.8,28.05,30.13,17.82
+W.P. Labuan,15,Victoria,11,Nov,9.32,279.6,28.1,30.18,17.83
+W.P. Labuan,15,Victoria,12,Dec,9.16,284.0,27.95,29.86,17.04
+W.P. Putrajaya,16,Putrajaya,1,Jan,6.64,205.8,24.72,31.63,17.01
+W.P. Putrajaya,16,Putrajaya,2,Feb,5.56,155.7,25.03,33.46,19.58
+W.P. Putrajaya,16,Putrajaya,3,Mar,6.27,194.4,25.75,33.37,19.78
+W.P. Putrajaya,16,Putrajaya,4,Apr,8.34,250.2,26.24,33.92,18.98
+W.P. Putrajaya,16,Putrajaya,5,May,5.55,172.0,26.27,34.4,17.79
+W.P. Putrajaya,16,Putrajaya,6,Jun,5.16,154.8,25.77,34.15,17.3
+W.P. Putrajaya,16,Putrajaya,7,Jul,5.45,169.0,25.33,32.42,17.23
+W.P. Putrajaya,16,Putrajaya,8,Aug,5.93,183.8,25.38,33.09,17.79
+W.P. Putrajaya,16,Putrajaya,9,Sep,6.51,195.3,25.41,32.43,17.34
+W.P. Putrajaya,16,Putrajaya,10,Oct,8.47,262.6,25.46,32.74,17.31
+W.P. Putrajaya,16,Putrajaya,11,Nov,10.46,313.8,25.31,32.96,16.53
+W.P. Putrajaya,16,Putrajaya,12,Dec,8.47,262.6,24.84,31.92,15.74

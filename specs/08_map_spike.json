@@ -1,0 +1,465 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Spike map: change in vegetable planted area between 2014 and 2024. Spike length is proportional to the percentage change, rising for an increase and falling for a decrease. Changes of 25 per cent or more are labelled.",
+  "hconcat": [
+    {
+      "width": 330,
+      "height": 520,
+      "title": {
+        "text": "Peninsular Malaysia",
+        "fontSize": 13,
+        "dy": -6
+      },
+      "projection": {
+        "type": "mercator",
+        "scale": 3500,
+        "center": [
+          102.1,
+          3.95
+        ],
+        "translate": [
+          165.0,
+          330
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/malaysia_states.topo.json",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 16], datum.properties.code) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "fill": "#EAE6DC",
+            "stroke": "#FAF7F0",
+            "strokeWidth": 1
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_change.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "lat_end": "number",
+                "pct_change": "number",
+                "code": "number",
+                "area_2014": "number",
+                "area_2024": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 16], datum.code) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 3,
+            "opacity": 0.92,
+            "strokeCap": "round"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon"
+            },
+            "latitude2": {
+              "field": "lat_end"
+            },
+            "color": {
+              "field": "direction",
+              "type": "nominal",
+              "title": "Change in vegetable land, 2014 to 2024",
+              "scale": {
+                "domain": [
+                  "Increase",
+                  "Decrease"
+                ],
+                "range": [
+                  "#2D6C35",
+                  "#C2603C"
+                ]
+              },
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "titleLimit": 1000,
+                "labelLimit": 220,
+                "titleColor": "#1C2B22",
+                "labelColor": "#5E6E64",
+                "titleFontSize": 11.5,
+                "titleAnchor": "start"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "area_2014",
+                "type": "quantitative",
+                "title": "Vegetable land 2014 (hectares)",
+                "format": ",.0f"
+              },
+              {
+                "field": "area_2024",
+                "type": "quantitative",
+                "title": "Vegetable land 2024 (hectares)",
+                "format": ",.0f"
+              },
+              {
+                "field": "pct_change",
+                "type": "quantitative",
+                "title": "Change (per cent)",
+                "format": "+.1f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_change.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "lat_end": "number",
+                "pct_change": "number",
+                "code": "number",
+                "area_2014": "number",
+                "area_2024": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 16], datum.code) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 22,
+            "color": "#1C2B22",
+            "opacity": 0.6
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_change.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "lat_end": "number",
+                "pct_change": "number",
+                "code": "number",
+                "area_2014": "number",
+                "area_2024": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 16], datum.code) >= 0"
+            },
+            {
+              "filter": "abs(datum.pct_change) >= 25"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 10.5,
+            "fontWeight": 600,
+            "align": "center"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "pct_change",
+              "type": "quantitative",
+              "format": "+.0f"
+            },
+            "color": {
+              "condition": {
+                "test": "datum.direction === 'Increase'",
+                "value": "#1A4A27"
+              },
+              "value": "#9E4528"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "width": 620,
+      "height": 520,
+      "title": {
+        "text": "Sabah, Sarawak and Labuan",
+        "fontSize": 13,
+        "dy": -6
+      },
+      "projection": {
+        "type": "mercator",
+        "scale": 3500,
+        "center": [
+          114.4,
+          4.12
+        ],
+        "translate": [
+          310.0,
+          330
+        ]
+      },
+      "layer": [
+        {
+          "data": {
+            "url": "data/malaysia_states.topo.json",
+            "format": {
+              "type": "topojson",
+              "feature": "states"
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([12, 13, 15], datum.properties.code) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "fill": "#EAE6DC",
+            "stroke": "#FAF7F0",
+            "strokeWidth": 1
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_change.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "lat_end": "number",
+                "pct_change": "number",
+                "code": "number",
+                "area_2014": "number",
+                "area_2024": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([12, 13, 15], datum.code) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "rule",
+            "strokeWidth": 3,
+            "opacity": 0.92,
+            "strokeCap": "round"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "longitude2": {
+              "field": "lon"
+            },
+            "latitude2": {
+              "field": "lat_end"
+            },
+            "color": {
+              "field": "direction",
+              "type": "nominal",
+              "title": "Change in vegetable land, 2014 to 2024",
+              "scale": {
+                "domain": [
+                  "Increase",
+                  "Decrease"
+                ],
+                "range": [
+                  "#2D6C35",
+                  "#C2603C"
+                ]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "state",
+                "type": "nominal",
+                "title": "State"
+              },
+              {
+                "field": "area_2014",
+                "type": "quantitative",
+                "title": "Vegetable land 2014 (hectares)",
+                "format": ",.0f"
+              },
+              {
+                "field": "area_2024",
+                "type": "quantitative",
+                "title": "Vegetable land 2024 (hectares)",
+                "format": ",.0f"
+              },
+              {
+                "field": "pct_change",
+                "type": "quantitative",
+                "title": "Change (per cent)",
+                "format": "+.1f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_change.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "lat_end": "number",
+                "pct_change": "number",
+                "code": "number",
+                "area_2014": "number",
+                "area_2024": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([12, 13, 15], datum.code) >= 0"
+            }
+          ],
+          "mark": {
+            "type": "circle",
+            "size": 22,
+            "color": "#1C2B22",
+            "opacity": 0.6
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "data/state_change.csv",
+            "format": {
+              "type": "csv",
+              "parse": {
+                "lon": "number",
+                "lat": "number",
+                "lat_end": "number",
+                "pct_change": "number",
+                "code": "number",
+                "area_2014": "number",
+                "area_2024": "number"
+              }
+            }
+          },
+          "transform": [
+            {
+              "filter": "indexof([12, 13, 15], datum.code) >= 0"
+            },
+            {
+              "filter": "abs(datum.pct_change) >= 25"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "fontSize": 10.5,
+            "fontWeight": 600,
+            "align": "center"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "label_lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "pct_change",
+              "type": "quantitative",
+              "format": "+.0f"
+            },
+            "color": {
+              "condition": {
+                "test": "datum.direction === 'Increase'",
+                "value": "#1A4A27"
+              },
+              "value": "#9E4528"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "color": "shared",
+      "size": "shared"
+    }
+  },
+  "spacing": 26,
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

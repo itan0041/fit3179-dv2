@@ -1,0 +1,17 @@
+state,code,region,start_month,end_month,window_label,window_rain_mm,driest_month,driest_month_name,wettest_month,wettest_month_name,annual_rain_mm
+Sabah,12,Borneo,2,4,February–April,358.0,2,February,10,October,2716.0
+Sarawak,13,Borneo,6,8,June–August,665.0,7,July,1,January,3799.0
+W.P. Labuan,15,Borneo,2,4,February–April,427.0,2,February,12,December,2630.0
+Negeri Sembilan,5,Central,1,3,January–March,497.0,2,February,11,November,2404.0
+Selangor,10,Central,6,8,June–August,508.0,6,June,11,November,2628.0
+W.P. Kuala Lumpur,14,Central,5,7,May–July,496.0,6,June,11,November,2520.0
+W.P. Putrajaya,16,Central,5,7,May–July,496.0,6,June,11,November,2520.0
+Kelantan,3,East Coast,2,4,February–April,276.0,2,February,12,December,2538.0
+Pahang,6,East Coast,2,4,February–April,417.0,2,February,12,December,2815.0
+Terengganu,11,East Coast,2,4,February–April,321.0,2,February,12,December,2857.0
+Kedah,2,North,1,3,January–March,279.0,2,February,11,November,2302.0
+Perak,8,North,6,8,June–August,448.0,2,February,11,November,2470.0
+Perlis,9,North,1,3,January–March,227.0,2,February,10,October,2198.0
+Pulau Pinang,7,North,1,3,January–March,323.0,2,February,11,November,2353.0
+Johor,1,South,2,4,February–April,463.0,2,February,12,December,2367.0
+Melaka,4,South,1,3,January–March,417.0,2,February,11,November,2235.0

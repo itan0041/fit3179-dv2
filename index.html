@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grow Where You Are — Malaysia's gardening decade</title>
+<meta name="description" content="Search interest, eleven years of crop records and a 25-year rainfall climatology, read together to ask what Malaysia's gardening boom actually changed.">
+<meta name="author" content="Isaac Yeak Sern Tan">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Gardening in Malaysia · 2014–2026</p>
+    <h1>Grow Where You Are</h1>
+    <p class="standfirst">In 2020, Malaysians searched for ways to grow food at home like never
+      before. Eleven years of planting records show how little — and how much — actually
+      changed in the ground beneath us.</p>
+    <p class="byline">Isaac Yeak Sern Tan · FIT3179 Data Visualisation 2 · Monash University
+      Malaysia · October 2026</p>
+
+    <div class="kpis">
+      <div class="kpi is-down">
+        <span class="fig">+192%</span>
+        <span class="cap">Rise in Malaysian searches for <em>hidroponik</em> between 2014
+          and the pandemic year of 2020</span>
+      </div>
+      <div class="kpi is-down">
+        <span class="fig">−18%</span>
+        <span class="cap">Where those same searches sit today, measured against 2014</span>
+      </div>
+      <div class="kpi is-up">
+        <span class="fig">75,795</span>
+        <span class="cap">Hectares of vegetables planted in 2024 — the most in eleven years</span>
+      </div>
+      <div class="kpi is-up">
+        <span class="fig">36%</span>
+        <span class="cap">Share of all that vegetable land sitting in a single state, Pahang</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================ 1 ============================ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="sec-num">One · The spike</p>
+        <h2>The year everybody wanted to grow something</h2>
+      </div>
+      <div>
+        <p class="lede">When the Movement Control Order began on 18 March 2020, Malaysians went
+          looking for ways to feed themselves from a balcony, a porch or a patch of soil.
+          Searches for <em>hidroponik</em> — hydroponics — nearly tripled against their 2014
+          level.</p>
+        <p>Then the interest drained away. By 2026 all three Malay-language search terms sit
+          <strong>below</strong> where they stood in 2014: <em>hidroponik</em> down 18 per cent,
+          <em>berkebun</em> down 18 per cent, and <em>kebun sayur</em> down 46 per cent. The
+          enthusiasm was real, and it was temporary.</p>
+      </div>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 1 · Ridgeline plot</span>
+          <h3>Four ways Malaysians looked for gardening, month by month</h3>
+          <p class="fig-note">Each band is one search term: the pale shape is the raw monthly
+            index and the solid line is a five-month average. <em>Berkebun</em> means to garden,
+            <em>hidroponik</em> is hydroponics and <em>kebun sayur</em> is a vegetable garden.
+            Every row is scaled to its own peak, so compare the shapes rather than the heights —
+            the terms differ greatly in volume. The dashed line marks March 2020.</p>
+        </figcaption>
+        <div class="chart" id="c01"></div>
+        <p class="callout"><b>Read with care.</b> The English word “gardening” behaves unlike
+          the three Malay terms and climbs steeply through 2026. In Malaysian English it also
+          carries unrelated meanings, and this data cannot explain the 2026 rise, so the
+          conclusions on this page rest on the Malay-language terms.</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ 2 ============================ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="sec-num">Two · The ground</p>
+        <h2>Attention is not the same as acreage</h2>
+      </div>
+      <div>
+        <p class="lede">It is tempting to read that spike as a gardening boom that reshaped the
+          country. The planting records refuse to cooperate.</p>
+        <p>Malaysia's vegetable land had been shrinking for years: between 2014 and 2018 it lost
+          <strong>17.7 per cent</strong> of its area. The recovery began in 2019 — before the
+          pandemic — and kept going long after the searching stopped, reaching
+          <strong>75,795 hectares in 2024</strong>, the highest in the eleven years on record.</p>
+        <p>These two things are not the same thing measured twice. The search data describes
+          public attention; the planting data counts commercial farms surveyed by the Department
+          of Statistics. Neither one tells us how many Malaysians put a chilli plant on a
+          balcony — but together they show that the country's food-growing capacity moved on a
+          slower rhythm than its curiosity did.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 2 · Slope graph</span>
+          <h3>Which categories gained and lost over the decade</h3>
+          <p class="fig-note">Each line is one crop category, indexed so that its 2014 value
+            equals 100. Use the control to switch between land planted and tonnes harvested.</p>
+        </figcaption>
+        <div class="chart" id="c02"></div>
+      </figure>
+
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 3 · Bump chart</span>
+          <h3>The race between plant categories, year by year</h3>
+          <p class="fig-note">Categories are ranked one to nine each year by how far their
+            planted area had grown since 2014. Rank 1 is the fastest-growing category that year.</p>
+        </figcaption>
+        <div class="chart" id="c03"></div>
+      </figure>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 4 · Connected scatterplot</span>
+          <h3>Eleven years of vegetables, in one path</h3>
+          <p class="fig-note">Every dot is one year, placed by the land planted and the tonnes
+            produced, then joined in time order. A path running down and to the left is a
+            shrinking industry; one running up and to the right is a recovering one.</p>
+        </figcaption>
+        <div class="chart" id="c04"></div>
+        <p class="callout grow"><b>The turn happened in 2018.</b> The path falls for four years,
+          doubles back on itself, and by 2024 has climbed past where it began — more land and
+          more tonnes than 2014, after a decade-long detour.</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ 3 ============================ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="sec-num">Three · The map</p>
+        <h2>Where Malaysia's vegetables actually grow</h2>
+      </div>
+      <div>
+        <p class="lede">National totals hide an extraordinary concentration. More than a third of
+          every vegetable hectare in Malaysia sits in one state.</p>
+        <p>Pahang holds <strong>36 per cent</strong> of the country's vegetable land, most of it
+          in the cool highland soils around Cameron Highlands. Measured against its own
+          population, Pahang works <strong>16.5 hectares of vegetables for every 1,000
+          residents</strong>. Selangor, the most populous state in the country, works
+          <strong>0.31</strong>.</p>
+      </div>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 5 · Choropleth map</span>
+          <h3>Vegetable land per 1,000 residents, 2024</h3>
+          <p class="fig-note">Shading shows how much vegetable-growing land each state holds
+            relative to the number of people living there. Darker means more land per person. Peninsular Malaysia and Borneo are drawn as two panels at the same map scale, so areas stay comparable between them.</p>
+        </figcaption>
+        <div class="chart" id="c05"></div>
+      </figure>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 6 · Proportional symbol map</span>
+          <h3>Total vegetable production, 2024</h3>
+          <p class="fig-note">Circle area is proportional to tonnes harvested. Where the previous
+            map adjusted for population, this one shows the raw scale of each state's output. Peninsular Malaysia and Borneo are drawn as two panels at the same map scale, so areas stay comparable between them.</p>
+        </figcaption>
+        <div class="chart" id="c06"></div>
+        <p class="callout grow"><b>Two maps, two answers.</b> Adjusted for population, the
+          east-coast states look substantial. In raw tonnage, Pahang and Johor supply the bulk of
+          the country's vegetables between them.</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ 4 ============================ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="sec-num">Four · The mismatch</p>
+        <h2>Searching for a garden, and having one, are different maps</h2>
+      </div>
+      <div>
+        <p class="lede">Putting curiosity and cultivation on the same map shows where the two
+          part company.</p>
+        <p>Interest runs highest in the north and east — Kelantan, Perlis and Terengganu — the
+          states that already live closest to farming. But interest alone does not put food in
+          the ground. <strong>Perlis and Terengganu search as keenly as anywhere in Malaysia and
+          grow very little.</strong> Meanwhile Kuala Lumpur and Selangor sit pale in both
+          directions: they neither search for gardening nor grow much of anything.</p>
+      </div>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 7 · Bivariate choropleth map</span>
+          <h3>Search interest set against growing land</h3>
+          <p class="fig-note">Each state takes a colour from the nine-square key. Moving right
+            means more searching for <em>berkebun</em>; moving up means more vegetable land per
+            resident. States are split into three equal groups on each measure. Peninsular Malaysia and Borneo are drawn as two panels at the same map scale, so areas stay comparable between them.</p>
+        </figcaption>
+        <div class="map-with-key">
+          <div class="chart" id="c07"></div>
+          <div class="key-block">
+            <div class="chart" id="c07b"></div>
+            <p>The darkest green corner is high growing and low searching. The orange corner is
+              high searching and low growing. The grey corner is low on both.</p>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ 5 ============================ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="sec-num">Five · The shift</p>
+        <h2>The growth went east. The losses went where the people are.</h2>
+      </div>
+      <div>
+        <p class="lede">Over eleven years the map of Malaysian vegetable growing has quietly
+          redrawn itself.</p>
+        <p>Kelantan more than doubled its vegetable land, up <strong>156 per cent</strong>, and
+          Perlis rose <strong>112 per cent</strong>. The heaviest losses fall on the urban west
+          coast: Selangor gave up <strong>55 per cent</strong> of its vegetable land, and Pulau
+          Pinang <strong>27 per cent</strong>. Kuala Lumpur reports no commercial crop area at
+          all.</p>
+        <p>Selangor and Kuala Lumpur together hold <strong>27.8 per cent of Malaysia's
+          population</strong> and <strong>3.0 per cent of its vegetable land</strong>. That gap
+          is the strongest argument this data makes for growing something at home: the people
+          are furthest from the fields exactly where the fields have disappeared fastest.</p>
+      </div>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 8 · Spike map</span>
+          <h3>Change in vegetable land, 2014 to 2024</h3>
+          <p class="fig-note">Each spike rises from the centre of its state. Spikes growing
+            upward in green are states that gained vegetable land; spikes falling in terracotta
+            are states that lost it. Spike length is proportional to the percentage change. Peninsular Malaysia and Borneo are drawn as two panels at the same map scale, so areas stay comparable between them.</p>
+        </figcaption>
+        <div class="chart" id="c08"></div>
+      </figure>
+    </div>
+
+    <div class="row">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 9 · Dumbbell chart</span>
+          <h3>Where each state started and finished</h3>
+          <p class="fig-note">The pale dot marks 2014 and the coloured dot marks 2024. The
+            horizontal axis uses a square-root scale so the smaller states remain legible beside
+            Pahang.</p>
+        </figcaption>
+        <div class="chart" id="c09"></div>
+      </figure>
+
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 10 · Waffle chart</span>
+          <h3>Every square is one per cent of the nation's vegetable land</h3>
+          <p class="fig-note">A hundred squares divide Malaysia's 2024 vegetable area between the
+            states. Six states and one grouped remainder account for all of it.</p>
+        </figcaption>
+        <div class="chart" id="c10"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================ 6 ============================ -->
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="sec-num">Six · The calendar</p>
+        <h2>No spring, no autumn — here, the rain sets the calendar</h2>
+      </div>
+      <div>
+        <p class="lede">Almost every gardening guide a Malaysian finds online was written for a
+          country with four seasons. Ours has two, and they are wet and less wet.</p>
+        <p>Worldwide, searches for gardening swing hard with the northern spring: the busiest
+          month runs <strong>more than twice</strong> as high as the quietest. Malaysia's own
+          curve is far flatter, and it does not follow the northern calendar at all. What it does
+          follow is the rain — interest sits at its lowest in December, the single wettest month
+          of the Malaysian year.</p>
+      </div>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 11 · Heatmap</span>
+          <h3>Average monthly rainfall, by state</h3>
+          <p class="fig-note">Twenty-five years of NASA satellite and model climatology, measured
+            at each state capital. States are ordered from wettest to driest overall.</p>
+        </figcaption>
+        <div class="chart" id="c11"></div>
+        <p class="callout rain"><b>The north-east monsoon is the dominant fact.</b> Kelantan,
+          Terengganu and Pahang take their heaviest rain in November, December and January, while
+          the north-west stays comparatively dry through the first quarter.</p>
+      </figure>
+    </div>
+
+    <div class="row">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 12 · Custom radial chart</span>
+          <h3>Malaysia's gardening year against the world's</h3>
+          <p class="fig-note">January sits at the top and the months run clockwise. Each ring is a
+            seasonal index where that series' own yearly average equals 100, so the two curves can
+            be compared by shape rather than by level.</p>
+        </figcaption>
+        <div class="chart" id="c12"></div>
+      </figure>
+
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 13 · Dual-axis chart</span>
+          <h3>Rain rises, searching falls</h3>
+          <p class="fig-note">Bars show average rainfall across all sixteen states on the left
+            axis; the line shows Malaysia's seasonal index of gardening searches on the right.
+            The two axes are scaled separately.</p>
+        </figcaption>
+        <div class="chart" id="c14"></div>
+      </figure>
+    </div>
+
+    <div class="row single">
+      <figure>
+        <figcaption>
+          <span class="fig-kicker">Figure 14 · Interval chart</span>
+          <h3>The three driest months in each state</h3>
+          <p class="fig-note">Each bar spans the three consecutive months with the least rainfall
+            on record for that state — the easiest window in which to start seedlings without
+            them being washed out. Darker bars mean that even the driest window is a wet one.</p>
+        </figcaption>
+        <div class="chart" id="c13"></div>
+      </figure>
+    </div>
+
+    <p class="callout grow" style="margin-top:34px"><b>So when should you plant?</b> Not on the
+      calendar you read online. On the east coast and in much of Borneo the gentlest window is
+      <b>February to April</b>, once the north-east monsoon has passed. In the north — Perlis,
+      Kedah and Pulau Pinang — it falls earlier, <b>January to March</b>. Around Kuala Lumpur, Selangor and
+      Perak the drier spell comes mid-year, between <b>May and August</b>.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Where the data comes from</h3>
+        <ul>
+          <li><a href="https://data.gov.my/data-catalogue/crops_state">Crop Area and Production by
+            State</a> — Ministry of Agriculture and Food Security, Department of Agriculture and
+            Department of Statistics Malaysia, via data.gov.my. Annual, 2014–2024, updated
+            11 October 2026.</li>
+          <li><a href="https://data.gov.my/data-catalogue/population_state">Population Table:
+            States</a> — Department of Statistics Malaysia, via data.gov.my.</li>
+          <li><a href="https://trends.google.com/trends/">Google Trends</a> — monthly search
+            interest in Malaysia and worldwide, January 2014 to September 2026, retrieved
+            12 October 2026.</li>
+          <li><a href="https://power.larc.nasa.gov/">NASA POWER</a> — 25-year monthly climatology,
+            January 2001 to December 2025, sampled at each state capital.</li>
+          <li>State boundaries — <a href="https://github.com/dosm-malaysia/data-open">Department of
+            Statistics Malaysia open geodata</a>.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>How to read the numbers</h3>
+        <p><b>Search interest</b> is not a count of searches. Google scales each set of terms so
+          that the busiest month equals 100. Two different charts on this page were requested
+          separately and are therefore scaled separately.</p>
+        <p><b>Crop records are commercial.</b> The Department of Statistics surveys farms and
+          agricultural establishments. Home gardens are not counted, so this page never claims to
+          measure household gardening directly.</p>
+        <p><b>2026 is a partial year.</b> Search data runs to September, so where years are
+          compared, only January to September is used for every year.</p>
+      </div>
+      <div>
+        <h3>Corrections and limits in the source data</h3>
+        <p><b>Flowers are not measured in tonnes.</b> The portal describes every production figure
+          as metric tonnes, but the flower series reports stem counts in the hundreds of millions.
+          Flower production is therefore shown as unavailable; flower <em>area</em>, in hectares,
+          is reliable and is used.</p>
+        <p><b>Coconut sits inside industrial crops.</b> The published methodology files coconut
+          under industrial crops, so the nine categories overlap and must never be summed. Totals
+          on this page use only the non-overlapping edible group.</p>
+        <p><b>One grid cell, two cities.</b> NASA POWER works on a half-degree grid, so Kuala
+          Lumpur and Putrajaya return identical climate readings.</p>
+      </div>
+    </div>
+
+    <div class="colophon">
+      <p><strong>Author.</strong> Isaac Yeak Sern Tan, Monash University Malaysia. Published
+        October 2026 for FIT3179 Data Visualisation 2. All charts were built with Vega-Lite; every
+        chart specification is published as readable JSON in the
+        <a href="specs/">specs folder</a> of this repository.</p>
+      <p><strong>Use of generative artificial intelligence.</strong> Anthropic's Claude was used to
+        assist with locating and retrieving the source datasets, writing the Python data-preparation
+        scripts and Vega-Lite specifications, drafting and editing the narrative text, and reviewing
+        the page layout. All data is unmodified public data from the sources listed above; the
+        analysis, interpretation and final design decisions are the author's own.</p>
+      <p><strong>Licence.</strong> Text and figures released under
+        <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+        Underlying data remains subject to the terms of its original publishers.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/vendor/vega.min.js"></script>
+<script src="js/vendor/vega-lite.min.js"></script>
+<script src="js/vendor/vega-embed.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

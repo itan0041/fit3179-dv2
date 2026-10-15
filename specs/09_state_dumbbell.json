@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Dumbbell chart: vegetable planted area by state in 2014 and 2024, with a connecting line showing the direction of travel.",
+  "data": {
+    "url": "data/state_change.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "area_2014": "number",
+        "area_2024": "number",
+        "pct_change": "number"
+      }
+    }
+  },
+  "width": 330,
+  "height": 400,
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "area_2024",
+        "order": "descending"
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 11.5,
+        "labelColor": "#1C2B22",
+        "grid": true,
+        "gridColor": "#DCD5C7",
+        "gridDash": [
+          1,
+          4
+        ]
+      }
+    },
+    "x": {
+      "field": "area_2014",
+      "type": "quantitative",
+      "title": "Vegetable planted area (hectares)",
+      "scale": {
+        "type": "sqrt"
+      },
+      "axis": {
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "format": ",.0f",
+        "labelColor": "#5E6E64",
+        "titleColor": "#5E6E64",
+        "values": [
+          0,
+          2000,
+          5000,
+          10000,
+          20000,
+          30000
+        ]
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2.2,
+        "opacity": 0.55
+      },
+      "encoding": {
+        "x2": {
+          "field": "area_2024"
+        },
+        "color": {
+          "field": "direction",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Increase",
+              "Decrease"
+            ],
+            "range": [
+              "#2D6C35",
+              "#C2603C"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 95,
+        "color": "#B9BEB3",
+        "stroke": "#FAF7F0",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "area_2014",
+            "type": "quantitative",
+            "title": "2014 (hectares)",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 130,
+        "stroke": "#FAF7F0",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "area_2024",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "direction",
+          "type": "nominal",
+          "title": "Direction, 2014 to 2024",
+          "scale": {
+            "domain": [
+              "Increase",
+              "Decrease"
+            ],
+            "range": [
+              "#2D6C35",
+              "#C2603C"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleLimit": 400,
+            "titleColor": "#5E6E64",
+            "labelColor": "#5E6E64"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "area_2024",
+            "type": "quantitative",
+            "title": "2024 (hectares)",
+            "format": ",.0f"
+          },
+          {
+            "field": "pct_change",
+            "type": "quantitative",
+            "title": "Change (per cent)",
+            "format": "+.1f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

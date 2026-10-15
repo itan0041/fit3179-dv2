@@ -1,0 +1,378 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Custom-built radial chart. Polar coordinates are pre-computed in Python (data/seasonality_polar.csv) because Vega-Lite has no polar line mark. January is at the top and the months run clockwise. Each series is scaled so its own yearly average sits at the 100 ring.",
+  "width": 420,
+  "height": 420,
+  "layer": [
+    {
+      "data": {
+        "url": "data/seasonality_rings.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "x": "number",
+            "y": "number",
+            "ring": "number",
+            "k": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "line",
+        "strokeWidth": 0.8,
+        "color": "#DCD5C7"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "detail": {
+          "field": "ring",
+          "type": "nominal"
+        },
+        "order": {
+          "field": "k",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/seasonality_spokes.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "x": "number",
+            "y": "number",
+            "x0": "number",
+            "y0": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 0.7,
+        "color": "#DCD5C7"
+      },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y0",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "x2": {
+          "field": "x"
+        },
+        "y2": {
+          "field": "y"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/seasonality_spokes.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "lx": "number",
+            "ly": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11.5,
+        "color": "#5E6E64"
+      },
+      "encoding": {
+        "x": {
+          "field": "lx",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "ly",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "month_name",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "ring": 75,
+            "x": 0,
+            "y": 57.0,
+            "label": "75"
+          },
+          {
+            "ring": 100,
+            "x": 0,
+            "y": 82.0,
+            "label": "100  (yearly average)"
+          },
+          {
+            "ring": 125,
+            "x": 0,
+            "y": 107.0,
+            "label": "125"
+          },
+          {
+            "ring": 150,
+            "x": 0,
+            "y": 132.0,
+            "label": "150"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 9.5,
+        "color": "#8A9890",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/seasonality_polar.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "x": "number",
+            "y": "number",
+            "month": "number",
+            "value": "number"
+          }
+        }
+      },
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.6,
+        "interpolate": "cardinal",
+        "opacity": 0.95
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "order": {
+          "field": "month",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "series_label",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Malaysia",
+              "Worldwide"
+            ],
+            "range": [
+              "#C2603C",
+              "#8C9AA3"
+            ]
+          },
+          "legend": {
+            "orient": "none",
+            "legendX": 0,
+            "legendY": 392,
+            "direction": "horizontal",
+            "title": null,
+            "labelColor": "#1C2B22",
+            "labelFontSize": 12
+          }
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "data/seasonality_polar.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "x": "number",
+            "y": "number",
+            "month": "number",
+            "value": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.month <= 12"
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 70,
+        "stroke": "#FAF7F0",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              -168,
+              168
+            ]
+          },
+          "axis": null
+        },
+        "color": {
+          "field": "series_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Malaysia",
+              "Worldwide"
+            ],
+            "range": [
+              "#C2603C",
+              "#8C9AA3"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "series_label",
+            "type": "nominal",
+            "title": "Series"
+          },
+          {
+            "field": "month_name",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Seasonal index (yearly average = 100)",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

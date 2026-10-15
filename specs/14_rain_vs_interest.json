@@ -1,0 +1,184 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Dual-axis layered chart: average monthly rainfall across all sixteen states (bars, left axis) against Malaysia\u2019s seasonal index of gardening search interest (line, right axis). December is both the wettest month of the year and the quietest month for searching.",
+  "data": {
+    "url": "data/seasonality.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "month": "number",
+        "malaysia_index": "number",
+        "rainfall_mm": "number"
+      }
+    }
+  },
+  "width": 355,
+  "height": 360,
+  "encoding": {
+    "x": {
+      "field": "month_name",
+      "type": "ordinal",
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "domain": false,
+        "ticks": false,
+        "grid": false,
+        "labelColor": "#1C2B22",
+        "labelFontSize": 11.5
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadiusTopLeft": 3,
+        "cornerRadiusTopRight": 3,
+        "color": "#A9C8DE",
+        "size": 20
+      },
+      "encoding": {
+        "y": {
+          "field": "rainfall_mm",
+          "type": "quantitative",
+          "title": "Average rainfall (millimetres)",
+          "axis": {
+            "grid": true,
+            "gridColor": "#DCD5C7",
+            "gridDash": [
+              2,
+              3
+            ],
+            "domain": false,
+            "ticks": false,
+            "titleColor": "#2F6A9A",
+            "labelColor": "#5E6E64"
+          }
+        },
+        "tooltip": [
+          {
+            "field": "month_name",
+            "type": "nominal",
+            "title": "Month"
+          },
+          {
+            "field": "rainfall_mm",
+            "type": "quantitative",
+            "title": "Rainfall (millimetres)",
+            "format": ",.0f"
+          },
+          {
+            "field": "malaysia_index",
+            "type": "quantitative",
+            "title": "Search interest (yearly average = 100)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "layer": [
+        {
+          "mark": {
+            "type": "line",
+            "color": "#C2603C",
+            "strokeWidth": 2.8,
+            "interpolate": "monotone",
+            "point": {
+              "filled": true,
+              "size": 70,
+              "color": "#C2603C",
+              "stroke": "#FAF7F0",
+              "strokeWidth": 1.5
+            }
+          },
+          "encoding": {
+            "y": {
+              "field": "malaysia_index",
+              "type": "quantitative",
+              "scale": {
+                "zero": false,
+                "nice": true
+              },
+              "title": "Search interest (yearly average = 100)",
+              "axis": {
+                "grid": false,
+                "domain": false,
+                "ticks": false,
+                "titleColor": "#C2603C",
+                "labelColor": "#5E6E64"
+              }
+            },
+            "tooltip": [
+              {
+                "field": "month_name",
+                "type": "nominal",
+                "title": "Month"
+              },
+              {
+                "field": "malaysia_index",
+                "type": "quantitative",
+                "title": "Search interest (yearly average = 100)",
+                "format": ".1f"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.month_name == 'Dec'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "dx": -12,
+            "dy": -14,
+            "fontSize": 11.5,
+            "fontStyle": "italic",
+            "color": "#9E4528"
+          },
+          "encoding": {
+            "y": {
+              "field": "malaysia_index",
+              "type": "quantitative",
+              "scale": {
+                "zero": false,
+                "nice": true
+              }
+            },
+            "text": {
+              "value": "wettest month, quietest searches"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

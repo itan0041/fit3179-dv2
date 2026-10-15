@@ -1,0 +1,194 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Bump chart: each crop category ranked 1-9 by how much its planted area had grown relative to 2014. Rank 1 = fastest growing that year.",
+  "data": {
+    "url": "data/crops_category_malaysia.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "area_index_2014": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.year > 2014"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "growth_rank"
+        }
+      ],
+      "sort": [
+        {
+          "field": "area_index_2014",
+          "order": "descending"
+        }
+      ],
+      "groupby": [
+        "year"
+      ]
+    }
+  ],
+  "width": 205,
+  "height": 400,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "bottom": 5,
+    "right": 112
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelColor": "#5E6E64",
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 11,
+        "values": [
+          2015,
+          2017,
+          2019,
+          2021,
+          2024
+        ]
+      }
+    },
+    "y": {
+      "field": "growth_rank",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          0.5,
+          9.5
+        ],
+        "reverse": true
+      },
+      "title": null,
+      "axis": {
+        "values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#5E6E64",
+        "titleColor": "#5E6E64"
+      }
+    },
+    "color": {
+      "field": "crop_label",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": [
+          "Vegetables",
+          "Fruits",
+          "Herbs",
+          "Spices",
+          "Cash crops",
+          "Paddy (rice)",
+          "Coconut",
+          "Industrial crops",
+          "Flowers"
+        ],
+        "range": [
+          "#4C8D48",
+          "#D98A28",
+          "#7E9E3A",
+          "#B5541F",
+          "#8C6D3F",
+          "#C9A227",
+          "#6B8E6E",
+          "#5C6F7A",
+          "#B5567E"
+        ]
+      }
+    },
+    "detail": {
+      "field": "crop_label",
+      "type": "nominal"
+    },
+    "tooltip": [
+      {
+        "field": "crop_label",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "year",
+        "type": "ordinal",
+        "title": "Year"
+      },
+      {
+        "field": "growth_rank",
+        "type": "quantitative",
+        "title": "Growth rank"
+      },
+      {
+        "field": "area_index_2014",
+        "type": "quantitative",
+        "title": "Area (2014 = 100)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.6,
+        "interpolate": "monotone",
+        "opacity": 0.85
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 60
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 11.5,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "text": {
+          "field": "crop_label",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

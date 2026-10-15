@@ -1,0 +1,187 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Slope graph: planted area of each crop category in 2024 relative to 2014 (2014 = 100).",
+  "data": {
+    "url": "data/crops_category_malaysia.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "area_index_2014": "number",
+        "prod_index_2014": "number"
+      }
+    }
+  },
+  "params": [
+    {
+      "name": "measure",
+      "value": "Planted area",
+      "bind": {
+        "input": "radio",
+        "options": [
+          "Planted area",
+          "Production"
+        ],
+        "name": "Compare by  "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.year == 2014 || datum.year == 2024"
+    },
+    {
+      "calculate": "measure === 'Planted area' ? datum.area_index_2014 : datum.prod_index_2014",
+      "as": "value"
+    },
+    {
+      "filter": "isValid(datum.value)"
+    }
+  ],
+  "width": 195,
+  "height": 400,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "bottom": 5,
+    "right": 118
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelColor": "#1C2B22",
+        "domain": false,
+        "ticks": false,
+        "grid": false,
+        "labelPadding": 8
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Index (2014 = 100)",
+      "scale": {
+        "zero": false
+      },
+      "axis": {
+        "grid": true,
+        "gridColor": "#DCD5C7",
+        "gridDash": [
+          2,
+          3
+        ],
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#5E6E64",
+        "titleColor": "#5E6E64"
+      }
+    },
+    "color": {
+      "field": "crop_label",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": [
+          "Vegetables",
+          "Fruits",
+          "Herbs",
+          "Spices",
+          "Cash crops",
+          "Paddy (rice)",
+          "Coconut",
+          "Industrial crops",
+          "Flowers"
+        ],
+        "range": [
+          "#4C8D48",
+          "#D98A28",
+          "#7E9E3A",
+          "#B5541F",
+          "#8C6D3F",
+          "#C9A227",
+          "#6B8E6E",
+          "#5C6F7A",
+          "#B5567E"
+        ]
+      }
+    },
+    "detail": {
+      "field": "crop_label",
+      "type": "nominal"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.4,
+        "opacity": 0.9
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 70,
+        "opacity": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "crop_label",
+            "type": "nominal",
+            "title": "Category"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Index (2014 = 100)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": 500
+      },
+      "encoding": {
+        "text": {
+          "field": "crop_label",
+          "type": "nominal"
+        },
+        "yOffset": {
+          "condition": {
+            "test": "datum.crop_label === 'Industrial crops'",
+            "value": 9
+          },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

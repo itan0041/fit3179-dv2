@@ -1,0 +1,370 @@
+/* =========================================================================
+   Grow Where You Are — FIT3179 Data Visualisation 2
+   Isaac Yeak Sern Tan, Monash University Malaysia, October 2026
+
+   Layout notes
+   - One scrolling column, 1180px of content, so the full width is visible on a
+     1280px laptop screen with no horizontal scrolling.
+   - A single 12-column grid governs every panel, so panel edges share vertical
+     sight lines down the whole page.
+   - Colour is semantic and fixed page-wide:
+         green      = growing, land, production
+         terracotta = attention, search interest
+         blue       = rainfall, water
+   ========================================================================= */
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('fonts/fraunces-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'InterVar';
+  src: url('fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --paper:      #FAF7F0;
+  --paper-2:    #F3EFE5;
+  --panel:      #FFFDF8;
+  --ink:        #1C2B22;
+  --ink-soft:   #5E6E64;
+  --ink-faint:  #8A9890;
+  --rule:       #DCD5C7;
+
+  --grow:       #2D6C35;
+  --grow-deep:  #1A4A27;
+  --attn:       #C2603C;
+  --rain:       #2F6A9A;
+
+  --content:    1180px;
+  --gutter:     28px;
+
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body:    'InterVar', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16.5px;
+  line-height: 1.65;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;            /* guarantees no horizontal scrolling */
+}
+
+.wrap {
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- masthead ---------------------------------------------------- */
+
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  padding: 76px 0 40px;
+  background:
+    radial-gradient(1100px 380px at 72% -140px, rgba(45,108,53,0.10), transparent 70%),
+    var(--paper);
+}
+
+.eyebrow {
+  font-size: 12.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grow);
+  font-weight: 600;
+  margin: 0 0 20px;
+}
+
+h1 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(46px, 6.2vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 22px;
+  max-width: 15ch;
+}
+
+.standfirst {
+  font-size: 20px;
+  line-height: 1.52;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: 0 0 36px;
+}
+
+.byline {
+  font-size: 13.5px;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+  margin: 0;
+}
+
+/* ---------- key figures -------------------------------------------------- */
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gutter);
+  margin: 40px 0 0;
+}
+
+.kpi {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 20px 22px 18px;
+  border-top: 3px solid var(--grow);
+}
+.kpi.is-down { border-top-color: var(--attn); }
+.kpi.is-rain { border-top-color: var(--rain); }
+
+.kpi .fig {
+  font-family: var(--display);
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 10px;
+}
+.kpi.is-up   .fig { color: var(--grow-deep); }
+.kpi.is-down .fig { color: var(--attn); }
+.kpi.is-rain .fig { color: var(--rain); }
+
+.kpi .cap {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  display: block;
+}
+
+/* ---------- sections ----------------------------------------------------- */
+
+section { padding: 72px 0 8px; border-top: 1px solid var(--rule); }
+section:first-of-type { border-top: none; }
+
+.sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gutter); align-items: start; }
+
+.sec-num {
+  font-size: 12.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+h2 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(31px, 3.3vw, 42px);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 18px;
+  max-width: 19ch;
+}
+
+h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.25;
+  margin: 0 0 8px;
+}
+
+p { margin: 0 0 17px; max-width: 64ch; }   /* keeps line length readable */
+
+.lede { font-size: 17.5px; color: var(--ink-soft); }
+
+strong { font-weight: 650; color: var(--ink); }
+
+/* ---------- figures and the grid ---------------------------------------- */
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+  margin-top: 42px;
+}
+.row.single { grid-template-columns: 1fr; }
+
+figure {
+  margin: 0;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 26px 26px 20px;
+  min-width: 0;                 /* lets grid children shrink instead of overflowing */
+}
+
+figure.plain { background: transparent; border: none; padding: 0; }
+
+figcaption { margin-bottom: 18px; }
+
+.fig-kicker {
+  font-size: 11.5px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-faint);
+  display: block;
+  margin-bottom: 7px;
+}
+
+.fig-note {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 78ch;
+}
+
+.chart { width: 100%; overflow-x: auto; overflow-y: hidden; }
+.chart > .vega-embed { width: 100%; }
+.vega-embed summary { opacity: 0.35; }
+.vega-embed summary:hover { opacity: 1; }
+
+/* annotation callouts sitting outside the charts */
+.callout {
+  border-left: 3px solid var(--attn);
+  padding: 2px 0 2px 16px;
+  margin: 20px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 62ch;
+}
+.callout.grow { border-left-color: var(--grow); }
+.callout.rain { border-left-color: var(--rain); }
+.callout b { color: var(--ink); font-weight: 650; }
+
+/* the bivariate map needs its key beside it */
+.map-with-key { display: grid; grid-template-columns: 1fr 200px; gap: var(--gutter); align-items: start; }
+.key-block { padding-top: 10px; }
+.key-block p { font-size: 13px; color: var(--ink-soft); margin: 14px 0 0; }
+
+/* ---------- controls ----------------------------------------------------- */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.controls button {
+  font-family: var(--body);
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 6px 15px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.controls button:hover { border-color: var(--grow); }
+.controls button[aria-pressed='true'] {
+  background: var(--grow-deep);
+  border-color: var(--grow-deep);
+  color: #F7F4EC;
+}
+
+/* ---------- footer ------------------------------------------------------- */
+
+footer {
+  margin-top: 86px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-2);
+  padding: 54px 0 70px;
+}
+
+.foot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); }
+
+footer h3 { font-size: 15px; font-family: var(--body); font-weight: 650; margin-bottom: 12px; }
+
+footer p, footer li { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+
+footer ul { margin: 0; padding-left: 18px; }
+footer li { margin-bottom: 9px; }
+
+a { color: var(--grow); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+a:hover { color: var(--grow-deep); }
+
+.colophon {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+/* ---------- narrower screens -------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .row, .sec-head, .foot-grid, .map-with-key { grid-template-columns: 1fr; }
+  .kpis { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .kpis { grid-template-columns: 1fr; }
+  :root { --gutter: 18px; }
+}
+
+/* ---------- Vega-embed furniture ---------------------------------------- */
+/* The slope graph exposes a radio control; Vega renders it unstyled by default. */
+
+.chart .vega-bindings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0 0 14px;
+  padding: 9px 13px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  width: fit-content;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.chart .vega-bind { display: flex; align-items: center; gap: 10px; }
+.chart .vega-bind-name { font-weight: 600; color: var(--ink); }
+
+.chart .vega-bind label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.chart .vega-bind input[type='radio'] { accent-color: var(--grow); margin: 0; }
+
+.chart .vega-embed .vega-actions {
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--panel);
+}
+.chart .vega-embed .vega-actions a { color: var(--ink); font-size: 13px; text-decoration: none; }
+.chart .vega-embed .vega-actions a:hover { background: var(--paper-2); }
+
+.chart .vega-embed details[open] > summary { opacity: 1; }

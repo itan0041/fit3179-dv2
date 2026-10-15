@@ -1,0 +1,2735 @@
+{
+ "meta": {
+  "source": "Google Trends",
+  "retrieved": "2026-10-12T09:26:28.771Z",
+  "note": "Values are a relative search-interest index: 100 = the highest point in that query set. Not absolute search counts. Each query set is normalised independently."
+ },
+ "my_timeseries": {
+  "keywords": [
+   "berkebun",
+   "gardening",
+   "hidroponik",
+   "kebun sayur"
+  ],
+  "data": [
+   {
+    "t": "Jan 2014",
+    "v": [
+     8,
+     23,
+     19,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2014",
+    "v": [
+     7,
+     23,
+     22,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2014",
+    "v": [
+     6,
+     24,
+     16,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2014",
+    "v": [
+     8,
+     29,
+     26,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2014",
+    "v": [
+     7,
+     24,
+     16,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2014",
+    "v": [
+     9,
+     28,
+     14,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2014",
+    "v": [
+     9,
+     24,
+     15,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2014",
+    "v": [
+     8,
+     29,
+     17,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2014",
+    "v": [
+     11,
+     38,
+     19,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2014",
+    "v": [
+     6,
+     26,
+     21,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2014",
+    "v": [
+     6,
+     22,
+     18,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2014",
+    "v": [
+     7,
+     21,
+     22,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2015",
+    "v": [
+     6,
+     23,
+     22,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2015",
+    "v": [
+     6,
+     27,
+     21,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2015",
+    "v": [
+     10,
+     31,
+     26,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2015",
+    "v": [
+     8,
+     34,
+     34,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2015",
+    "v": [
+     9,
+     32,
+     27,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2015",
+    "v": [
+     8,
+     28,
+     38,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2015",
+    "v": [
+     11,
+     28,
+     30,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2015",
+    "v": [
+     10,
+     37,
+     45,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2015",
+    "v": [
+     12,
+     38,
+     43,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2015",
+    "v": [
+     10,
+     32,
+     41,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2015",
+    "v": [
+     11,
+     26,
+     32,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2015",
+    "v": [
+     6,
+     18,
+     27,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2016",
+    "v": [
+     9,
+     24,
+     35,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2016",
+    "v": [
+     16,
+     24,
+     41,
+     11
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2016",
+    "v": [
+     11,
+     32,
+     43,
+     10
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2016",
+    "v": [
+     11,
+     29,
+     42,
+     11
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2016",
+    "v": [
+     8,
+     35,
+     38,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2016",
+    "v": [
+     8,
+     28,
+     31,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2016",
+    "v": [
+     10,
+     29,
+     29,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2016",
+    "v": [
+     11,
+     33,
+     34,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2016",
+    "v": [
+     12,
+     34,
+     41,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2016",
+    "v": [
+     12,
+     30,
+     65,
+     10
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2016",
+    "v": [
+     8,
+     22,
+     32,
+     10
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2016",
+    "v": [
+     6,
+     22,
+     31,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2017",
+    "v": [
+     11,
+     26,
+     40,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2017",
+    "v": [
+     9,
+     26,
+     38,
+     13
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2017",
+    "v": [
+     12,
+     31,
+     37,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2017",
+    "v": [
+     10,
+     26,
+     41,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2017",
+    "v": [
+     9,
+     31,
+     34,
+     10
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2017",
+    "v": [
+     5,
+     24,
+     20,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2017",
+    "v": [
+     14,
+     30,
+     36,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2017",
+    "v": [
+     11,
+     32,
+     38,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2017",
+    "v": [
+     12,
+     39,
+     37,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2017",
+    "v": [
+     8,
+     35,
+     47,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2017",
+    "v": [
+     4,
+     24,
+     30,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2017",
+    "v": [
+     6,
+     24,
+     26,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2018",
+    "v": [
+     8,
+     24,
+     34,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2018",
+    "v": [
+     7,
+     25,
+     37,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2018",
+    "v": [
+     8,
+     30,
+     36,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2018",
+    "v": [
+     10,
+     100,
+     41,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2018",
+    "v": [
+     9,
+     25,
+     25,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2018",
+    "v": [
+     7,
+     25,
+     23,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2018",
+    "v": [
+     10,
+     30,
+     42,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2018",
+    "v": [
+     9,
+     31,
+     42,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2018",
+    "v": [
+     10,
+     46,
+     45,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2018",
+    "v": [
+     5,
+     42,
+     56,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2018",
+    "v": [
+     5,
+     30,
+     33,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2018",
+    "v": [
+     5,
+     28,
+     30,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2019",
+    "v": [
+     7,
+     29,
+     37,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2019",
+    "v": [
+     10,
+     35,
+     41,
+     10
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2019",
+    "v": [
+     8,
+     32,
+     35,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2019",
+    "v": [
+     7,
+     31,
+     41,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2019",
+    "v": [
+     6,
+     28,
+     30,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2019",
+    "v": [
+     4,
+     29,
+     28,
+     2
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2019",
+    "v": [
+     8,
+     31,
+     36,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2019",
+    "v": [
+     8,
+     32,
+     38,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2019",
+    "v": [
+     8,
+     35,
+     45,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2019",
+    "v": [
+     12,
+     33,
+     45,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2019",
+    "v": [
+     6,
+     30,
+     36,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2019",
+    "v": [
+     3,
+     26,
+     23,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2020",
+    "v": [
+     10,
+     25,
+     28,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2020",
+    "v": [
+     11,
+     32,
+     33,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2020",
+    "v": [
+     11,
+     36,
+     40,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2020",
+    "v": [
+     15,
+     49,
+     70,
+     12
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2020",
+    "v": [
+     10,
+     42,
+     60,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2020",
+    "v": [
+     14,
+     54,
+     69,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2020",
+    "v": [
+     14,
+     45,
+     68,
+     9
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2020",
+    "v": [
+     11,
+     40,
+     57,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2020",
+    "v": [
+     11,
+     43,
+     54,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2020",
+    "v": [
+     14,
+     44,
+     63,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2020",
+    "v": [
+     16,
+     46,
+     87,
+     10
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2020",
+    "v": [
+     11,
+     36,
+     66,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2021",
+    "v": [
+     9,
+     37,
+     42,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2021",
+    "v": [
+     16,
+     42,
+     51,
+     12
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2021",
+    "v": [
+     12,
+     41,
+     40,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2021",
+    "v": [
+     12,
+     44,
+     28,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2021",
+    "v": [
+     7,
+     40,
+     36,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2021",
+    "v": [
+     12,
+     40,
+     70,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2021",
+    "v": [
+     12,
+     44,
+     73,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2021",
+    "v": [
+     13,
+     41,
+     73,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2021",
+    "v": [
+     12,
+     37,
+     68,
+     8
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2021",
+    "v": [
+     10,
+     36,
+     62,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2021",
+    "v": [
+     9,
+     35,
+     46,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2021",
+    "v": [
+     6,
+     24,
+     35,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2022",
+    "v": [
+     9,
+     30,
+     36,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2022",
+    "v": [
+     9,
+     31,
+     33,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2022",
+    "v": [
+     8,
+     36,
+     20,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2022",
+    "v": [
+     7,
+     33,
+     18,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2022",
+    "v": [
+     7,
+     30,
+     21,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2022",
+    "v": [
+     10,
+     31,
+     23,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2022",
+    "v": [
+     8,
+     26,
+     24,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2022",
+    "v": [
+     7,
+     25,
+     26,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2022",
+    "v": [
+     8,
+     25,
+     26,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2022",
+    "v": [
+     7,
+     29,
+     27,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2022",
+    "v": [
+     8,
+     24,
+     30,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2022",
+    "v": [
+     8,
+     23,
+     24,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2023",
+    "v": [
+     11,
+     26,
+     27,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2023",
+    "v": [
+     6,
+     22,
+     28,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2023",
+    "v": [
+     6,
+     25,
+     22,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2023",
+    "v": [
+     6,
+     25,
+     17,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2023",
+    "v": [
+     7,
+     30,
+     22,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2023",
+    "v": [
+     7,
+     30,
+     24,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2023",
+    "v": [
+     9,
+     27,
+     22,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2023",
+    "v": [
+     7,
+     27,
+     21,
+     7
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2023",
+    "v": [
+     10,
+     26,
+     24,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2023",
+    "v": [
+     5,
+     27,
+     32,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2023",
+    "v": [
+     7,
+     28,
+     33,
+     6
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2023",
+    "v": [
+     6,
+     24,
+     22,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2024",
+    "v": [
+     18,
+     32,
+     23,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2024",
+    "v": [
+     3,
+     26,
+     16,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2024",
+    "v": [
+     6,
+     27,
+     15,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2024",
+    "v": [
+     6,
+     31,
+     12,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2024",
+    "v": [
+     7,
+     28,
+     16,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2024",
+    "v": [
+     8,
+     27,
+     17,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2024",
+    "v": [
+     8,
+     27,
+     23,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2024",
+    "v": [
+     9,
+     25,
+     23,
+     2
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2024",
+    "v": [
+     8,
+     23,
+     21,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2024",
+    "v": [
+     8,
+     26,
+     22,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2024",
+    "v": [
+     9,
+     30,
+     20,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2024",
+    "v": [
+     5,
+     24,
+     18,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2025",
+    "v": [
+     4,
+     30,
+     15,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2025",
+    "v": [
+     5,
+     34,
+     11,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2025",
+    "v": [
+     8,
+     31,
+     11,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2025",
+    "v": [
+     5,
+     30,
+     18,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2025",
+    "v": [
+     9,
+     28,
+     20,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2025",
+    "v": [
+     8,
+     23,
+     30,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2025",
+    "v": [
+     7,
+     24,
+     26,
+     2
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2025",
+    "v": [
+     7,
+     26,
+     18,
+     5
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2025",
+    "v": [
+     6,
+     18,
+     19,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Oct 2025",
+    "v": [
+     8,
+     20,
+     20,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Nov 2025",
+    "v": [
+     4,
+     27,
+     19,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Dec 2025",
+    "v": [
+     4,
+     37,
+     9,
+     2
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jan 2026",
+    "v": [
+     5,
+     37,
+     8,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Feb 2026",
+    "v": [
+     5,
+     96,
+     12,
+     2
+    ],
+    "partial": false
+   },
+   {
+    "t": "Mar 2026",
+    "v": [
+     6,
+     31,
+     9,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Apr 2026",
+    "v": [
+     11,
+     40,
+     19,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "May 2026",
+    "v": [
+     5,
+     28,
+     14,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jun 2026",
+    "v": [
+     8,
+     28,
+     18,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Jul 2026",
+    "v": [
+     8,
+     30,
+     15,
+     3
+    ],
+    "partial": false
+   },
+   {
+    "t": "Aug 2026",
+    "v": [
+     6,
+     46,
+     19,
+     4
+    ],
+    "partial": false
+   },
+   {
+    "t": "Sept 2026",
+    "v": [
+     6,
+     65,
+     20,
+     4
+    ],
+    "partial": false
+   }
+  ]
+ },
+ "world_timeseries": {
+  "keyword": "gardening",
+  "data": [
+   {
+    "t": "Jan 2014",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Feb 2014",
+    "v": 30,
+    "partial": false
+   },
+   {
+    "t": "Mar 2014",
+    "v": 42,
+    "partial": false
+   },
+   {
+    "t": "Apr 2014",
+    "v": 50,
+    "partial": false
+   },
+   {
+    "t": "May 2014",
+    "v": 48,
+    "partial": false
+   },
+   {
+    "t": "Jun 2014",
+    "v": 35,
+    "partial": false
+   },
+   {
+    "t": "Jul 2014",
+    "v": 32,
+    "partial": false
+   },
+   {
+    "t": "Aug 2014",
+    "v": 29,
+    "partial": false
+   },
+   {
+    "t": "Sept 2014",
+    "v": 28,
+    "partial": false
+   },
+   {
+    "t": "Oct 2014",
+    "v": 24,
+    "partial": false
+   },
+   {
+    "t": "Nov 2014",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Dec 2014",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Jan 2015",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Feb 2015",
+    "v": 31,
+    "partial": false
+   },
+   {
+    "t": "Mar 2015",
+    "v": 44,
+    "partial": false
+   },
+   {
+    "t": "Apr 2015",
+    "v": 51,
+    "partial": false
+   },
+   {
+    "t": "May 2015",
+    "v": 48,
+    "partial": false
+   },
+   {
+    "t": "Jun 2015",
+    "v": 35,
+    "partial": false
+   },
+   {
+    "t": "Jul 2015",
+    "v": 29,
+    "partial": false
+   },
+   {
+    "t": "Aug 2015",
+    "v": 28,
+    "partial": false
+   },
+   {
+    "t": "Sept 2015",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Oct 2015",
+    "v": 23,
+    "partial": false
+   },
+   {
+    "t": "Nov 2015",
+    "v": 21,
+    "partial": false
+   },
+   {
+    "t": "Dec 2015",
+    "v": 20,
+    "partial": false
+   },
+   {
+    "t": "Jan 2016",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Feb 2016",
+    "v": 30,
+    "partial": false
+   },
+   {
+    "t": "Mar 2016",
+    "v": 39,
+    "partial": false
+   },
+   {
+    "t": "Apr 2016",
+    "v": 44,
+    "partial": false
+   },
+   {
+    "t": "May 2016",
+    "v": 45,
+    "partial": false
+   },
+   {
+    "t": "Jun 2016",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Jul 2016",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Aug 2016",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Sept 2016",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Oct 2016",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Nov 2016",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Dec 2016",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Jan 2017",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Feb 2017",
+    "v": 28,
+    "partial": false
+   },
+   {
+    "t": "Mar 2017",
+    "v": 36,
+    "partial": false
+   },
+   {
+    "t": "Apr 2017",
+    "v": 43,
+    "partial": false
+   },
+   {
+    "t": "May 2017",
+    "v": 43,
+    "partial": false
+   },
+   {
+    "t": "Jun 2017",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Jul 2017",
+    "v": 29,
+    "partial": false
+   },
+   {
+    "t": "Aug 2017",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Sept 2017",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Oct 2017",
+    "v": 23,
+    "partial": false
+   },
+   {
+    "t": "Nov 2017",
+    "v": 21,
+    "partial": false
+   },
+   {
+    "t": "Dec 2017",
+    "v": 20,
+    "partial": false
+   },
+   {
+    "t": "Jan 2018",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Feb 2018",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Mar 2018",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Apr 2018",
+    "v": 39,
+    "partial": false
+   },
+   {
+    "t": "May 2018",
+    "v": 43,
+    "partial": false
+   },
+   {
+    "t": "Jun 2018",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Jul 2018",
+    "v": 29,
+    "partial": false
+   },
+   {
+    "t": "Aug 2018",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Sept 2018",
+    "v": 24,
+    "partial": false
+   },
+   {
+    "t": "Oct 2018",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Nov 2018",
+    "v": 21,
+    "partial": false
+   },
+   {
+    "t": "Dec 2018",
+    "v": 20,
+    "partial": false
+   },
+   {
+    "t": "Jan 2019",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Feb 2019",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Mar 2019",
+    "v": 35,
+    "partial": false
+   },
+   {
+    "t": "Apr 2019",
+    "v": 38,
+    "partial": false
+   },
+   {
+    "t": "May 2019",
+    "v": 42,
+    "partial": false
+   },
+   {
+    "t": "Jun 2019",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Jul 2019",
+    "v": 31,
+    "partial": false
+   },
+   {
+    "t": "Aug 2019",
+    "v": 28,
+    "partial": false
+   },
+   {
+    "t": "Sept 2019",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Oct 2019",
+    "v": 24,
+    "partial": false
+   },
+   {
+    "t": "Nov 2019",
+    "v": 23,
+    "partial": false
+   },
+   {
+    "t": "Dec 2019",
+    "v": 22,
+    "partial": false
+   },
+   {
+    "t": "Jan 2020",
+    "v": 24,
+    "partial": false
+   },
+   {
+    "t": "Feb 2020",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Mar 2020",
+    "v": 44,
+    "partial": false
+   },
+   {
+    "t": "Apr 2020",
+    "v": 73,
+    "partial": false
+   },
+   {
+    "t": "May 2020",
+    "v": 71,
+    "partial": false
+   },
+   {
+    "t": "Jun 2020",
+    "v": 50,
+    "partial": false
+   },
+   {
+    "t": "Jul 2020",
+    "v": 41,
+    "partial": false
+   },
+   {
+    "t": "Aug 2020",
+    "v": 37,
+    "partial": false
+   },
+   {
+    "t": "Sept 2020",
+    "v": 35,
+    "partial": false
+   },
+   {
+    "t": "Oct 2020",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Nov 2020",
+    "v": 30,
+    "partial": false
+   },
+   {
+    "t": "Dec 2020",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Jan 2021",
+    "v": 29,
+    "partial": false
+   },
+   {
+    "t": "Feb 2021",
+    "v": 35,
+    "partial": false
+   },
+   {
+    "t": "Mar 2021",
+    "v": 47,
+    "partial": false
+   },
+   {
+    "t": "Apr 2021",
+    "v": 50,
+    "partial": false
+   },
+   {
+    "t": "May 2021",
+    "v": 49,
+    "partial": false
+   },
+   {
+    "t": "Jun 2021",
+    "v": 38,
+    "partial": false
+   },
+   {
+    "t": "Jul 2021",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Aug 2021",
+    "v": 30,
+    "partial": false
+   },
+   {
+    "t": "Sept 2021",
+    "v": 30,
+    "partial": false
+   },
+   {
+    "t": "Oct 2021",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Nov 2021",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Dec 2021",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Jan 2022",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Feb 2022",
+    "v": 31,
+    "partial": false
+   },
+   {
+    "t": "Mar 2022",
+    "v": 38,
+    "partial": false
+   },
+   {
+    "t": "Apr 2022",
+    "v": 43,
+    "partial": false
+   },
+   {
+    "t": "May 2022",
+    "v": 43,
+    "partial": false
+   },
+   {
+    "t": "Jun 2022",
+    "v": 36,
+    "partial": false
+   },
+   {
+    "t": "Jul 2022",
+    "v": 31,
+    "partial": false
+   },
+   {
+    "t": "Aug 2022",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Sept 2022",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Oct 2022",
+    "v": 23,
+    "partial": false
+   },
+   {
+    "t": "Nov 2022",
+    "v": 23,
+    "partial": false
+   },
+   {
+    "t": "Dec 2022",
+    "v": 21,
+    "partial": false
+   },
+   {
+    "t": "Jan 2023",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Feb 2023",
+    "v": 29,
+    "partial": false
+   },
+   {
+    "t": "Mar 2023",
+    "v": 32,
+    "partial": false
+   },
+   {
+    "t": "Apr 2023",
+    "v": 37,
+    "partial": false
+   },
+   {
+    "t": "May 2023",
+    "v": 41,
+    "partial": false
+   },
+   {
+    "t": "Jun 2023",
+    "v": 33,
+    "partial": false
+   },
+   {
+    "t": "Jul 2023",
+    "v": 28,
+    "partial": false
+   },
+   {
+    "t": "Aug 2023",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Sept 2023",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Oct 2023",
+    "v": 24,
+    "partial": false
+   },
+   {
+    "t": "Nov 2023",
+    "v": 23,
+    "partial": false
+   },
+   {
+    "t": "Dec 2023",
+    "v": 21,
+    "partial": false
+   },
+   {
+    "t": "Jan 2024",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Feb 2024",
+    "v": 32,
+    "partial": false
+   },
+   {
+    "t": "Mar 2024",
+    "v": 35,
+    "partial": false
+   },
+   {
+    "t": "Apr 2024",
+    "v": 39,
+    "partial": false
+   },
+   {
+    "t": "May 2024",
+    "v": 40,
+    "partial": false
+   },
+   {
+    "t": "Jun 2024",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Jul 2024",
+    "v": 27,
+    "partial": false
+   },
+   {
+    "t": "Aug 2024",
+    "v": 28,
+    "partial": false
+   },
+   {
+    "t": "Sept 2024",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Oct 2024",
+    "v": 24,
+    "partial": false
+   },
+   {
+    "t": "Nov 2024",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Dec 2024",
+    "v": 25,
+    "partial": false
+   },
+   {
+    "t": "Jan 2025",
+    "v": 26,
+    "partial": false
+   },
+   {
+    "t": "Feb 2025",
+    "v": 32,
+    "partial": false
+   },
+   {
+    "t": "Mar 2025",
+    "v": 40,
+    "partial": false
+   },
+   {
+    "t": "Apr 2025",
+    "v": 41,
+    "partial": false
+   },
+   {
+    "t": "May 2025",
+    "v": 44,
+    "partial": false
+   },
+   {
+    "t": "Jun 2025",
+    "v": 36,
+    "partial": false
+   },
+   {
+    "t": "Jul 2025",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Aug 2025",
+    "v": 36,
+    "partial": false
+   },
+   {
+    "t": "Sept 2025",
+    "v": 34,
+    "partial": false
+   },
+   {
+    "t": "Oct 2025",
+    "v": 32,
+    "partial": false
+   },
+   {
+    "t": "Nov 2025",
+    "v": 32,
+    "partial": false
+   },
+   {
+    "t": "Dec 2025",
+    "v": 37,
+    "partial": false
+   },
+   {
+    "t": "Jan 2026",
+    "v": 37,
+    "partial": false
+   },
+   {
+    "t": "Feb 2026",
+    "v": 80,
+    "partial": false
+   },
+   {
+    "t": "Mar 2026",
+    "v": 55,
+    "partial": false
+   },
+   {
+    "t": "Apr 2026",
+    "v": 74,
+    "partial": false
+   },
+   {
+    "t": "May 2026",
+    "v": 88,
+    "partial": false
+   },
+   {
+    "t": "Jun 2026",
+    "v": 75,
+    "partial": false
+   },
+   {
+    "t": "Jul 2026",
+    "v": 100,
+    "partial": false
+   },
+   {
+    "t": "Aug 2026",
+    "v": 73,
+    "partial": false
+   },
+   {
+    "t": "Sept 2026",
+    "v": 84,
+    "partial": false
+   }
+  ]
+ },
+ "my_geo_berkebun": [
+  {
+   "code": "MY-03",
+   "name": "Kelantan",
+   "v": 100,
+   "has": true
+  },
+  {
+   "code": "MY-09",
+   "name": "Perlis",
+   "v": 93,
+   "has": true
+  },
+  {
+   "code": "MY-11",
+   "name": "Terengganu",
+   "v": 90,
+   "has": true
+  },
+  {
+   "code": "MY-06",
+   "name": "Pahang",
+   "v": 81,
+   "has": true
+  },
+  {
+   "code": "MY-02",
+   "name": "Kedah",
+   "v": 76,
+   "has": true
+  },
+  {
+   "code": "MY-13",
+   "name": "Sarawak",
+   "v": 75,
+   "has": true
+  },
+  {
+   "code": "MY-12",
+   "name": "Sabah",
+   "v": 72,
+   "has": true
+  },
+  {
+   "code": "MY-04",
+   "name": "Malacca",
+   "v": 72,
+   "has": true
+  },
+  {
+   "code": "MY-08",
+   "name": "Perak",
+   "v": 70,
+   "has": true
+  },
+  {
+   "code": "MY-05",
+   "name": "Negeri Sembilan",
+   "v": 66,
+   "has": true
+  },
+  {
+   "code": "MY-16",
+   "name": "Putrajaya",
+   "v": 64,
+   "has": true
+  },
+  {
+   "code": "MY-01",
+   "name": "Johor",
+   "v": 60,
+   "has": true
+  },
+  {
+   "code": "MY-07",
+   "name": "Penang",
+   "v": 47,
+   "has": true
+  },
+  {
+   "code": "MY-10",
+   "name": "Selangor",
+   "v": 40,
+   "has": true
+  },
+  {
+   "code": "MY-14",
+   "name": "Federal Territory of Kuala Lumpur",
+   "v": 40,
+   "has": true
+  },
+  {
+   "code": "MY-15",
+   "name": "Labuan",
+   "v": 0,
+   "has": false
+  }
+ ],
+ "my_geo_hidroponik": [
+  {
+   "code": "MY-09",
+   "name": "Perlis",
+   "v": 100,
+   "has": true
+  },
+  {
+   "code": "MY-11",
+   "name": "Terengganu",
+   "v": 90,
+   "has": true
+  },
+  {
+   "code": "MY-12",
+   "name": "Sabah",
+   "v": 88,
+   "has": true
+  },
+  {
+   "code": "MY-03",
+   "name": "Kelantan",
+   "v": 74,
+   "has": true
+  },
+  {
+   "code": "MY-15",
+   "name": "Labuan",
+   "v": 74,
+   "has": true
+  },
+  {
+   "code": "MY-16",
+   "name": "Putrajaya",
+   "v": 71,
+   "has": true
+  },
+  {
+   "code": "MY-06",
+   "name": "Pahang",
+   "v": 64,
+   "has": true
+  },
+  {
+   "code": "MY-02",
+   "name": "Kedah",
+   "v": 64,
+   "has": true
+  },
+  {
+   "code": "MY-13",
+   "name": "Sarawak",
+   "v": 64,
+   "has": true
+  },
+  {
+   "code": "MY-05",
+   "name": "Negeri Sembilan",
+   "v": 53,
+   "has": true
+  },
+  {
+   "code": "MY-04",
+   "name": "Malacca",
+   "v": 52,
+   "has": true
+  },
+  {
+   "code": "MY-08",
+   "name": "Perak",
+   "v": 50,
+   "has": true
+  },
+  {
+   "code": "MY-01",
+   "name": "Johor",
+   "v": 46,
+   "has": true
+  },
+  {
+   "code": "MY-14",
+   "name": "Federal Territory of Kuala Lumpur",
+   "v": 38,
+   "has": true
+  },
+  {
+   "code": "MY-10",
+   "name": "Selangor",
+   "v": 37,
+   "has": true
+  },
+  {
+   "code": "MY-07",
+   "name": "Penang",
+   "v": 26,
+   "has": true
+  }
+ ],
+ "world_geo_gardening": [
+  {
+   "code": "SH",
+   "name": "St Helena",
+   "v": 100
+  },
+  {
+   "code": "GB",
+   "name": "United Kingdom",
+   "v": 72
+  },
+  {
+   "code": "AU",
+   "name": "Australia",
+   "v": 72
+  },
+  {
+   "code": "NZ",
+   "name": "New Zealand",
+   "v": 61
+  },
+  {
+   "code": "IE",
+   "name": "Ireland",
+   "v": 45
+  },
+  {
+   "code": "PH",
+   "name": "Philippines",
+   "v": 38
+  },
+  {
+   "code": "US",
+   "name": "United States",
+   "v": 33
+  },
+  {
+   "code": "CA",
+   "name": "Canada",
+   "v": 31
+  },
+  {
+   "code": "KE",
+   "name": "Kenya",
+   "v": 25
+  },
+  {
+   "code": "LK",
+   "name": "Sri Lanka",
+   "v": 23
+  },
+  {
+   "code": "ZA",
+   "name": "South Africa",
+   "v": 23
+  },
+  {
+   "code": "SG",
+   "name": "Singapore",
+   "v": 20
+  },
+  {
+   "code": "PK",
+   "name": "Pakistan",
+   "v": 14
+  },
+  {
+   "code": "MY",
+   "name": "Malaysia",
+   "v": 13
+  },
+  {
+   "code": "BD",
+   "name": "Bangladesh",
+   "v": 12
+  },
+  {
+   "code": "IN",
+   "name": "India",
+   "v": 11
+  },
+  {
+   "code": "AE",
+   "name": "United Arab Emirates",
+   "v": 10
+  },
+  {
+   "code": "KR",
+   "name": "South Korea",
+   "v": 7
+  },
+  {
+   "code": "AT",
+   "name": "Austria",
+   "v": 7
+  },
+  {
+   "code": "HK",
+   "name": "Hong Kong",
+   "v": 6
+  },
+  {
+   "code": "CH",
+   "name": "Switzerland",
+   "v": 6
+  },
+  {
+   "code": "NL",
+   "name": "Netherlands",
+   "v": 6
+  },
+  {
+   "code": "NG",
+   "name": "Nigeria",
+   "v": 5
+  },
+  {
+   "code": "DK",
+   "name": "Denmark",
+   "v": 5
+  },
+  {
+   "code": "DE",
+   "name": "Germany",
+   "v": 5
+  },
+  {
+   "code": "VN",
+   "name": "Vietnam",
+   "v": 5
+  },
+  {
+   "code": "SE",
+   "name": "Sweden",
+   "v": 4
+  },
+  {
+   "code": "CZ",
+   "name": "Czechia",
+   "v": 4
+  },
+  {
+   "code": "GR",
+   "name": "Greece",
+   "v": 4
+  },
+  {
+   "code": "BE",
+   "name": "Belgium",
+   "v": 4
+  },
+  {
+   "code": "RO",
+   "name": "Romania",
+   "v": 3
+  },
+  {
+   "code": "ID",
+   "name": "Indonesia",
+   "v": 3
+  },
+  {
+   "code": "TH",
+   "name": "Thailand",
+   "v": 2
+  },
+  {
+   "code": "IT",
+   "name": "Italy",
+   "v": 2
+  },
+  {
+   "code": "ES",
+   "name": "Spain",
+   "v": 2
+  },
+  {
+   "code": "TW",
+   "name": "Taiwan",
+   "v": 2
+  },
+  {
+   "code": "PL",
+   "name": "Poland",
+   "v": 1
+  },
+  {
+   "code": "FR",
+   "name": "France",
+   "v": 1
+  },
+  {
+   "code": "UA",
+   "name": "Ukraine",
+   "v": 1
+  },
+  {
+   "code": "RU",
+   "name": "Russia",
+   "v": 1
+  },
+  {
+   "code": "MX",
+   "name": "Mexico",
+   "v": 1
+  },
+  {
+   "code": "TR",
+   "name": "Türkiye",
+   "v": 1
+  },
+  {
+   "code": "BR",
+   "name": "Brazil",
+   "v": 1
+  },
+  {
+   "code": "JP",
+   "name": "Japan",
+   "v": 0
+  }
+ ]
+}

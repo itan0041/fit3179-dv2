@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Heatmap: average monthly rainfall by state, from a 25-year NASA POWER climatology.",
+  "data": {
+    "url": "data/climate_states.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "month": "number",
+        "rain_mm_month": "number"
+      }
+    }
+  },
+  "width": 895,
+  "height": 430,
+  "mark": {
+    "type": "rect",
+    "stroke": "#FAF7F0",
+    "strokeWidth": 1.5,
+    "cornerRadius": 1
+  },
+  "encoding": {
+    "x": {
+      "field": "month_name",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      "axis": {
+        "labelAngle": 0,
+        "domain": false,
+        "ticks": false,
+        "orient": "top",
+        "labelFontSize": 12,
+        "labelColor": "#1C2B22",
+        "labelPadding": 6
+      }
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "op": "sum",
+        "field": "rain_mm_month",
+        "order": "descending"
+      },
+      "axis": {
+        "domain": false,
+        "ticks": false,
+        "labelFontSize": 11.5,
+        "labelColor": "#1C2B22"
+      }
+    },
+    "color": {
+      "field": "rain_mm_month",
+      "type": "quantitative",
+      "title": "Average rainfall (millimetres per month)",
+      "scale": {
+        "type": "threshold",
+        "domain": [
+          100,
+          150,
+          200,
+          250,
+          300,
+          400
+        ],
+        "range": [
+          "#F0F5F8",
+          "#D2E2EC",
+          "#A9C8DE",
+          "#7CA9CC",
+          "#5089B7",
+          "#2F6A9A",
+          "#1C4B72"
+        ]
+      },
+      "legend": {
+        "orient": "bottom",
+        "direction": "horizontal",
+        "titleColor": "#1C2B22",
+        "labelColor": "#5E6E64",
+        "symbolType": "square",
+        "symbolSize": 170,
+        "titleFontSize": 11.5,
+        "columns": 7
+      }
+    },
+    "tooltip": [
+      {
+        "field": "state",
+        "type": "nominal",
+        "title": "State"
+      },
+      {
+        "field": "city",
+        "type": "nominal",
+        "title": "Measured at"
+      },
+      {
+        "field": "month_name",
+        "type": "nominal",
+        "title": "Month"
+      },
+      {
+        "field": "rain_mm_month",
+        "type": "quantitative",
+        "title": "Rainfall (millimetres)",
+        "format": ",.0f"
+      },
+      {
+        "field": "tmax_c",
+        "type": "quantitative",
+        "title": "Average daily maximum (\u00b0C)",
+        "format": ".1f"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
