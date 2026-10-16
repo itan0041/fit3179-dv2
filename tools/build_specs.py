@@ -100,7 +100,8 @@ write('01_search_ridgeline.json', {
 write('02_category_slope.json', {
   'description': 'Slope graph: planted area of each crop category in 2024 relative to 2014 (2014 = 100).',
   'data': csv('crops_category_malaysia.csv',
-              {'year': 'number', 'area_index_2014': 'number', 'prod_index_2014': 'number'}),
+              {'year': 'number', 'area_index_2014': 'number', 'prod_index_2014': 'number',
+               'label_area': 'number', 'label_prod': 'number'}),
   'params': [{'name': 'measure', 'value': 'Planted area',
               'bind': {'input': 'radio', 'options': ['Planted area', 'Production'],
                        'name': 'Compare by  '}}],
@@ -108,9 +109,11 @@ write('02_category_slope.json', {
     {'filter': 'datum.year == 2014 || datum.year == 2024'},
     {'calculate': "measure === 'Planted area' ? datum.area_index_2014 : datum.prod_index_2014",
      'as': 'value'},
+    {'calculate': "measure === 'Planted area' ? datum.label_area : datum.label_prod",
+     'as': 'label_y'},
     {'filter': 'isValid(datum.value)'}],
-  'width': 195, 'height': 400,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 118},
+  'width': 300, 'height': 430,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 12},
   'encoding': {
     'x': {'field': 'year', 'type': 'ordinal', 'title': None,
           'axis': {'labelAngle': 0, 'labelFontSize': 13, 'labelColor': INK,
@@ -134,11 +137,8 @@ write('02_category_slope.json', {
     {'transform': [{'filter': 'datum.year == 2024'}],
      'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 12, 'fontWeight': 500},
      'encoding': {
-       'text': {'field': 'crop_label', 'type': 'nominal'},
-       # Herbs (82.7) and industrial crops (82.2) land almost on top of each other,
-       # so the lower of the two is nudged clear.
-       'yOffset': {'condition': {'test': "datum.crop_label === 'Industrial crops'", 'value': 9},
-                   'value': 0}}}],
+       'y': {'field': 'label_y', 'type': 'quantitative'},
+       'text': {'field': 'crop_label', 'type': 'nominal'}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 03 bump chart ────────────────────────────────────
@@ -151,8 +151,8 @@ write('03_category_bump.json', {
     {'window': [{'op': 'rank', 'as': 'growth_rank'}],
      'sort': [{'field': 'area_index_2014', 'order': 'descending'}],
      'groupby': ['year']}],
-  'width': 205, 'height': 400,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 112},
+  'width': 318, 'height': 430,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 12},
   'encoding': {
     'x': {'field': 'year', 'type': 'ordinal', 'title': None,
           'axis': {'labelAngle': 0, 'labelColor': INK_SOFT, 'grid': False,
@@ -192,7 +192,8 @@ write('04_vegetable_connected_scatter.json', {
           'title': 'Planted area (hectares)',
           'scale': {'zero': False, 'nice': True},
           'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
-                   'ticks': False, 'format': ',.0f', 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
+                   'ticks': False, 'format': ',.0f', 'tickCount': 6,
+                   'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
     'y': {'field': 'production_tonnes', 'type': 'quantitative',
           'title': 'Production (tonnes)',
           'scale': {'zero': False, 'nice': True},
@@ -208,7 +209,14 @@ write('04_vegetable_connected_scatter.json', {
         {'field': 'year', 'type': 'quantitative', 'title': 'Year', 'format': 'd'},
         {'field': 'planted_area_ha', 'type': 'quantitative', 'title': 'Planted area (hectares)', 'format': ',.0f'},
         {'field': 'production_tonnes', 'type': 'quantitative', 'title': 'Production (tonnes)', 'format': ',.0f'}]}},
-    {'mark': {'type': 'text', 'align': 'left', 'dx': 11, 'dy': -9, 'fontSize': 11.5,
+    # 2019 and 2020 sit almost on top of each other, and dy is a mark property rather
+    # than an encoding channel, so the 2019 label gets its own layer below the dot.
+    {'transform': [{'filter': 'datum.year != 2019'}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 11, 'dy': -9, 'fontSize': 11.5,
+              'fontWeight': 600, 'color': INK},
+     'encoding': {'text': {'field': 'year', 'type': 'quantitative', 'format': 'd'}}},
+    {'transform': [{'filter': 'datum.year == 2019'}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 11, 'dy': 17, 'fontSize': 11.5,
               'fontWeight': 600, 'color': INK},
      'encoding': {'text': {'field': 'year', 'type': 'quantitative', 'format': 'd'}}},
     {'transform': [{'filter': 'datum.year == 2018'}],
@@ -282,7 +290,7 @@ def choropleth_panel(codes, width, title, legend, proj):
       'encoding': {
         'color': {'field': 'veg_area_ha_per_1000', 'type': 'quantitative',
                   'title': 'Hectares of vegetable land per 1,000 residents',
-                  'scale': {'type': 'threshold', 'domain': [0.5, 1, 2, 5, 10], 'range': GROW[1:]},
+                  'scale': {'type': 'threshold', 'domain': [0.5, 2, 5, 10], 'range': GROW[1:6]},
                   'legend': {**BOTTOM_LEGEND, 'symbolType': 'square', 'symbolSize': 170} if legend else None},
         'tooltip': [
           {'field': 'state', 'type': 'nominal', 'title': 'State'},

@@ -8,7 +8,9 @@
       "parse": {
         "year": "number",
         "area_index_2014": "number",
-        "prod_index_2014": "number"
+        "prod_index_2014": "number",
+        "label_area": "number",
+        "label_prod": "number"
       }
     }
   },
@@ -35,16 +37,20 @@
       "as": "value"
     },
     {
+      "calculate": "measure === 'Planted area' ? datum.label_area : datum.label_prod",
+      "as": "label_y"
+    },
+    {
       "filter": "isValid(datum.value)"
     }
   ],
-  "width": 195,
-  "height": 400,
+  "width": 300,
+  "height": 430,
   "padding": {
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 118
+    "right": 12
   },
   "encoding": {
     "x": {
@@ -165,16 +171,13 @@
         "fontWeight": 500
       },
       "encoding": {
+        "y": {
+          "field": "label_y",
+          "type": "quantitative"
+        },
         "text": {
           "field": "crop_label",
           "type": "nominal"
-        },
-        "yOffset": {
-          "condition": {
-            "test": "datum.crop_label === 'Industrial crops'",
-            "value": 9
-          },
-          "value": 0
         }
       }
     }

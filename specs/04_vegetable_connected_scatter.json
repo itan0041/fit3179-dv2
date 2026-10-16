@@ -38,6 +38,7 @@
         "domain": false,
         "ticks": false,
         "format": ",.0f",
+        "tickCount": 6,
         "labelColor": "#5E6E64",
         "titleColor": "#5E6E64"
       }
@@ -114,11 +115,39 @@
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.year != 2019"
+        }
+      ],
       "mark": {
         "type": "text",
         "align": "left",
         "dx": 11,
         "dy": -9,
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#1C2B22"
+      },
+      "encoding": {
+        "text": {
+          "field": "year",
+          "type": "quantitative",
+          "format": "d"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2019"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 11,
+        "dy": 17,
         "fontSize": 11.5,
         "fontWeight": 600,
         "color": "#1C2B22"

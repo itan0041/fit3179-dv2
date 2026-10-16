@@ -76,8 +76,30 @@ for c in cats:
             'prod_index_2014': round(100 * r['production_tonnes'] / base_p, 2) if (base_p and r['production_tonnes'] is not None) else None,
             'is_edible_garden': 'yes' if c in EDIBLE else 'no',
         })
+# Several categories finish 2024 within a point of each other, so their end-of-line
+# labels overlap. Nudge each label just far enough apart to be readable, keeping the
+# order intact. The dot still sits on the true value; only the text moves.
+def dodge_labels(points, chart_px=400, label_px=15):
+    """points: [(key, value)]. Returns {key: label position}."""
+    vals = [v for _, v in points]
+    if not vals:
+        return {}
+    span = max(vals) - min(vals)
+    gap = span * label_px / chart_px if span else 0
+    out, prev = {}, None
+    for k, v in sorted(points, key=lambda kv: -kv[1]):
+        y = v if prev is None else min(v, prev - gap)
+        out[k], prev = y, y
+    return out
+
+end = [r for r in cat_rows if r['year'] == 2024]
+for field, label_field in [('area_index_2014', 'label_area'), ('prod_index_2014', 'label_prod')]:
+    pos = dodge_labels([(r['crop_type'], r[field]) for r in end if r[field] is not None])
+    for r in cat_rows:
+        r[label_field] = round(pos[r['crop_type']], 3) if (r['year'] == 2024 and r['crop_type'] in pos) else None
+
 w('crops_category_malaysia.csv',
-  ['year','crop_type','crop_label','planted_area_ha','production_tonnes','area_index_2014','prod_index_2014','is_edible_garden'],
+  ['year','crop_type','crop_label','planted_area_ha','production_tonnes','area_index_2014','prod_index_2014','label_area','label_prod','is_edible_garden'],
   cat_rows)
 
 # ---- 3. population ----------------------------------------------------------
