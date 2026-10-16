@@ -253,10 +253,18 @@ figcaption { margin-bottom: 18px; }
 .callout.rain { border-left-color: var(--rain); }
 .callout b { color: var(--ink); font-weight: 650; }
 
-/* the bivariate map needs its key beside it */
-.map-with-key { display: grid; grid-template-columns: 1fr 200px; gap: var(--gutter); align-items: start; }
-.key-block { padding-top: 10px; }
-.key-block p { font-size: 13px; color: var(--ink-soft); margin: 14px 0 0; }
+/* The bivariate map carries its own 3x3 key. Side by side, the key's column left
+   the map 842px for a 984px drawing, so the key sits beneath it instead. */
+.map-with-key { display: block; }
+.key-block {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+.key-block p { font-size: 13.5px; color: var(--ink-soft); margin: 0; max-width: 54ch; }
 
 /* ---------- controls ----------------------------------------------------- */
 
@@ -330,6 +338,10 @@ a:hover { color: var(--grow-deep); }
 
 /* ---------- Vega-embed furniture ---------------------------------------- */
 /* The slope graph exposes a radio control; Vega renders it unstyled by default. */
+
+/* vega-embed emits a bindings container for every chart, empty when the chart has
+   no controls. Only the slope graph has one, so hide the other 14 empty pills. */
+.chart .vega-bindings:empty { display: none; }
 
 .chart .vega-bindings {
   display: flex;
