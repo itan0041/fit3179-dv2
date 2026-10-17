@@ -19,12 +19,12 @@
       "as": "end_edge"
     }
   ],
-  "width": 860,
-  "height": 420,
+  "width": 950,
+  "height": 384,
   "mark": {
     "type": "bar",
     "cornerRadius": 3,
-    "height": 17
+    "height": 20
   },
   "encoding": {
     "y": {

@@ -19,13 +19,13 @@
       "filter": "datum.crop_type == 'vegetables'"
     }
   ],
-  "width": 660,
-  "height": 380,
+  "width": 886,
+  "height": 404,
   "padding": {
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 170
+    "right": 8
   },
   "encoding": {
     "x": {
@@ -65,8 +65,8 @@
           "title": "Index (2014 = 100)",
           "scale": {
             "domain": [
-              60,
-              112
+              66,
+              110
             ]
           },
           "axis": {
@@ -146,12 +146,12 @@
       "mark": {
         "type": "line",
         "strokeWidth": 2.8,
-        "color": "#C2603C",
+        "color": "#B07D16",
         "interpolate": "monotone",
         "point": {
           "filled": true,
           "size": 55,
-          "color": "#C2603C"
+          "color": "#B07D16"
         }
       },
       "encoding": {
@@ -217,7 +217,7 @@
         "dx": 12,
         "fontSize": 12.5,
         "fontWeight": 600,
-        "color": "#9E4528"
+        "color": "#8A6210"
       },
       "encoding": {
         "y": {

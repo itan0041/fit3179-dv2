@@ -61,7 +61,7 @@ Fourteen charts, four of them maps. Every specification is a readable JSON file 
 | 1 | Multi-line chart | How did interest in four gardening terms move, month by month? |
 | 2 | Slope graph | Which crop categories gained or lost land over the decade? |
 | 3 | Bump chart | How did the categories rank against each other, year by year? |
-| 4 | Connected scatterplot | How did vegetable area and production move together? |
+| 4 | Indexed line chart | Did vegetable area and production recover together? |
 | 5 | **Choropleth map** | Where is there vegetable land per head of population? |
 | 6 | **Proportional symbol map** | Where is the raw tonnage produced? |
 | 7 | **Bivariate choropleth map** | Where do searching and growing agree, and where not? |

@@ -11,8 +11,8 @@
       }
     }
   },
-  "width": 895,
-  "height": 430,
+  "width": 950,
+  "height": 450,
   "mark": {
     "type": "rect",
     "stroke": "#FAF7F0",
@@ -71,20 +71,16 @@
       "scale": {
         "type": "threshold",
         "domain": [
-          100,
           150,
           200,
           250,
-          300,
-          400
+          325
         ],
         "range": [
-          "#F0F5F8",
           "#D2E2EC",
           "#A9C8DE",
           "#7CA9CC",
           "#5089B7",
-          "#2F6A9A",
           "#1C4B72"
         ]
       },
@@ -93,10 +89,11 @@
         "direction": "horizontal",
         "titleColor": "#1C2B22",
         "labelColor": "#5E6E64",
-        "symbolType": "square",
-        "symbolSize": 170,
         "titleFontSize": 11.5,
-        "columns": 7
+        "labelFontSize": 11.5,
+        "labelOverlap": false,
+        "labelPadding": 6,
+        "titlePadding": 8
       }
     },
     "tooltip": [

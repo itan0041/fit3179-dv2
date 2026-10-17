@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "description": "Custom-built radial chart. Polar coordinates are pre-computed in Python (data/seasonality_polar.csv) because Vega-Lite has no polar line mark. January is at the top and the months run clockwise. Each series is scaled so its own yearly average sits at the 100 ring.",
-  "width": 420,
-  "height": 420,
+  "width": 478,
+  "height": 478,
   "layer": [
     {
       "data": {

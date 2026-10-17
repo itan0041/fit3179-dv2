@@ -87,7 +87,7 @@ rainfall. A reader who learns the scheme in section one can read section six wit
 | 1 | Multi-line chart | Deliberately the simplest idiom on the page. An earlier ridgeline scaled each row to its own peak, which hid a five-fold difference in volume and tested poorly with a non-technical reader. One shared 0–100 scale is honest about relative volume and needs no explaining. | Compare the rise and fall of four terms at a glance |
 | 2 | Slope graph | Reduces eleven years to the only comparison the section needs: where each category started and ended | See winners and losers in one read |
 | 3 | Bump chart | Recovers the year-by-year movement the slope graph deliberately discards | Follow one category's fortunes over time |
-| 4 | Connected scatterplot | Shows area and production as a single path through time, making the 2018 reversal visible as a shape | Identify the turning point |
+| 4 | Indexed line chart | Two lines on one index (2014 = 100) with the gap between them tinted. Replaced a connected scatterplot: the loop shape made the path legible but buried the finding, which is that the two measures have not recovered together. Planted area is back above its 2014 level and production is still 8 per cent below it. | Read the divergence directly |
 | 5 | Choropleth map | Per-capita rates are a ratio, correctly encoded by colour over an area | Find states with land relative to population |
 | 6 | Proportional symbol map | Raw tonnage is a magnitude, correctly encoded by area, not by shading | Judge absolute scale of output |
 | 7 | Bivariate choropleth map | Two variables on one geography answers the mismatch question directly, instead of asking the reader to hold two maps in memory | Spot where interest and growing diverge |

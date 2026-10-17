@@ -19,6 +19,9 @@ GROW   = ['#EDF3E8', '#CFE2C4', '#A6CB98', '#78AE6B', '#4C8D48', '#2D6C35', '#1A
 ATTN   = ['#FBEFE8', '#F2D2BE', '#E6AD8C', '#D88960', '#C2603C', '#9E4528', '#763017']
 RAIN   = ['#F0F5F8', '#D2E2EC', '#A9C8DE', '#7CA9CC', '#5089B7', '#2F6A9A', '#1C4B72']
 ATTN_1, GROW_1, RAIN_1 = '#C2603C', '#4C8D48', '#2F6A9A'
+# Figure 4 sets two growing measures against each other. Terracotta would read as
+# search interest there, so the harvest line takes an amber of its own.
+HARVEST, HARVEST_DEEP = '#B07D16', '#8A6210'
 
 CROP_COLORS = {
     'Vegetables': '#4C8D48', 'Fruits': '#D98A28', 'Herbs': '#7E9E3A',
@@ -67,8 +70,10 @@ write('01_search_interest.json', {
   'transform': [
     {'window': [{'op': 'mean', 'field': 'value', 'as': 'smooth'}],
      'frame': [-2, 2], 'groupby': ['keyword'], 'sort': [{'field': 'date'}]}],
-  'width': 840, 'height': 330,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 200},
+  'width': 925, 'height': 384,
+  # autosize already grows the frame to hold the overflowing end labels, so a
+  # right padding on top of it is pure dead space inside the panel.
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 8},
   'encoding': {
     'x': {'field': 'date', 'type': 'temporal', 'title': None,
           'axis': {'format': '%Y', 'tickCount': 'year', 'grid': False,
@@ -76,7 +81,7 @@ write('01_search_interest.json', {
                    'labelFontSize': 11.5}},
     'y': {'field': 'smooth', 'type': 'quantitative',
           'title': 'Search interest (100 = busiest month of any term)',
-          'scale': {'domain': [0, 100]},
+          'scale': {'domain': [0, 75]},
           'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
                    'ticks': False, 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
     'color': {'field': 'keyword_label', 'type': 'nominal', 'legend': None,
@@ -92,23 +97,33 @@ write('01_search_interest.json', {
          {'field': 'smooth', 'type': 'quantitative', 'title': 'Five-month average', 'format': '.1f'}]}},
     # The hover selection sits on one layer only; at the top level of a layered spec
     # it is instantiated per layer and collides with itself.
+    # A zero-size point has no hit area, so pointerover never fires on it. The target
+    # is given a real radius, held invisible, and matched by nearest so the reader can
+    # hover anywhere near a line rather than landing exactly on a month.
     {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['keyword_label'],
-                                             'on': 'pointerover', 'clear': 'pointerout'}}],
-     'mark': {'type': 'point', 'filled': True, 'size': 0, 'opacity': 0}},
+                                             'on': 'pointerover', 'clear': 'pointerout',
+                                             'nearest': True}}],
+     'mark': {'type': 'point', 'filled': True, 'size': 120, 'opacity': 0}},
     # berkebun and kebun sayur end within a few index points of each other, so the
     # lower label is nudged clear of the upper one.
     {'transform': [{'filter': 'datum.date >= toDate("2026-09-01")'},
                    {'calculate': "datum.keyword === 'kebun sayur' ? datum.smooth - 4.5 : "
                                  "(datum.keyword === 'berkebun' ? datum.smooth + 2.5 : datum.smooth)",
-                    'as': 'label_y'}],
-     'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 12, 'fontWeight': 500},
+                    'as': 'label_y'},
+                   # The glosses are given in the caption, so the end label carries
+                   # the search term alone and the chart keeps the width instead.
+                   {'calculate': "split(datum.keyword_label, ' (')[0]", 'as': 'label_short'}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 12.5, 'fontWeight': 600},
      'encoding': {'y': {'field': 'label_y', 'type': 'quantitative'},
-                  'text': {'field': 'keyword_label', 'type': 'nominal'}}},
+                  'text': {'field': 'label_short', 'type': 'nominal'}}},
     {'data': {'values': [{'date': '2020-03-18'}]},
      'transform': [],
-     'mark': {'type': 'rule', 'strokeDash': [5, 4], 'strokeWidth': 1.4, 'opacity': 1},
-     'encoding': {'x': {'field': 'date', 'type': 'temporal'}, 'color': {'value': INK}}},
-    {'data': {'values': [{'date': '2020-04-15', 'y': 95,
+     'mark': {'type': 'rule', 'strokeDash': [5, 4], 'strokeWidth': 1.4, 'opacity': 0.55},
+     # y is nulled out: the layer inherits the top-level y field, the inline row has
+     # no such field, and the rule silently drew nothing for want of a y value.
+     'encoding': {'x': {'field': 'date', 'type': 'temporal'}, 'y': None,
+                  'color': {'value': INK}}},
+    {'data': {'values': [{'date': '2020-04-15', 'y': 73,
                           'label': 'Movement Control Order, March 2020'}]},
      'transform': [],
      'mark': {'type': 'text', 'align': 'left', 'dx': 6, 'baseline': 'top',
@@ -136,11 +151,13 @@ write('02_category_slope.json', {
     {'calculate': "measure === 'Planted area' ? datum.label_area : datum.label_prod",
      'as': 'label_y'},
     {'filter': 'isValid(datum.value)'}],
-  'width': 560, 'height': 560,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 170},
+  'width': 1006, 'height': 505,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 8},
   'encoding': {
-    'x': {'field': 'year', 'type': 'ordinal', 'title': None,
-          'axis': {'labelAngle': 0, 'labelFontSize': 13, 'labelColor': INK,
+    'x': {'field': 'year', 'type': 'quantitative', 'title': None,
+          'scale': {'domain': [2013.5, 2026.9], 'nice': False},
+          'axis': {'values': [2014, 2024], 'format': 'd', 'labelAngle': 0,
+                   'labelFontSize': 13, 'labelColor': INK,
                    'domain': False, 'ticks': False, 'grid': False, 'labelPadding': 8}},
     'y': {'field': 'value', 'type': 'quantitative',
           'title': 'Index (2014 = 100)',
@@ -159,11 +176,12 @@ write('02_category_slope.json', {
     # The hover selection lives on this one layer: declared at the top level of a
     # layered spec it is instantiated per layer and collides with itself.
     {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['crop_label'],
-                                            'on': 'pointerover', 'clear': 'pointerout'}}],
+                                            'on': 'pointerover', 'clear': 'pointerout',
+                                            'nearest': True}}],
      'mark': {'type': 'point', 'filled': True, 'size': 70},
      'encoding': {'tooltip': [
         {'field': 'crop_label', 'type': 'nominal', 'title': 'Category'},
-        {'field': 'year', 'type': 'ordinal', 'title': 'Year'},
+        {'field': 'year', 'type': 'quantitative', 'title': 'Year', 'format': 'd'},
         {'field': 'value', 'type': 'quantitative',
          'title': 'Index (2014 = 100)', 'format': '.1f'}]}},
     {'transform': [{'filter': 'datum.year == 2024'}],
@@ -183,8 +201,8 @@ write('03_category_bump.json', {
     {'window': [{'op': 'rank', 'as': 'growth_rank'}],
      'sort': [{'field': 'area_index_2014', 'order': 'descending'}],
      'groupby': ['year']}],
-  'width': 790, 'height': 500,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 140},
+  'width': 993, 'height': 505,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 8},
   'encoding': {
     'x': {'field': 'year', 'type': 'ordinal', 'title': None,
           'axis': {'labelAngle': 0, 'labelColor': INK_SOFT, 'grid': False,
@@ -211,7 +229,8 @@ write('03_category_bump.json', {
                                   'value': 2.6}}},
     # Hovering one category lifts its path; the param sits on a single layer.
     {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['crop_label'],
-                                            'on': 'pointerover', 'clear': 'pointerout'}}],
+                                            'on': 'pointerover', 'clear': 'pointerout',
+                                            'nearest': True}}],
      'mark': {'type': 'point', 'filled': True, 'size': 60},
      'encoding': {'opacity': {'condition': {'param': 'hover', 'value': 1, 'empty': True},
                               'value': 0.15}}},
@@ -233,8 +252,8 @@ write('04_land_vs_output.json', {
               {'year': 'number', 'area_index_2014': 'number', 'prod_index_2014': 'number',
                'planted_area_ha': 'number', 'production_tonnes': 'number'}),
   'transform': [{'filter': "datum.crop_type == 'vegetables'"}],
-  'width': 660, 'height': 380,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 170},
+  'width': 886, 'height': 404,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 8},
   'encoding': {
     'x': {'field': 'year', 'type': 'quantitative', 'title': None,
           'scale': {'domain': [2014, 2024], 'nice': False},
@@ -245,7 +264,7 @@ write('04_land_vs_output.json', {
     {'mark': {'type': 'area', 'color': GROW[2], 'opacity': 0.35, 'interpolate': 'monotone'},
      'encoding': {
        'y': {'field': 'area_index_2014', 'type': 'quantitative',
-             'title': 'Index (2014 = 100)', 'scale': {'domain': [60, 112]},
+             'title': 'Index (2014 = 100)', 'scale': {'domain': [66, 110]},
              'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
                       'ticks': False, 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
        'y2': {'field': 'prod_index_2014'}}},
@@ -259,8 +278,8 @@ write('04_land_vs_output.json', {
          {'field': 'year', 'type': 'quantitative', 'title': 'Year', 'format': 'd'},
          {'field': 'planted_area_ha', 'type': 'quantitative', 'title': 'Planted area (hectares)', 'format': ',.0f'},
          {'field': 'area_index_2014', 'type': 'quantitative', 'title': 'Area index (2014 = 100)', 'format': '.1f'}]}},
-    {'mark': {'type': 'line', 'strokeWidth': 2.8, 'color': ATTN[4], 'interpolate': 'monotone',
-              'point': {'filled': True, 'size': 55, 'color': ATTN[4]}},
+    {'mark': {'type': 'line', 'strokeWidth': 2.8, 'color': HARVEST, 'interpolate': 'monotone',
+              'point': {'filled': True, 'size': 55, 'color': HARVEST}},
      'encoding': {
        'y': {'field': 'prod_index_2014', 'type': 'quantitative'},
        'tooltip': [
@@ -274,7 +293,7 @@ write('04_land_vs_output.json', {
                   'text': {'value': 'Land planted'}}},
     {'transform': [{'filter': 'datum.year == 2024'}],
      'mark': {'type': 'text', 'align': 'left', 'dx': 12, 'fontSize': 12.5, 'fontWeight': 600,
-              'color': ATTN[5]},
+              'color': HARVEST_DEEP},
      'encoding': {'y': {'field': 'prod_index_2014', 'type': 'quantitative'},
                   'text': {'value': 'Tonnes harvested'}}},
     {'transform': [{'filter': 'datum.year == 2024'}],
@@ -296,10 +315,13 @@ BOR = [12, 13, 15]
 # Both panels are pinned to the SAME Mercator scale rather than being auto-fitted
 # independently, so a hectare in Sarawak covers the same number of pixels as a
 # hectare in Perak and the two panels remain visually comparable.
-MAP_SCALE = 3500
-PEN_W, BOR_W = 330, 620
-MAP_H = 430
-SPIKE_H = 520
+# Enlarged by 1.09 over the first draft so the two panels fill the 1072px that a
+# full-width figure actually offers. Scale, panel widths and height move together,
+# so a hectare still covers the same pixels in both panels.
+MAP_SCALE = 3777
+PEN_W, BOR_W = 357, 669
+MAP_H = 465
+SPIKE_H = 562
 
 # The translate is written out in pixels rather than left to Vega's width/2 signal:
 # inside an hconcat that signal resolves against the wrong view and clips the map.
@@ -498,8 +520,8 @@ write('08_map_spike.json', {
   'description': 'Spike map: change in vegetable planted area between 2014 and 2024. Spike '
                  'length is proportional to the percentage change, rising for an increase and '
                  'falling for a decrease. Changes of 25 per cent or more are labelled.',
-  'hconcat': [spike_panel(PEN, PEN_W, 'Peninsular Malaysia', True, pen_proj(SPIKE_H, 330)),
-              spike_panel(BOR, BOR_W, 'Sabah, Sarawak and Labuan', False, bor_proj(SPIKE_H, 330))],
+  'hconcat': [spike_panel(PEN, PEN_W, 'Peninsular Malaysia', True, pen_proj(SPIKE_H, 356)),
+              spike_panel(BOR, BOR_W, 'Sabah, Sarawak and Labuan', False, bor_proj(SPIKE_H, 356))],
   **shared()})
 
 # ───────────────────────── 09 dumbbell ──────────────────────────────────────
@@ -508,7 +530,7 @@ write('09_state_dumbbell.json', {
                  'with a connecting line showing the direction of travel.',
   'data': csv('state_change.csv',
               {'area_2014': 'number', 'area_2024': 'number', 'pct_change': 'number'}),
-  'width': 330, 'height': 400,
+  'width': 384, 'height': 594,
   'encoding': {
     'y': {'field': 'state', 'type': 'nominal', 'title': None,
           'sort': {'field': 'area_2024', 'order': 'descending'},
@@ -552,15 +574,21 @@ write('10_waffle_share.json', {
                  'vegetable planted area in 2024.',
   'data': csv('waffle_vegetable_share.csv',
               {'row': 'number', 'col': 'number', 'share_pct': 'number', 'squares': 'number'}),
-  'width': 330, 'height': 360,
-  'mark': {'type': 'square', 'size': 640, 'stroke': PAPER, 'strokeWidth': 3, 'cornerRadius': 2},
+  # The key runs along the bottom rather than down the right. On the right it was
+  # seven rows tall against a ten-row grid, so the column's lower third was empty
+  # and the grid had to shrink to make room for it. Underneath, the grid gets the
+  # full width of its column back.
+  'width': 482, 'height': 482,
+  'mark': {'type': 'square', 'size': 1330, 'stroke': PAPER, 'strokeWidth': 3.4, 'cornerRadius': 2},
   'encoding': {
     'x': {'field': 'col', 'type': 'ordinal', 'axis': None},
     'y': {'field': 'row', 'type': 'ordinal', 'axis': None},
     'color': {'field': 'group', 'type': 'nominal', 'title': 'State',
               'scale': {'domain': WAFFLE_DOMAIN, 'range': WAFFLE_RANGE},
-              'legend': {'orient': 'right', 'titleColor': INK, 'labelColor': INK_SOFT,
-                         'symbolType': 'square', 'symbolSize': 150, 'labelFontSize': 11.5}},
+              'legend': {'orient': 'bottom', 'direction': 'horizontal', 'columns': 4,
+                         'titleColor': INK, 'labelColor': INK_SOFT, 'titleOrient': 'top',
+                         'symbolType': 'square', 'symbolSize': 150, 'labelFontSize': 11.5,
+                         'columnPadding': 14, 'rowPadding': 5, 'offset': 10}},
     'tooltip': [
       {'field': 'state', 'type': 'nominal', 'title': 'State'},
       {'field': 'share_pct', 'type': 'quantitative', 'title': 'Share of national area (per cent)', 'format': '.1f'},
@@ -571,7 +599,7 @@ write('10_waffle_share.json', {
 write('11_rain_heatmap.json', {
   'description': 'Heatmap: average monthly rainfall by state, from a 25-year NASA POWER climatology.',
   'data': csv('climate_states.csv', {'month': 'number', 'rain_mm_month': 'number'}),
-  'width': 895, 'height': 430,
+  'width': 950, 'height': 450,
   'mark': {'type': 'rect', 'stroke': PAPER, 'strokeWidth': 1.5, 'cornerRadius': 1},
   'encoding': {
     'x': {'field': 'month_name', 'type': 'ordinal', 'title': None,
@@ -583,10 +611,19 @@ write('11_rain_heatmap.json', {
           'axis': {'domain': False, 'ticks': False, 'labelFontSize': 11.5, 'labelColor': INK}},
     'color': {'field': 'rain_mm_month', 'type': 'quantitative',
               'title': 'Average rainfall (millimetres per month)',
-              'scale': {'type': 'threshold', 'domain': [100, 150, 200, 250, 300, 400], 'range': RAIN},
+              # Four breaks, not six. Vega-Lite discards gradientLength on a threshold
+              # scale and draws a fixed 200px banded key, so six break labels landed a
+              # single pixel apart and could not be read. Four round breaks fit that band
+              # with air between them and still split the data sensibly: 16 / 37 / 19 / 20
+              # / 8 per cent of state-months fall in the five bands. The palest step is
+              # dropped because it sat within a shade of the paper and made dry cells
+              # disappear into the background.
+              'scale': {'type': 'threshold', 'domain': [150, 200, 250, 325],
+                        'range': [RAIN[1], RAIN[2], RAIN[3], RAIN[4], RAIN[6]]},
               'legend': {'orient': 'bottom', 'direction': 'horizontal', 'titleColor': INK,
-                         'labelColor': INK_SOFT, 'symbolType': 'square', 'symbolSize': 170,
-                         'titleFontSize': 11.5, 'columns': 7}},
+                         'labelColor': INK_SOFT, 'titleFontSize': 11.5,
+                         'labelFontSize': 11.5, 'labelOverlap': False,
+                         'labelPadding': 6, 'titlePadding': 8}},
     'tooltip': [
       {'field': 'state', 'type': 'nominal', 'title': 'State'},
       {'field': 'city', 'type': 'nominal', 'title': 'Measured at'},
@@ -602,7 +639,7 @@ write('12_seasonality_radial.json', {
                  '(data/seasonality_polar.csv) because Vega-Lite has no polar line mark. '
                  'January is at the top and the months run clockwise. Each series is scaled '
                  'so its own yearly average sits at the 100 ring.',
-  'width': 420, 'height': 420,
+  'width': 478, 'height': 478,
   'layer': [
     {'data': csv('seasonality_rings.csv', {'x': 'number', 'y': 'number', 'ring': 'number', 'k': 'number'}),
      'mark': {'type': 'line', 'strokeWidth': 0.8, 'color': RULE},
@@ -658,8 +695,8 @@ write('13_planting_window.json', {
               {'start_month': 'number', 'end_month': 'number',
                'window_rain_mm': 'number', 'annual_rain_mm': 'number'}),
   'transform': [{'calculate': 'datum.end_month + 1', 'as': 'end_edge'}],
-  'width': W_FULL - 200, 'height': 420,
-  'mark': {'type': 'bar', 'cornerRadius': 3, 'height': 17},
+  'width': W_FULL - 110, 'height': 384,
+  'mark': {'type': 'bar', 'cornerRadius': 3, 'height': 20},
   'encoding': {
     'y': {'field': 'state', 'type': 'nominal', 'title': None,
           'sort': {'field': 'start_month'},
@@ -704,7 +741,7 @@ write('14_rain_vs_interest.json', {
                  'and the quietest month for searching.',
   'data': csv('seasonality.csv',
               {'month': 'number', 'malaysia_index': 'number', 'rainfall_mm': 'number'}),
-  'width': 355, 'height': 360,
+  'width': 380, 'height': 408,
   'encoding': {
     'x': {'field': 'month_name', 'type': 'ordinal', 'sort': MONTHS, 'title': None,
           'axis': {'labelAngle': 0, 'domain': False, 'ticks': False, 'grid': False,

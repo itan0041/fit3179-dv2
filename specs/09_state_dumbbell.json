@@ -12,8 +12,8 @@
       }
     }
   },
-  "width": 330,
-  "height": 400,
+  "width": 384,
+  "height": 594,
   "encoding": {
     "y": {
       "field": "state",

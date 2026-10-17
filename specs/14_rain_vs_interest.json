@@ -12,8 +12,8 @@
       }
     }
   },
-  "width": 355,
-  "height": 360,
+  "width": 380,
+  "height": 408,
   "encoding": {
     "x": {
       "field": "month_name",

@@ -33,13 +33,13 @@
       ]
     }
   ],
-  "width": 790,
-  "height": 500,
+  "width": 993,
+  "height": 505,
   "padding": {
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 140
+    "right": 8
   },
   "encoding": {
     "x": {
@@ -185,7 +185,8 @@
               "crop_label"
             ],
             "on": "pointerover",
-            "clear": "pointerout"
+            "clear": "pointerout",
+            "nearest": true
           }
         }
       ],

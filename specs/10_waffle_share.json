@@ -13,13 +13,13 @@
       }
     }
   },
-  "width": 330,
-  "height": 360,
+  "width": 482,
+  "height": 482,
   "mark": {
     "type": "square",
-    "size": 640,
+    "size": 1330,
     "stroke": "#FAF7F0",
-    "strokeWidth": 3,
+    "strokeWidth": 3.4,
     "cornerRadius": 2
   },
   "encoding": {
@@ -58,12 +58,18 @@
         ]
       },
       "legend": {
-        "orient": "right",
+        "orient": "bottom",
+        "direction": "horizontal",
+        "columns": 4,
         "titleColor": "#1C2B22",
         "labelColor": "#5E6E64",
+        "titleOrient": "top",
         "symbolType": "square",
         "symbolSize": 150,
-        "labelFontSize": 11.5
+        "labelFontSize": 11.5,
+        "columnPadding": 14,
+        "rowPadding": 5,
+        "offset": 10
       }
     },
     "tooltip": [

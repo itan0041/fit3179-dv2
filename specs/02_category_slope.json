@@ -44,20 +44,32 @@
       "filter": "isValid(datum.value)"
     }
   ],
-  "width": 560,
-  "height": 560,
+  "width": 1006,
+  "height": 505,
   "padding": {
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 170
+    "right": 8
   },
   "encoding": {
     "x": {
       "field": "year",
-      "type": "ordinal",
+      "type": "quantitative",
       "title": null,
+      "scale": {
+        "domain": [
+          2013.5,
+          2026.9
+        ],
+        "nice": false
+      },
       "axis": {
+        "values": [
+          2014,
+          2024
+        ],
+        "format": "d",
         "labelAngle": 0,
         "labelFontSize": 13,
         "labelColor": "#1C2B22",
@@ -156,7 +168,8 @@
               "crop_label"
             ],
             "on": "pointerover",
-            "clear": "pointerout"
+            "clear": "pointerout",
+            "nearest": true
           }
         }
       ],
@@ -174,8 +187,9 @@
           },
           {
             "field": "year",
-            "type": "ordinal",
-            "title": "Year"
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
           },
           {
             "field": "value",
