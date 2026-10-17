@@ -129,7 +129,7 @@
         "color": {
           "field": "direction",
           "type": "nominal",
-          "title": "Direction, 2014 to 2024",
+          "title": "Pale dot = 2014, coloured dot = 2024",
           "scale": {
             "domain": [
               "Increase",

@@ -6,6 +6,7 @@
 <title>Grow Where You Are — Malaysia's gardening decade</title>
 <meta name="description" content="Search interest, eleven years of crop records and a 25-year rainfall climatology, read together to ask what Malaysia's gardening boom actually changed.">
 <meta name="author" content="Isaac Yeak Sern Tan">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23FAF7F0'/%3E%3Cpath d='M16 26V13' stroke='%232D6C35' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 15c0-4-3-7-7-7 0 4 3 7 7 7z' fill='%234C8D48'/%3E%3Cpath d='M16 18c0-4 3-7 7-7 0 4-3 7-7 7z' fill='%232D6C35'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -66,13 +67,14 @@
     <div class="row single">
       <figure>
         <figcaption>
-          <span class="fig-kicker">Figure 1 · Ridgeline plot</span>
+          <span class="fig-kicker">Figure 1 · Multi-line chart</span>
           <h3>Four ways Malaysians looked for gardening, month by month</h3>
-          <p class="fig-note">Each band is one search term: the pale shape is the raw monthly
-            index and the solid line is a five-month average. <em>Berkebun</em> means to garden,
+          <p class="fig-note">One line per search term, all on the same 0–100 scale, so the
+            heights can be compared directly: <em>hidroponik</em> and <em>gardening</em> run
+            several times the volume of the other two. <em>Berkebun</em> means to garden,
             <em>hidroponik</em> is hydroponics and <em>kebun sayur</em> is a vegetable garden.
-            Every row is scaled to its own peak, so compare the shapes rather than the heights —
-            the terms differ greatly in volume. The dashed line marks March 2020.</p>
+            Lines are a five-month average, which shows the trend through month-to-month noise.
+            Hover a line to pick it out. The dashed line marks March 2020.</p>
         </figcaption>
         <div class="chart" id="c01"></div>
         <p class="callout"><b>Read with care.</b> The English word “gardening” behaves unlike
@@ -140,6 +142,8 @@
         <p class="callout grow"><b>The turn happened in 2018.</b> The path falls for four years,
           doubles back on itself, and by 2024 has climbed past where it began — more land and
           more tonnes than 2014, after a decade-long detour.</p>
+        <p class="bridge">If the country is growing more vegetables than it did a decade ago,
+          the next question is where.</p>
       </figure>
     </div>
   </section>
@@ -186,6 +190,8 @@
         <p class="callout grow"><b>Two maps, two answers.</b> Adjusted for population, the
           east-coast states look substantial. In raw tonnage, Pahang and Johor supply the bulk of
           the country's vegetables between them.</p>
+        <p class="bridge">Knowing where the food grows invites a second question: is that also
+          where people are looking for ways to grow it?</p>
       </figure>
     </div>
   </section>
@@ -223,6 +229,7 @@
             <div class="chart" id="c07b"></div>
             <p>The darkest green corner is high growing and low searching. The orange corner is
               high searching and low growing. The grey corner is low on both.</p>
+            <p class="bridge">That mismatch is not fixed. Over eleven years it has been moving.</p>
           </div>
         </div>
       </figure>
@@ -263,6 +270,9 @@
         <div class="chart" id="c08"></div>
       </figure>
     </div>
+
+    <p class="bridge">For anyone in a state that lost its farmland, growing something at home
+      becomes the practical response — which raises the last question: when to plant.</p>
 
     <div class="row">
       <figure>
@@ -339,7 +349,9 @@
           <h3>Rain rises, searching falls</h3>
           <p class="fig-note">Bars show average rainfall across all sixteen states on the left
             axis; the line shows Malaysia's seasonal index of gardening searches on the right.
-            The two axes are scaled separately.</p>
+            <strong>The two axes are scaled independently, so read this as two sequences sharing a
+            calendar, not as a measured correlation.</strong> Where the line and bars appear to
+            move together is a product of the chosen scales as much as the data.</p>
         </figcaption>
         <div class="chart" id="c14"></div>
       </figure>
@@ -351,8 +363,10 @@
           <span class="fig-kicker">Figure 14 · Interval chart</span>
           <h3>The three driest months in each state</h3>
           <p class="fig-note">Each bar spans the three consecutive months with the least rainfall
-            on record for that state — the easiest window in which to start seedlings without
-            them being washed out. Darker bars mean that even the driest window is a wet one.</p>
+            on record for that state. Darker bars mean that even the driest window is a wet one.
+            <strong>This is guidance derived from 25-year rainfall averages, not a measure of
+            growing success</strong> — no yield or germination data was used, and any single year
+            can depart from the average.</p>
         </figcaption>
         <div class="chart" id="c13"></div>
       </figure>

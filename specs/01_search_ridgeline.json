@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Ridgeline plot: monthly Google Trends search interest in Malaysia for four gardening terms, January 2014 to September 2026. The pale band is the raw monthly index and the solid line is a five-month centred average. All four row is scaled to its own peak, so the shapes are comparable even though the terms differ greatly in volume.",
+  "description": "Ridgeline plot: monthly Google Trends search interest in Malaysia for four gardening terms, January 2014 to September 2026. The pale band is the raw monthly index and the solid line is a five-month centred average. All four row is scaled to its own peak, so the shapes are comparable; the average level printed beside each name gives back the volume the scaling hides.",
   "data": {
     "url": "data/trends_my_monthly.csv",
     "format": {
@@ -37,22 +37,22 @@
   "spacing": -62,
   "facet": {
     "row": {
-      "field": "keyword",
+      "field": "row_label",
       "type": "nominal",
       "title": null,
       "sort": [
-        "hidroponik",
-        "gardening",
-        "berkebun",
-        "kebun sayur"
+        "hidroponik   avg 32",
+        "gardening   avg 32",
+        "berkebun   avg 9",
+        "kebun sayur   avg 6"
       ],
       "header": {
         "labelAngle": 0,
         "labelAlign": "right",
         "labelOrient": "left",
         "labelPadding": 10,
-        "labelLimit": 150,
-        "labelFontSize": 12.5,
+        "labelLimit": 190,
+        "labelFontSize": 12,
         "labelFontStyle": "italic",
         "labelColor": "#1C2B22",
         "labelBaseline": "middle"

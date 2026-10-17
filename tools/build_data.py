@@ -178,7 +178,18 @@ for d in tr['my_timeseries']['data']:
     for i, k in enumerate(kw):
         my.append({'date': date, 'year': y, 'month': m,
                    'keyword': k, 'keyword_label': KW_LABEL.get(k, k), 'value': d['v'][i]})
-w('trends_my_monthly.csv', ['date','year','month','keyword','keyword_label','value'], my)
+# Each ridgeline row is scaled to its own peak, so the rows show timing and shape but
+# hide volume: hidroponik averages ~32 on the index while kebun sayur averages ~6.
+# Carry the average into the row label so the chart states the difference outright.
+_lv = collections.defaultdict(list)
+for r in my:
+    _lv[r['keyword']].append(r['value'])
+_mean = {k: sum(v)/len(v) for k, v in _lv.items()}
+for r in my:
+    r['row_label'] = f"{r['keyword']}   avg {_mean[r['keyword']]:.0f}"
+w('trends_my_monthly.csv',
+  ['date','year','month','keyword','keyword_label','row_label','value'], my)
+print('   row labels:', ' | '.join(sorted({r['row_label'] for r in my})))
 
 wd = []
 for d in tr['world_timeseries']['data']:

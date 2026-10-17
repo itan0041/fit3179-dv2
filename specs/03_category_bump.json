@@ -154,15 +154,55 @@
       "mark": {
         "type": "line",
         "strokeWidth": 2.6,
-        "interpolate": "monotone",
-        "opacity": 0.85
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "value": 1,
+            "empty": true
+          },
+          "value": 0.15
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "hover",
+            "value": 4.5,
+            "empty": false
+          },
+          "value": 2.6
+        }
       }
     },
     {
+      "params": [
+        {
+          "name": "hover",
+          "select": {
+            "type": "point",
+            "fields": [
+              "crop_label"
+            ],
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
       "mark": {
         "type": "point",
         "filled": true,
         "size": 60
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "value": 1,
+            "empty": true
+          },
+          "value": 0.15
+        }
       }
     },
     {

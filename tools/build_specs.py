@@ -48,52 +48,75 @@ PROJ = {'type': 'mercator'}        # Malaysia sits within 8 degrees of the equat
                                    # where Mercator's area distortion is negligible.
 print('writing specs:')
 
-# ───────────────────────── 01 ridgeline ─────────────────────────────────────
-# width/height belong to the CHILD spec of a facet; setting them on the facet
-# itself leaves the child at its default size and pads the rest of the frame.
-write('01_search_ridgeline.json', {
-  'description': 'Ridgeline plot: monthly Google Trends search interest in Malaysia for four '
-                 'gardening terms, January 2014 to September 2026. The pale band is the raw '
-                 'monthly index and the solid line is a five-month centred average. All four '
-                 'row is scaled to its own peak, so the shapes are comparable even though '
-                 'the terms differ greatly in volume.',
+# ───────────────────────── 01 search interest over time ────────────────────
+# A plain multi-line chart, on ONE shared 0-100 scale. An earlier ridgeline scaled
+# every row to its own peak, which hid a five-fold difference in volume and drew
+# the fair criticism that it implied a comparison it did not support. Readers also
+# found the double encoding (raw band plus smoothed line) hard to parse. One line
+# per term on one axis is honest about relative volume and needs no explaining.
+SEARCH_TERMS = ['hidroponik (hydroponics)', 'gardening',
+                'berkebun (to garden)', 'kebun sayur (vegetable garden)']
+SEARCH_COLORS = ['#B0502E', '#C2603C', '#D08C62', '#E0B18F']
+
+write('01_search_interest.json', {
+  'description': 'Multi-line chart: monthly Google Trends search interest in Malaysia for four '
+                 'gardening terms, January 2014 to September 2026, all on one 0-100 scale so the '
+                 'terms can be compared directly. Lines are a five-month centred average, which '
+                 'shows the trend through month-to-month noise.',
   'data': csv('trends_my_monthly.csv', {'date': 'date', 'value': 'number'}),
   'transform': [
     {'window': [{'op': 'mean', 'field': 'value', 'as': 'smooth'}],
      'frame': [-2, 2], 'groupby': ['keyword'], 'sort': [{'field': 'date'}]}],
-  'spacing': -62,
-  'facet': {'row': {'field': 'keyword', 'type': 'nominal', 'title': None,
-                    'sort': ['hidroponik', 'gardening', 'berkebun', 'kebun sayur'],
-                    'header': {'labelAngle': 0, 'labelAlign': 'right', 'labelOrient': 'left',
-                               'labelPadding': 10, 'labelLimit': 150, 'labelFontSize': 12.5,
-                               'labelFontStyle': 'italic', 'labelColor': INK,
-                               'labelBaseline': 'middle'}}},
-  'spec': {
-    'width': 820, 'height': 124,
-    'layer': [
-      {'mark': {'type': 'area', 'interpolate': 'monotone', 'fillOpacity': 0.72,
-                'stroke': PAPER, 'strokeWidth': 1.2, 'line': False},
-       'encoding': {
-         'x': {'field': 'date', 'type': 'temporal', 'title': None,
-               'axis': {'format': '%Y', 'tickCount': 'year', 'grid': False,
-                        'domainColor': RULE, 'tickColor': RULE, 'labelColor': INK_SOFT}},
-         'y': {'field': 'value', 'type': 'quantitative', 'scale': {'zero': True}, 'axis': None},
-         'color': {'value': ATTN[2]}}},
-      {'mark': {'type': 'line', 'interpolate': 'monotone', 'strokeWidth': 1.8},
-       'encoding': {
-         'x': {'field': 'date', 'type': 'temporal'},
-         'y': {'field': 'smooth', 'type': 'quantitative', 'scale': {'zero': True}, 'axis': None},
-         'color': {'value': ATTN[5]},
-         'tooltip': [
-           {'field': 'keyword_label', 'type': 'nominal', 'title': 'Search term'},
-           {'field': 'date', 'type': 'temporal', 'title': 'Month', 'format': '%B %Y'},
-           {'field': 'value', 'type': 'quantitative', 'title': 'Interest that month (0-100)'},
-           {'field': 'smooth', 'type': 'quantitative', 'title': 'Five-month average', 'format': '.1f'}]}},
-      {'data': {'values': [{'date': '2020-03-18'}]},
-       'mark': {'type': 'rule', 'color': INK, 'strokeDash': [4, 3], 'strokeWidth': 1.1,
-                'opacity': 0.75},
-       'encoding': {'x': {'field': 'date', 'type': 'temporal'}}}]},
-  'resolve': {'scale': {'y': 'independent', 'x': 'shared'}},
+  'width': 840, 'height': 330,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 200},
+  'encoding': {
+    'x': {'field': 'date', 'type': 'temporal', 'title': None,
+          'axis': {'format': '%Y', 'tickCount': 'year', 'grid': False,
+                   'domainColor': RULE, 'tickColor': RULE, 'labelColor': INK_SOFT,
+                   'labelFontSize': 11.5}},
+    'y': {'field': 'smooth', 'type': 'quantitative',
+          'title': 'Search interest (100 = busiest month of any term)',
+          'scale': {'domain': [0, 100]},
+          'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
+                   'ticks': False, 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
+    'color': {'field': 'keyword_label', 'type': 'nominal', 'legend': None,
+              'scale': {'domain': SEARCH_TERMS, 'range': SEARCH_COLORS}}},
+  'layer': [
+    {'mark': {'type': 'line', 'strokeWidth': 2.6, 'interpolate': 'monotone'},
+     'encoding': {
+       'opacity': {'condition': {'param': 'hover', 'value': 1, 'empty': True}, 'value': 0.2},
+       'tooltip': [
+         {'field': 'keyword_label', 'type': 'nominal', 'title': 'Search term'},
+         {'field': 'date', 'type': 'temporal', 'title': 'Month', 'format': '%B %Y'},
+         {'field': 'value', 'type': 'quantitative', 'title': 'Interest that month'},
+         {'field': 'smooth', 'type': 'quantitative', 'title': 'Five-month average', 'format': '.1f'}]}},
+    # The hover selection sits on one layer only; at the top level of a layered spec
+    # it is instantiated per layer and collides with itself.
+    {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['keyword_label'],
+                                             'on': 'pointerover', 'clear': 'pointerout'}}],
+     'mark': {'type': 'point', 'filled': True, 'size': 0, 'opacity': 0}},
+    # berkebun and kebun sayur end within a few index points of each other, so the
+    # lower label is nudged clear of the upper one.
+    {'transform': [{'filter': 'datum.date >= toDate("2026-09-01")'},
+                   {'calculate': "datum.keyword === 'kebun sayur' ? datum.smooth - 4.5 : "
+                                 "(datum.keyword === 'berkebun' ? datum.smooth + 2.5 : datum.smooth)",
+                    'as': 'label_y'}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 12, 'fontWeight': 500},
+     'encoding': {'y': {'field': 'label_y', 'type': 'quantitative'},
+                  'text': {'field': 'keyword_label', 'type': 'nominal'}}},
+    {'data': {'values': [{'date': '2020-03-18'}]},
+     'transform': [],
+     'mark': {'type': 'rule', 'strokeDash': [5, 4], 'strokeWidth': 1.4, 'opacity': 1},
+     'encoding': {'x': {'field': 'date', 'type': 'temporal'}, 'color': {'value': INK}}},
+    {'data': {'values': [{'date': '2020-04-15', 'y': 95,
+                          'label': 'Movement Control Order, March 2020'}]},
+     'transform': [],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 6, 'baseline': 'top',
+              'fontSize': 11.5, 'fontStyle': 'italic'},
+     'encoding': {'x': {'field': 'date', 'type': 'temporal'},
+                  'y': {'field': 'y', 'type': 'quantitative'},
+                  'text': {'field': 'label', 'type': 'nominal'},
+                  'color': {'value': INK_SOFT}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 02 slope graph ───────────────────────────────────
@@ -104,7 +127,8 @@ write('02_category_slope.json', {
                'label_area': 'number', 'label_prod': 'number'}),
   'params': [{'name': 'measure', 'value': 'Planted area',
               'bind': {'input': 'radio', 'options': ['Planted area', 'Production'],
-                       'name': 'Compare by  '}}],
+                       'name': 'Compare by  '}},
+             ],
   'transform': [
     {'filter': 'datum.year == 2014 || datum.year == 2024'},
     {'calculate': "measure === 'Planted area' ? datum.area_index_2014 : datum.prod_index_2014",
@@ -127,8 +151,16 @@ write('02_category_slope.json', {
               'scale': {'domain': CROP_DOMAIN, 'range': CROP_RANGE}},
     'detail': {'field': 'crop_label', 'type': 'nominal'}},
   'layer': [
-    {'mark': {'type': 'line', 'strokeWidth': 2.4, 'opacity': 0.9}},
-    {'mark': {'type': 'point', 'filled': True, 'size': 70, 'opacity': 1},
+    {'mark': {'type': 'line', 'strokeWidth': 2.4},
+     'encoding': {'opacity': {'condition': {'param': 'hover', 'value': 1, 'empty': True},
+                              'value': 0.18},
+                  'strokeWidth': {'condition': {'param': 'hover', 'value': 4, 'empty': False},
+                                  'value': 2.4}}},
+    # The hover selection lives on this one layer: declared at the top level of a
+    # layered spec it is instantiated per layer and collides with itself.
+    {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['crop_label'],
+                                            'on': 'pointerover', 'clear': 'pointerout'}}],
+     'mark': {'type': 'point', 'filled': True, 'size': 70},
      'encoding': {'tooltip': [
         {'field': 'crop_label', 'type': 'nominal', 'title': 'Category'},
         {'field': 'year', 'type': 'ordinal', 'title': 'Year'},
@@ -172,8 +204,17 @@ write('03_category_bump.json', {
       {'field': 'growth_rank', 'type': 'quantitative', 'title': 'Growth rank'},
       {'field': 'area_index_2014', 'type': 'quantitative', 'title': 'Area (2014 = 100)', 'format': '.1f'}]},
   'layer': [
-    {'mark': {'type': 'line', 'strokeWidth': 2.6, 'interpolate': 'monotone', 'opacity': 0.85}},
-    {'mark': {'type': 'point', 'filled': True, 'size': 60}},
+    {'mark': {'type': 'line', 'strokeWidth': 2.6, 'interpolate': 'monotone'},
+     'encoding': {'opacity': {'condition': {'param': 'hover', 'value': 1, 'empty': True},
+                              'value': 0.15},
+                  'strokeWidth': {'condition': {'param': 'hover', 'value': 4.5, 'empty': False},
+                                  'value': 2.6}}},
+    # Hovering one category lifts its path; the param sits on a single layer.
+    {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['crop_label'],
+                                            'on': 'pointerover', 'clear': 'pointerout'}}],
+     'mark': {'type': 'point', 'filled': True, 'size': 60},
+     'encoding': {'opacity': {'condition': {'param': 'hover', 'value': 1, 'empty': True},
+                              'value': 0.15}}},
     {'transform': [{'filter': 'datum.year == 2024'}],
      'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 11.5, 'fontWeight': 500},
      'encoding': {'text': {'field': 'crop_label', 'type': 'nominal'}}}],
@@ -479,7 +520,7 @@ write('09_state_dumbbell.json', {
      'encoding': {
        'x': {'field': 'area_2024', 'type': 'quantitative'},
        'color': {'field': 'direction', 'type': 'nominal',
-                 'title': 'Direction, 2014 to 2024',
+                 'title': 'Pale dot = 2014, coloured dot = 2024',
                  'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], ATTN[4]]},
                  'legend': {'orient': 'bottom', 'direction': 'horizontal', 'titleLimit': 400,
                             'titleColor': INK_SOFT, 'labelColor': INK_SOFT}},
@@ -633,9 +674,12 @@ write('13_planting_window.json', {
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 14 rainfall against interest ────────────────────
-# Only TWO y scales are wanted here. An independent resolve gives every sibling
-# layer its own scale, so the line, its points and its annotation are nested in a
-# single child layer that shares one scale between them.
+# Two y scales, not three: an independent resolve gives every sibling layer its own
+# scale, so the line, its points and its annotation are nested in one child layer.
+# Both series carry a datum colour on the SAME scale so one shared legend names them —
+# without it the only clue to which mark is which is the colour of the axis titles.
+SERIES = ['Rainfall (left axis)', 'Search interest (right axis)']
+SERIES_SCALE = {'domain': SERIES, 'range': [RAIN[2], ATTN_1]}
 RIGHT_Y = {'field': 'malaysia_index', 'type': 'quantitative',
            'scale': {'zero': False, 'nice': True}}
 
@@ -650,10 +694,14 @@ write('14_rain_vs_interest.json', {
   'encoding': {
     'x': {'field': 'month_name', 'type': 'ordinal', 'sort': MONTHS, 'title': None,
           'axis': {'labelAngle': 0, 'domain': False, 'ticks': False, 'grid': False,
-                   'labelColor': INK, 'labelFontSize': 11.5}}},
+                   'labelColor': INK, 'labelFontSize': 11.5}},
+    'color': {'datum': SERIES[0], 'type': 'nominal', 'title': None,
+              'scale': SERIES_SCALE,
+              'legend': {'orient': 'top', 'direction': 'vertical', 'offset': 6,
+                         'labelColor': INK, 'labelFontSize': 11.5, 'labelLimit': 320,
+                         'symbolType': 'square', 'symbolSize': 150, 'rowPadding': 2}}},
   'layer': [
-    {'mark': {'type': 'bar', 'cornerRadiusTopLeft': 3, 'cornerRadiusTopRight': 3,
-              'color': RAIN[2], 'size': 20},
+    {'mark': {'type': 'bar', 'cornerRadiusTopLeft': 3, 'cornerRadiusTopRight': 3, 'size': 20},
      'encoding': {
        'y': {'field': 'rainfall_mm', 'type': 'quantitative',
              'title': 'Average rainfall (millimetres)',
@@ -665,10 +713,11 @@ write('14_rain_vs_interest.json', {
          {'field': 'malaysia_index', 'type': 'quantitative',
           'title': 'Search interest (yearly average = 100)', 'format': '.1f'}]}},
     {'layer': [
-       {'mark': {'type': 'line', 'color': ATTN_1, 'strokeWidth': 2.8, 'interpolate': 'monotone',
+       {'mark': {'type': 'line', 'strokeWidth': 2.8, 'interpolate': 'monotone',
                  'point': {'filled': True, 'size': 70, 'color': ATTN_1,
                            'stroke': PAPER, 'strokeWidth': 1.5}},
         'encoding': {
+          'color': {'datum': SERIES[1], 'type': 'nominal', 'scale': SERIES_SCALE},
           'y': {**RIGHT_Y, 'title': 'Search interest (yearly average = 100)',
                 'axis': {'grid': False, 'domain': False, 'ticks': False,
                          'titleColor': ATTN_1, 'labelColor': INK_SOFT}},
@@ -679,7 +728,7 @@ write('14_rain_vs_interest.json', {
        {'transform': [{'filter': "datum.month_name == 'Dec'"}],
         'mark': {'type': 'text', 'align': 'right', 'dx': -12, 'dy': -14, 'fontSize': 11.5,
                  'fontStyle': 'italic', 'color': ATTN[5]},
-        'encoding': {'y': RIGHT_Y,
+        'encoding': {'y': RIGHT_Y, 'color': {'value': ATTN[5]},
                      'text': {'value': 'wettest month, quietest searches'}}}]}],
   'resolve': {'scale': {'y': 'independent'}},
   'config': {'view': {'stroke': None}}})

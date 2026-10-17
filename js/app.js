@@ -38,7 +38,7 @@
   };
 
   var CHARTS = [
-    ['c01', 'specs/01_search_ridgeline.json'],
+    ['c01', 'specs/01_search_interest.json'],
     ['c02', 'specs/02_category_slope.json'],
     ['c03', 'specs/03_category_bump.json'],
     ['c04', 'specs/04_vegetable_connected_scatter.json'],

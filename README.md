@@ -58,7 +58,7 @@ Fourteen charts, four of them maps. Every specification is a readable JSON file 
 
 | # | Idiom | Question it answers |
 |---|---|---|
-| 1 | Ridgeline plot | How did interest in four gardening terms move, month by month? |
+| 1 | Multi-line chart | How did interest in four gardening terms move, month by month? |
 | 2 | Slope graph | Which crop categories gained or lost land over the decade? |
 | 3 | Bump chart | How did the categories rank against each other, year by year? |
 | 4 | Connected scatterplot | How did vegetable area and production move together? |

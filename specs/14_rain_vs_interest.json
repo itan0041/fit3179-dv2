@@ -41,6 +41,32 @@
         "labelColor": "#1C2B22",
         "labelFontSize": 11.5
       }
+    },
+    "color": {
+      "datum": "Rainfall (left axis)",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Rainfall (left axis)",
+          "Search interest (right axis)"
+        ],
+        "range": [
+          "#A9C8DE",
+          "#C2603C"
+        ]
+      },
+      "legend": {
+        "orient": "top",
+        "direction": "vertical",
+        "offset": 6,
+        "labelColor": "#1C2B22",
+        "labelFontSize": 11.5,
+        "labelLimit": 320,
+        "symbolType": "square",
+        "symbolSize": 150,
+        "rowPadding": 2
+      }
     }
   },
   "layer": [
@@ -49,7 +75,6 @@
         "type": "bar",
         "cornerRadiusTopLeft": 3,
         "cornerRadiusTopRight": 3,
-        "color": "#A9C8DE",
         "size": 20
       },
       "encoding": {
@@ -96,7 +121,6 @@
         {
           "mark": {
             "type": "line",
-            "color": "#C2603C",
             "strokeWidth": 2.8,
             "interpolate": "monotone",
             "point": {
@@ -108,6 +132,20 @@
             }
           },
           "encoding": {
+            "color": {
+              "datum": "Search interest (right axis)",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Rainfall (left axis)",
+                  "Search interest (right axis)"
+                ],
+                "range": [
+                  "#A9C8DE",
+                  "#C2603C"
+                ]
+              }
+            },
             "y": {
               "field": "malaysia_index",
               "type": "quantitative",
@@ -162,6 +200,9 @@
                 "zero": false,
                 "nice": true
               }
+            },
+            "color": {
+              "value": "#9E4528"
             },
             "text": {
               "value": "wettest month, quietest searches"

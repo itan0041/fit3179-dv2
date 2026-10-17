@@ -84,7 +84,7 @@ rainfall. A reader who learns the scheme in section one can read section six wit
 
 | # | Idiom | Why this idiom | Reader's task |
 |---|---|---|---|
-| 1 | Ridgeline plot | Four series whose *shapes* matter more than their levels. Stacking them, as a streamgraph would, implies a meaningless total of independently normalised indices. | Compare the rise and fall of four terms at a glance |
+| 1 | Multi-line chart | Deliberately the simplest idiom on the page. An earlier ridgeline scaled each row to its own peak, which hid a five-fold difference in volume and tested poorly with a non-technical reader. One shared 0–100 scale is honest about relative volume and needs no explaining. | Compare the rise and fall of four terms at a glance |
 | 2 | Slope graph | Reduces eleven years to the only comparison the section needs: where each category started and ended | See winners and losers in one read |
 | 3 | Bump chart | Recovers the year-by-year movement the slope graph deliberately discards | Follow one category's fortunes over time |
 | 4 | Connected scatterplot | Shows area and production as a single path through time, making the 2018 reversal visible as a shape | Identify the turning point |

@@ -380,3 +380,17 @@ a:hover { color: var(--grow-deep); }
 .chart .vega-embed .vega-actions a:hover { background: var(--paper-2); }
 
 .chart .vega-embed details[open] > summary { opacity: 1; }
+
+/* ---------- section transitions ----------------------------------------- */
+/* One bridging line at the close of a section, carrying the reader into the
+   question the next section answers. */
+.bridge {
+  margin: 26px 0 4px;
+  max-width: 62ch;
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+figure .bridge { margin-bottom: 0; }
