@@ -1,0 +1,263 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Two lines: Malaysia\u2019s vegetable planted area and vegetable production, each indexed so its 2014 value equals 100, so the two can be compared on one scale. The tinted band is the gap between them \u2014 output per hectare.",
+  "data": {
+    "url": "data/crops_category_malaysia.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "area_index_2014": "number",
+        "prod_index_2014": "number",
+        "planted_area_ha": "number",
+        "production_tonnes": "number"
+      }
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.crop_type == 'vegetables'"
+    }
+  ],
+  "width": 660,
+  "height": 380,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "bottom": 5,
+    "right": 170
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          2014,
+          2024
+        ],
+        "nice": false
+      },
+      "axis": {
+        "format": "d",
+        "tickCount": 11,
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "labelColor": "#5E6E64",
+        "labelFontSize": 11.5
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#A6CB98",
+        "opacity": 0.35,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "y": {
+          "field": "area_index_2014",
+          "type": "quantitative",
+          "title": "Index (2014 = 100)",
+          "scale": {
+            "domain": [
+              60,
+              112
+            ]
+          },
+          "axis": {
+            "grid": true,
+            "gridColor": "#DCD5C7",
+            "gridDash": [
+              2,
+              3
+            ],
+            "domain": false,
+            "ticks": false,
+            "labelColor": "#5E6E64",
+            "titleColor": "#5E6E64"
+          }
+        },
+        "y2": {
+          "field": "prod_index_2014"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#5E6E64",
+        "strokeDash": [
+          3,
+          3
+        ],
+        "opacity": 0.5
+      },
+      "encoding": {
+        "y": {
+          "datum": 100
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8,
+        "color": "#1A4A27",
+        "interpolate": "monotone",
+        "point": {
+          "filled": true,
+          "size": 55,
+          "color": "#1A4A27"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "area_index_2014",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "planted_area_ha",
+            "type": "quantitative",
+            "title": "Planted area (hectares)",
+            "format": ",.0f"
+          },
+          {
+            "field": "area_index_2014",
+            "type": "quantitative",
+            "title": "Area index (2014 = 100)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.8,
+        "color": "#C2603C",
+        "interpolate": "monotone",
+        "point": {
+          "filled": true,
+          "size": 55,
+          "color": "#C2603C"
+        }
+      },
+      "encoding": {
+        "y": {
+          "field": "prod_index_2014",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          },
+          {
+            "field": "production_tonnes",
+            "type": "quantitative",
+            "title": "Production (tonnes)",
+            "format": ",.0f"
+          },
+          {
+            "field": "prod_index_2014",
+            "type": "quantitative",
+            "title": "Production index (2014 = 100)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#1A4A27"
+      },
+      "encoding": {
+        "y": {
+          "field": "area_index_2014",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Land planted"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12.5,
+        "fontWeight": 600,
+        "color": "#9E4528"
+      },
+      "encoding": {
+        "y": {
+          "field": "prod_index_2014",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "Tonnes harvested"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2024"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "dy": 16,
+        "fontSize": 11.5,
+        "fontStyle": "italic",
+        "color": "#5E6E64"
+      },
+      "encoding": {
+        "y": {
+          "field": "prod_index_2014",
+          "type": "quantitative"
+        },
+        "text": {
+          "value": "still below 2014"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

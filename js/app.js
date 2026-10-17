@@ -41,7 +41,7 @@
     ['c01', 'specs/01_search_interest.json'],
     ['c02', 'specs/02_category_slope.json'],
     ['c03', 'specs/03_category_bump.json'],
-    ['c04', 'specs/04_vegetable_connected_scatter.json'],
+    ['c04', 'specs/04_land_vs_output.json'],
     ['c05', 'specs/05_map_choropleth.json'],
     ['c06', 'specs/06_map_symbol.json'],
     ['c07', 'specs/07_map_bivariate.json'],

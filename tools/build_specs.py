@@ -136,8 +136,8 @@ write('02_category_slope.json', {
     {'calculate': "measure === 'Planted area' ? datum.label_area : datum.label_prod",
      'as': 'label_y'},
     {'filter': 'isValid(datum.value)'}],
-  'width': 300, 'height': 430,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 12},
+  'width': 560, 'height': 560,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 170},
   'encoding': {
     'x': {'field': 'year', 'type': 'ordinal', 'title': None,
           'axis': {'labelAngle': 0, 'labelFontSize': 13, 'labelColor': INK,
@@ -183,8 +183,8 @@ write('03_category_bump.json', {
     {'window': [{'op': 'rank', 'as': 'growth_rank'}],
      'sort': [{'field': 'area_index_2014', 'order': 'descending'}],
      'groupby': ['year']}],
-  'width': 318, 'height': 430,
-  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 12},
+  'width': 790, 'height': 500,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 140},
   'encoding': {
     'x': {'field': 'year', 'type': 'ordinal', 'title': None,
           'axis': {'labelAngle': 0, 'labelColor': INK_SOFT, 'grid': False,
@@ -220,54 +220,68 @@ write('03_category_bump.json', {
      'encoding': {'text': {'field': 'crop_label', 'type': 'nominal'}}}],
   'config': {'view': {'stroke': None}}})
 
-# ───────────────────────── 04 connected scatter ─────────────────────────────
-write('04_vegetable_connected_scatter.json', {
-  'description': 'Connected scatterplot: Malaysia’s vegetable planted area against '
-                 'vegetable production, one point per year, joined in time order.',
+# ───────────────────────── 04 land against output ──────────────────────────
+# Was a connected scatterplot. The loop shape read as a puzzle to non-technical
+# readers and, worse, it buried the actual finding: planted area has recovered past
+# its 2014 level while production has not. Two indexed lines with the gap between
+# them tinted show that in one glance.
+write('04_land_vs_output.json', {
+  'description': 'Two lines: Malaysia\u2019s vegetable planted area and vegetable production, '
+                 'each indexed so its 2014 value equals 100, so the two can be compared on one '
+                 'scale. The tinted band is the gap between them \u2014 output per hectare.',
   'data': csv('crops_category_malaysia.csv',
-              {'year': 'number', 'planted_area_ha': 'number', 'production_tonnes': 'number'}),
+              {'year': 'number', 'area_index_2014': 'number', 'prod_index_2014': 'number',
+               'planted_area_ha': 'number', 'production_tonnes': 'number'}),
   'transform': [{'filter': "datum.crop_type == 'vegetables'"}],
-  'width': 900, 'height': 380,
+  'width': 660, 'height': 380,
+  'padding': {'left': 5, 'top': 5, 'bottom': 5, 'right': 170},
   'encoding': {
-    'x': {'field': 'planted_area_ha', 'type': 'quantitative',
-          'title': 'Planted area (hectares)',
-          'scale': {'zero': False, 'nice': True},
-          'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
-                   'ticks': False, 'format': ',.0f', 'tickCount': 6,
-                   'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
-    'y': {'field': 'production_tonnes', 'type': 'quantitative',
-          'title': 'Production (tonnes)',
-          'scale': {'zero': False, 'nice': True},
-          'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
-                   'ticks': False, 'format': ',.0f', 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}}},
+    'x': {'field': 'year', 'type': 'quantitative', 'title': None,
+          'scale': {'domain': [2014, 2024], 'nice': False},
+          'axis': {'format': 'd', 'tickCount': 11, 'grid': False, 'domain': False,
+                   'ticks': False, 'labelColor': INK_SOFT, 'labelFontSize': 11.5}}},
   'layer': [
-    {'mark': {'type': 'line', 'interpolate': 'linear', 'strokeWidth': 2,
-              'color': GROW[4], 'opacity': 0.8},
-     'encoding': {'order': {'field': 'year', 'type': 'quantitative'}}},
-    {'mark': {'type': 'point', 'filled': True, 'size': 150, 'color': GROW[5],
-              'stroke': PAPER, 'strokeWidth': 2},
-     'encoding': {'tooltip': [
-        {'field': 'year', 'type': 'quantitative', 'title': 'Year', 'format': 'd'},
-        {'field': 'planted_area_ha', 'type': 'quantitative', 'title': 'Planted area (hectares)', 'format': ',.0f'},
-        {'field': 'production_tonnes', 'type': 'quantitative', 'title': 'Production (tonnes)', 'format': ',.0f'}]}},
-    # 2019 and 2020 sit almost on top of each other, and dy is a mark property rather
-    # than an encoding channel, so the 2019 label gets its own layer below the dot.
-    {'transform': [{'filter': 'datum.year != 2019'}],
-     'mark': {'type': 'text', 'align': 'left', 'dx': 11, 'dy': -9, 'fontSize': 11.5,
-              'fontWeight': 600, 'color': INK},
-     'encoding': {'text': {'field': 'year', 'type': 'quantitative', 'format': 'd'}}},
-    {'transform': [{'filter': 'datum.year == 2019'}],
-     'mark': {'type': 'text', 'align': 'left', 'dx': 11, 'dy': 17, 'fontSize': 11.5,
-              'fontWeight': 600, 'color': INK},
-     'encoding': {'text': {'field': 'year', 'type': 'quantitative', 'format': 'd'}}},
-    {'transform': [{'filter': 'datum.year == 2018'}],
-     'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'dy': 22, 'fontSize': 11.5,
-              'fontStyle': 'italic', 'color': ATTN_1},
-     'encoding': {'text': {'value': 'lowest point of the decade'}}},
+    # the gap between land and output, as a tinted band
+    {'mark': {'type': 'area', 'color': GROW[2], 'opacity': 0.35, 'interpolate': 'monotone'},
+     'encoding': {
+       'y': {'field': 'area_index_2014', 'type': 'quantitative',
+             'title': 'Index (2014 = 100)', 'scale': {'domain': [60, 112]},
+             'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
+                      'ticks': False, 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
+       'y2': {'field': 'prod_index_2014'}}},
+    {'mark': {'type': 'rule', 'color': INK_SOFT, 'strokeDash': [3, 3], 'opacity': 0.5},
+     'encoding': {'y': {'datum': 100}}},
+    {'mark': {'type': 'line', 'strokeWidth': 2.8, 'color': GROW[6], 'interpolate': 'monotone',
+              'point': {'filled': True, 'size': 55, 'color': GROW[6]}},
+     'encoding': {
+       'y': {'field': 'area_index_2014', 'type': 'quantitative'},
+       'tooltip': [
+         {'field': 'year', 'type': 'quantitative', 'title': 'Year', 'format': 'd'},
+         {'field': 'planted_area_ha', 'type': 'quantitative', 'title': 'Planted area (hectares)', 'format': ',.0f'},
+         {'field': 'area_index_2014', 'type': 'quantitative', 'title': 'Area index (2014 = 100)', 'format': '.1f'}]}},
+    {'mark': {'type': 'line', 'strokeWidth': 2.8, 'color': ATTN[4], 'interpolate': 'monotone',
+              'point': {'filled': True, 'size': 55, 'color': ATTN[4]}},
+     'encoding': {
+       'y': {'field': 'prod_index_2014', 'type': 'quantitative'},
+       'tooltip': [
+         {'field': 'year', 'type': 'quantitative', 'title': 'Year', 'format': 'd'},
+         {'field': 'production_tonnes', 'type': 'quantitative', 'title': 'Production (tonnes)', 'format': ',.0f'},
+         {'field': 'prod_index_2014', 'type': 'quantitative', 'title': 'Production index (2014 = 100)', 'format': '.1f'}]}},
     {'transform': [{'filter': 'datum.year == 2024'}],
-     'mark': {'type': 'text', 'align': 'right', 'dx': -14, 'dy': 16, 'fontSize': 11.5,
-              'fontStyle': 'italic', 'color': GROW[6]},
-     'encoding': {'text': {'value': 'highest in eleven years'}}}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 12, 'fontSize': 12.5, 'fontWeight': 600,
+              'color': GROW[6]},
+     'encoding': {'y': {'field': 'area_index_2014', 'type': 'quantitative'},
+                  'text': {'value': 'Land planted'}}},
+    {'transform': [{'filter': 'datum.year == 2024'}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 12, 'fontSize': 12.5, 'fontWeight': 600,
+              'color': ATTN[5]},
+     'encoding': {'y': {'field': 'prod_index_2014', 'type': 'quantitative'},
+                  'text': {'value': 'Tonnes harvested'}}},
+    {'transform': [{'filter': 'datum.year == 2024'}],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 12, 'dy': 16, 'fontSize': 11.5,
+              'fontStyle': 'italic', 'color': INK_SOFT},
+     'encoding': {'y': {'field': 'prod_index_2014', 'type': 'quantitative'},
+                  'text': {'value': 'still below 2014'}}}],
   'config': {'view': {'stroke': None}}})
 
 # ═══════════════════════ MAPS ═══════════════════════════════════════════════

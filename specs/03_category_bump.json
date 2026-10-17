@@ -33,13 +33,13 @@
       ]
     }
   ],
-  "width": 318,
-  "height": 430,
+  "width": 790,
+  "height": 500,
   "padding": {
     "left": 5,
     "top": 5,
     "bottom": 5,
-    "right": 12
+    "right": 140
   },
   "encoding": {
     "x": {
