@@ -276,11 +276,10 @@
             ]
           },
           "legend": {
-            "orient": "none",
-            "legendX": 0,
-            "legendY": 392,
+            "orient": "bottom",
             "direction": "horizontal",
             "title": null,
+            "titleAnchor": "start",
             "labelColor": "#1C2B22",
             "labelFontSize": 12
           }

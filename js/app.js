@@ -66,6 +66,46 @@
   window.__chartsReady = 0;
   window.__chartErrors = [];
 
+  /* Every specification carries an explicit pixel width, because the two map panels
+     are pinned to one shared Mercator scale and cannot be re-fitted to a container
+     without breaking that. On a narrow laptop that left the wider figures scrolling
+     sideways inside their panel, which the assignment specification forbids. Each
+     chart is therefore scaled down as a whole when its column is narrower than the
+     drawing, so the figure shrinks instead of being cut off. Marks, text and the
+     relationship between the two panels all hold. */
+  function fitToColumn(el) {
+    var drawn = el.querySelector('.chart-wrapper');
+    if (!drawn) return;
+    drawn.style.transform = '';
+    drawn.style.width = '';
+    drawn.style.marginBottom = '';
+    var natural = drawn.scrollWidth;
+    var room = el.clientWidth;
+    if (!natural || !room || natural <= room + 1) return;
+    var k = room / natural;
+    var tall = drawn.scrollHeight;
+    drawn.style.width = natural + 'px';
+    drawn.style.transformOrigin = 'top left';
+    drawn.style.transform = 'scale(' + k + ')';
+    /* A transform does not change the layout box, so the figure would still reserve
+       its unscaled height and leave a gap underneath. Pulling the difference back
+       keeps the panel the height of what is actually drawn. */
+    drawn.style.marginBottom = Math.round(-(1 - k) * tall) + 'px';
+  }
+
+  function fitAll() {
+    CHARTS.forEach(function (c) {
+      var el = document.getElementById(c[0]);
+      if (el) fitToColumn(el);
+    });
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitAll, 120);
+  });
+
   function embedOne(id, url) {
     var el = document.getElementById(id);
     if (!el) {
@@ -73,7 +113,7 @@
       return Promise.resolve();
     }
     return vegaEmbed(el, url, OPTIONS)
-      .then(function () { window.__chartsReady += 1; })
+      .then(function () { window.__chartsReady += 1; fitToColumn(el); })
       .catch(function (err) {
         window.__chartErrors.push(id + ': ' + err.message);
         el.innerHTML = '<p style="color:#C2603C;font-size:13.5px">This chart could not be ' +
@@ -87,6 +127,7 @@
     Promise.all(CHARTS.map(function (c) { return embedOne(c[0], c[1]); }))
       .then(function () {
         window.__allCharts = true;
+        fitAll();
         console.log('Charts embedded: ' + window.__chartsReady + ' of ' + CHARTS.length);
       });
   }

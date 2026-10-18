@@ -13,12 +13,6 @@
   },
   "width": 950,
   "height": 450,
-  "mark": {
-    "type": "rect",
-    "stroke": "#FAF7F0",
-    "strokeWidth": 1.5,
-    "cornerRadius": 1
-  },
   "encoding": {
     "x": {
       "field": "month_name",
@@ -52,11 +46,24 @@
       "field": "state",
       "type": "nominal",
       "title": null,
-      "sort": {
-        "op": "sum",
-        "field": "rain_mm_month",
-        "order": "descending"
-      },
+      "sort": [
+        "Sarawak",
+        "Terengganu",
+        "Pahang",
+        "Sabah",
+        "W.P. Labuan",
+        "Selangor",
+        "Kelantan",
+        "W.P. Kuala Lumpur",
+        "W.P. Putrajaya",
+        "Perak",
+        "Negeri Sembilan",
+        "Johor",
+        "Pulau Pinang",
+        "Kedah",
+        "Melaka",
+        "Perlis"
+      ],
       "axis": {
         "domain": false,
         "ticks": false,
@@ -126,6 +133,60 @@
       }
     ]
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "stroke": "#FAF7F0",
+        "strokeWidth": 1.5,
+        "cornerRadius": 1
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.month == 11 && datum.state == 'Terengganu'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "lineBreak": "|",
+        "lineHeight": 12
+      },
+      "encoding": {
+        "text": {
+          "value": "North-east|monsoon"
+        },
+        "color": {
+          "value": "#FAF7F0"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.month == 2 && datum.state == 'Perlis'"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10.5,
+        "fontWeight": 700,
+        "lineBreak": "|",
+        "lineHeight": 12
+      },
+      "encoding": {
+        "text": {
+          "value": "Driest month|of the year"
+        },
+        "color": {
+          "value": "#1C2B22"
+        }
+      }
+    }
+  ],
   "config": {
     "view": {
       "stroke": null

@@ -80,7 +80,11 @@ and effect.
 
 Colour is semantic and fixed across the whole page: **green** always means growing, land or
 production; **terracotta** always means attention or search interest; **blue** always means
-rainfall. A reader who learns the scheme in section one can read section six without relearning it.
+rainfall; **purple** always means farmland lost. A reader who learns the scheme in section one can
+read section six without relearning it. Purple is the diverging partner to green in ColorBrewer's
+PRGn scheme, chosen so that the gain-and-loss pair in figures 8 and 9 stays separable for a
+red-green colour-blind reader. The one palette that is not semantic is the nine crop categories in
+figures 2 and 3, which are identities rather than quantities and are labelled in place.
 
 | # | Idiom | Why this idiom | Reader's task |
 |---|---|---|---|
@@ -92,7 +96,7 @@ rainfall. A reader who learns the scheme in section one can read section six wit
 | 6 | Proportional symbol map | Raw tonnage is a magnitude, correctly encoded by area, not by shading | Judge absolute scale of output |
 | 7 | Bivariate choropleth map | Two variables on one geography answers the mismatch question directly, instead of asking the reader to hold two maps in memory | Spot where interest and growing diverge |
 | 8 | Spike map | Signed change reads naturally as direction and length; a diverging choropleth would hide magnitude in small states | Compare gains and losses geographically |
-| 9 | Dumbbell chart | Gives the spike map's values an exact, sortable reading | Read precise start and end values |
+| 9 | Dumbbell chart | Gives the spike map's values an exact, sortable reading, with the change printed on every row | Read precise start and end values |
 | 10 | Waffle chart | Makes "a third of the country's vegetables" a countable quantity rather than an abstract percentage | Grasp concentration intuitively |
 | 11 | Heatmap | 16 states × 12 months is a dense matrix; colour is the only encoding that fits it on one screen | Find any state's wet and dry months |
 | 12 | Radial chart | A year is a cycle, and a cyclical layout makes December adjacent to January, which a linear axis cannot | Compare two seasonal shapes |
@@ -122,10 +126,24 @@ not earn its place.
   the unmodified raw downloads, and a validation script compiles all 14 specifications and fails on
   any error.
 
-**Design decisions addressing feedback on Data Visualisation 1.** Colour is now semantic and never
-reused for a different attribute between charts; charts are sized larger; legend titles are written
-out in full with no abbreviations; annotations are placed both inside the charts and in the prose
-beside them; and the layout is a single 12-column grid so panel edges share vertical sight lines.
+**Design decisions addressing feedback on Data Visualisation 1.** Each marked point is answered:
+
+- *"Should not use the same colour for different attributes in different diagrams."* No hue now
+  carries two meanings. Farmland lost was terracotta, the same colour that means search interest on
+  six other figures; it is now purple. Industrial crops sat in the rainfall blue family and is now
+  a neutral.
+- *"Waffle chart — can add annotations to the diagram."* It carries two, naming the largest block
+  and the residual. Six other figures that previously held no text of their own were annotated at
+  the same time: the two choropleths, the symbol map, the dumbbell, the heatmap and the interval
+  chart. Every figure on the page now says something on its own face.
+- *"The size of idioms can be improved."* Every chart fills 96 to 100 per cent of its panel, and
+  each is scaled to its column on a narrow screen rather than scrolling sideways inside it.
+- *"Sight lines can be reduced. Legends can be better aligned using sight lines."* Every legend is
+  bottom-left of its panel; the radial chart's hand-placed one was the last exception.
+- *"Should not use short forms."* Axis titles, legend titles and tooltips are written out in full.
+- *"Storytelling can be improved by adding concise paragraphs with good insights."* Each section
+  opens with a standfirst and a short argued passage, and the figure notes were cut back so the
+  explanation does not outweigh the insight.
 
 ---
 

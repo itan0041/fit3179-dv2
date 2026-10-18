@@ -21,11 +21,6 @@
   ],
   "width": 950,
   "height": 384,
-  "mark": {
-    "type": "bar",
-    "cornerRadius": 3,
-    "height": 20
-  },
   "encoding": {
     "y": {
       "field": "state",
@@ -140,6 +135,39 @@
       }
     ]
   },
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "cornerRadius": 3,
+        "height": 20
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 9,
+        "fontSize": 10.5,
+        "fontWeight": 600,
+        "color": "#5E6E64"
+      },
+      "encoding": {
+        "x": {
+          "field": "end_edge",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#5E6E64"
+        },
+        "text": {
+          "field": "window_rain_mm",
+          "type": "quantitative",
+          "format": ",.0f"
+        }
+      }
+    }
+  ],
   "config": {
     "view": {
       "stroke": null

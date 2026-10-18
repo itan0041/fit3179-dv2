@@ -18,7 +18,12 @@ INK_FAINT = '#8A9890'
 GROW   = ['#EDF3E8', '#CFE2C4', '#A6CB98', '#78AE6B', '#4C8D48', '#2D6C35', '#1A4A27']
 ATTN   = ['#FBEFE8', '#F2D2BE', '#E6AD8C', '#D88960', '#C2603C', '#9E4528', '#763017']
 RAIN   = ['#F0F5F8', '#D2E2EC', '#A9C8DE', '#7CA9CC', '#5089B7', '#2F6A9A', '#1C4B72']
-ATTN_1, GROW_1, RAIN_1 = '#C2603C', '#4C8D48', '#2F6A9A'
+# Farmland lost needs a hue of its own. Terracotta already means search interest on six
+# figures, so using it for a decrease gave one colour two meanings - the exact criticism
+# made of Data Visualisation 1. Purple is the diverging partner to green in ColorBrewer's
+# PRGn scheme, which is designed to stay legible for red-green colour blindness.
+LOSS   = ['#F4EEF6', '#E2D3E7', '#C8AED2', '#AC85BA', '#8E5DA2', '#73418A', '#5A2E6E']
+ATTN_1, GROW_1, RAIN_1, LOSS_1 = '#C2603C', '#4C8D48', '#2F6A9A', '#73418A'
 # Figure 4 sets two growing measures against each other. Terracotta would read as
 # search interest there, so the harvest line takes an amber of its own.
 HARVEST, HARVEST_DEEP = '#B07D16', '#8A6210'
@@ -26,7 +31,7 @@ HARVEST, HARVEST_DEEP = '#B07D16', '#8A6210'
 CROP_COLORS = {
     'Vegetables': '#4C8D48', 'Fruits': '#D98A28', 'Herbs': '#7E9E3A',
     'Spices': '#B5541F', 'Cash crops': '#8C6D3F', 'Paddy (rice)': '#C9A227',
-    'Coconut': '#6B8E6E', 'Industrial crops': '#5C6F7A', 'Flowers': '#B5567E',
+    'Coconut': '#6B8E6E', 'Industrial crops': '#6E6A60', 'Flowers': '#B5567E',
 }
 CROP_DOMAIN = list(CROP_COLORS); CROP_RANGE = list(CROP_COLORS.values())
 
@@ -352,39 +357,73 @@ BOTTOM_LEGEND = {'orient': 'bottom', 'direction': 'horizontal', 'titleLimit': 10
                  'labelLimit': 220, 'titleColor': INK, 'labelColor': INK_SOFT,
                  'titleFontSize': 11.5, 'titleAnchor': 'start'}
 
+# Annotations drawn ON the figures. Data Visualisation 1 was marked down for carrying
+# too few of these ("can add more informative annotations in diagrams"), and the waffle
+# chart was named specifically, so every figure that can carry a label now does.
+NOTE = {'type': 'text', 'fontSize': 11, 'fontWeight': 600, 'lineBreak': '|'}
+
+def note_layer(values, color=INK, **mark):
+    """A free-standing text layer. It carries its own data and an empty transform so
+    that nothing is inherited from the enclosing spec - a layer with inline data still
+    picks up the parent's encoding and transform, and silently renders nothing when a
+    field it is handed does not exist in its own rows."""
+    return {'data': {'values': values}, 'transform': [],
+            'mark': {**NOTE, 'color': color, **mark},
+            'encoding': {'longitude': {'field': 'lon', 'type': 'quantitative'},
+                         'latitude': {'field': 'lat', 'type': 'quantitative'},
+                         'text': {'field': 'label', 'type': 'nominal'}}}
+
 # ───────────────────────── 05 choropleth map ────────────────────────────────
-def choropleth_panel(codes, width, title, legend, proj):
+# The two states the section's prose names are labelled on the map itself, so the
+# comparison can be made without going to the tooltip or back to the paragraph.
+CHORO_NOTES_PEN = [note_layer(
+    [{'lon': 102.60, 'lat': 4.05, 'label': 'Pahang|16.5'}],
+    color='#FAF7F0', fontSize=11.5),
+  note_layer(
+    [{'lon': 100.95, 'lat': 2.92, 'label': 'Selangor 0.31'}],
+    color=INK_SOFT, align='right')]
+
+def choropleth_panel(codes, width, title, legend, proj, notes=()):
+    notes = list(notes)
     return {
       'width': width, 'height': MAP_H, 'title': {'text': title, 'fontSize': 13, 'dy': -6},
-      'data': TOPO, 'projection': proj,
-      'transform': [
-        {'lookup': 'properties.code',
-         'from': {'data': SUM_DATA, 'key': 'code',
-                  'fields': ['state', 'year', 'veg_area_ha', 'veg_area_ha_per_1000', 'population']}},
-        {'filter': 'datum.year == 2024'},
-        region_filter('properties.code', codes)],
-      'mark': {'type': 'geoshape', 'stroke': PAPER, 'strokeWidth': 1.1},
-      'encoding': {
-        'color': {'field': 'veg_area_ha_per_1000', 'type': 'quantitative',
-                  'title': 'Hectares of vegetable land per 1,000 residents',
-                  'scale': {'type': 'threshold', 'domain': [0.5, 2, 5, 10], 'range': GROW[1:6]},
-                  'legend': {**BOTTOM_LEGEND, 'symbolType': 'square', 'symbolSize': 170} if legend else None},
-        'tooltip': [
-          {'field': 'state', 'type': 'nominal', 'title': 'State'},
-          {'field': 'veg_area_ha', 'type': 'quantitative', 'title': 'Vegetable land (hectares)', 'format': ',.0f'},
-          {'field': 'population', 'type': 'quantitative', 'title': 'Population', 'format': ',.0f'},
-          {'field': 'veg_area_ha_per_1000', 'type': 'quantitative',
-           'title': 'Hectares per 1,000 people', 'format': '.2f'}]}}
+      'projection': proj,
+      'layer': [
+        {'data': TOPO,
+         'transform': [
+           {'lookup': 'properties.code',
+            'from': {'data': SUM_DATA, 'key': 'code',
+                     'fields': ['state', 'year', 'veg_area_ha', 'veg_area_ha_per_1000', 'population']}},
+           {'filter': 'datum.year == 2024'},
+           region_filter('properties.code', codes)],
+         'mark': {'type': 'geoshape', 'stroke': PAPER, 'strokeWidth': 1.1},
+         'encoding': {
+           'color': {'field': 'veg_area_ha_per_1000', 'type': 'quantitative',
+                     'title': 'Hectares of vegetable land per 1,000 residents',
+                     'scale': {'type': 'threshold', 'domain': [0.5, 2, 5, 10], 'range': GROW[1:6]},
+                     'legend': {**BOTTOM_LEGEND, 'symbolType': 'square', 'symbolSize': 170} if legend else None},
+           'tooltip': [
+             {'field': 'state', 'type': 'nominal', 'title': 'State'},
+             {'field': 'veg_area_ha', 'type': 'quantitative', 'title': 'Vegetable land (hectares)', 'format': ',.0f'},
+             {'field': 'population', 'type': 'quantitative', 'title': 'Population', 'format': ',.0f'},
+             {'field': 'veg_area_ha_per_1000', 'type': 'quantitative',
+              'title': 'Hectares per 1,000 people', 'format': '.2f'}]}}] + notes}
 
 write('05_map_choropleth.json', {
   'description': 'Choropleth map: hectares of vegetable land per 1,000 residents by state, 2024. '
                  'Drawn as two separately fitted panels so the peninsular states stay legible.',
-  'hconcat': [choropleth_panel(PEN, PEN_W, 'Peninsular Malaysia', True, PEN_PROJ),
+  'hconcat': [choropleth_panel(PEN, PEN_W, 'Peninsular Malaysia', True, PEN_PROJ, CHORO_NOTES_PEN),
               choropleth_panel(BOR, BOR_W, 'Sabah, Sarawak and Labuan', False, BOR_PROJ)],
   **shared()})
 
 # ───────────────────────── 06 proportional symbol map ───────────────────────
-def symbol_panel(codes, width, title, legend, proj):
+SYMB_NOTES_PEN = [note_layer(
+    [{'lon': 102.5416, 'lat': 2.62, 'label': 'Pahang|599,700 tonnes'},
+     {'lon': 103.60, 'lat': 1.30, 'label': 'Johor|243,400 tonnes'}],
+    color=INK, fontSize=11, baseline='top')]
+
+def symbol_panel(codes, width, title, legend, proj, notes=()):
+    notes = list(notes)
     return {
       'width': width, 'height': MAP_H, 'title': {'text': title, 'fontSize': 13, 'dy': -6},
       'projection': proj,
@@ -414,41 +453,56 @@ def symbol_panel(codes, width, title, legend, proj):
            'tooltip': [
              {'field': 'state', 'type': 'nominal', 'title': 'State'},
              {'field': 'veg_prod_tonnes', 'type': 'quantitative', 'title': 'Production (tonnes)', 'format': ',.0f'},
-             {'field': 'veg_kg_per_person', 'type': 'quantitative', 'title': 'Kilograms per resident', 'format': ',.1f'}]}}]}
+             {'field': 'veg_kg_per_person', 'type': 'quantitative', 'title': 'Kilograms per resident', 'format': ',.1f'}]}}] + notes}
 
 write('06_map_symbol.json', {
   'description': 'Proportional symbol map: vegetable production in tonnes by state, 2024. '
                  'Circle area is proportional to tonnage.',
-  'hconcat': [symbol_panel(PEN, PEN_W, 'Peninsular Malaysia', True, PEN_PROJ),
+  'hconcat': [symbol_panel(PEN, PEN_W, 'Peninsular Malaysia', True, PEN_PROJ, SYMB_NOTES_PEN),
               symbol_panel(BOR, BOR_W, 'Sabah, Sarawak and Labuan', False, BOR_PROJ)],
   **shared()})
 
 # ───────────────────────── 07 bivariate choropleth ──────────────────────────
-def bivariate_panel(codes, width, title, proj):
+# The three corners of the key, named where they actually fall on the map. Without
+# these the reader has to hold the nine-square key in memory while scanning.
+BIV_NOTES_PEN = [note_layer(
+    [{'lon': 100.05, 'lat': 6.75, 'label': 'Perlis and Kedah|search hard, grow little'}],
+    color='#8A4A22', fontSize=10.5, align='left'),
+  note_layer(
+    [{'lon': 102.60, 'lat': 3.62, 'label': 'Pahang|grows most'}],
+    color='#FAF7F0', fontSize=10.5),
+  note_layer(
+    [{'lon': 100.92, 'lat': 2.80, 'label': 'Selangor|low on both'}],
+    color=INK_SOFT, fontSize=10.5, align='right')]
+
+def bivariate_panel(codes, width, title, proj, notes=()):
+    notes = list(notes)
     return {
       'width': width, 'height': MAP_H, 'title': {'text': title, 'fontSize': 13, 'dy': -6},
-      'data': TOPO, 'projection': proj,
-      'transform': [
-        {'lookup': 'properties.code',
-         'from': {'data': csv('bivariate_state.csv',
-                              {'code': 'number', 'interest': 'number', 'grow_per_1000': 'number'}),
-                  'key': 'code',
-                  'fields': ['state', 'interest', 'grow_per_1000', 'bi_class', 'bi_color']}},
-        region_filter('properties.code', codes)],
-      'mark': {'type': 'geoshape', 'stroke': PAPER, 'strokeWidth': 1.1},
-      'encoding': {
-        'color': {'field': 'bi_color', 'type': 'nominal', 'scale': None, 'legend': None},
-        'tooltip': [
-          {'field': 'state', 'type': 'nominal', 'title': 'State'},
-          {'field': 'interest', 'type': 'quantitative', 'title': 'Search interest (0-100)'},
-          {'field': 'grow_per_1000', 'type': 'quantitative',
-           'title': 'Hectares per 1,000 people', 'format': '.2f'}]}}
+      'projection': proj,
+      'layer': [
+        {'data': TOPO,
+         'transform': [
+           {'lookup': 'properties.code',
+            'from': {'data': csv('bivariate_state.csv',
+                                 {'code': 'number', 'interest': 'number', 'grow_per_1000': 'number'}),
+                     'key': 'code',
+                     'fields': ['state', 'interest', 'grow_per_1000', 'bi_class', 'bi_color']}},
+           region_filter('properties.code', codes)],
+         'mark': {'type': 'geoshape', 'stroke': PAPER, 'strokeWidth': 1.1},
+         'encoding': {
+           'color': {'field': 'bi_color', 'type': 'nominal', 'scale': None, 'legend': None},
+           'tooltip': [
+             {'field': 'state', 'type': 'nominal', 'title': 'State'},
+             {'field': 'interest', 'type': 'quantitative', 'title': 'Search interest (0-100)'},
+             {'field': 'grow_per_1000', 'type': 'quantitative',
+              'title': 'Hectares per 1,000 people', 'format': '.2f'}]}}] + notes}
 
 write('07_map_bivariate.json', {
   'description': 'Bivariate choropleth map: search interest in gardening against vegetable land '
                  'per 1,000 residents. Each state takes a colour from a three-by-three key; the '
                  'colours are pre-computed in the bi_color column.',
-  'hconcat': [bivariate_panel(PEN, PEN_W, 'Peninsular Malaysia', PEN_PROJ),
+  'hconcat': [bivariate_panel(PEN, PEN_W, 'Peninsular Malaysia', PEN_PROJ, BIV_NOTES_PEN),
               bivariate_panel(BOR, BOR_W, 'Sabah, Sarawak and Labuan', BOR_PROJ)],
   **shared()})
 
@@ -493,7 +547,7 @@ def spike_panel(codes, width, title, legend, proj):
            'latitude2': {'field': 'lat_end'},
            'color': {'field': 'direction', 'type': 'nominal',
                      'title': 'Change in vegetable land, 2014 to 2024',
-                     'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], ATTN[4]]},
+                     'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], LOSS[5]]},
                      'legend': BOTTOM_LEGEND if legend else None},
            'tooltip': [
              {'field': 'state', 'type': 'nominal', 'title': 'State'},
@@ -514,7 +568,7 @@ def spike_panel(codes, width, title, legend, proj):
                       'text': {'field': 'pct_change', 'type': 'quantitative', 'format': '+.0f'},
                       'color': {'condition': {'test': "datum.direction === 'Increase'",
                                               'value': GROW[6]},
-                                'value': ATTN[5]}}}]}
+                                'value': LOSS[6]}}}]}
 
 write('08_map_spike.json', {
   'description': 'Spike map: change in vegetable planted area between 2014 and 2024. Spike '
@@ -531,6 +585,12 @@ write('09_state_dumbbell.json', {
   'data': csv('state_change.csv',
               {'area_2014': 'number', 'area_2024': 'number', 'pct_change': 'number'}),
   'width': 384, 'height': 594,
+  # The percentage change is printed at the end of every row. It was previously
+  # reachable only by hovering, which leaves the chart silent in a screenshot and
+  # on any device without a mouse.
+  'transform': [
+    {'calculate': 'max(datum.area_2014, datum.area_2024)', 'as': 'row_end'},
+    {'calculate': "format(datum.pct_change, '+.0f') + ' per cent'", 'as': 'chg_label'}],
   'encoding': {
     'y': {'field': 'state', 'type': 'nominal', 'title': None,
           'sort': {'field': 'area_2024', 'order': 'descending'},
@@ -538,7 +598,8 @@ write('09_state_dumbbell.json', {
                    'labelColor': INK, 'grid': True, 'gridColor': RULE, 'gridDash': [1, 4]}},
     'x': {'field': 'area_2014', 'type': 'quantitative',
           'title': 'Vegetable planted area (hectares)',
-          'scale': {'type': 'sqrt'},
+          # Headroom on the right so the change labels are not clipped at the view edge.
+          'scale': {'type': 'sqrt', 'domain': [0, 36000], 'nice': False},
           'axis': {'grid': False, 'domain': False, 'ticks': False, 'format': ',.0f',
                    'labelColor': INK_SOFT, 'titleColor': INK_SOFT,
                    'values': [0, 2000, 5000, 10000, 20000, 30000]}}},
@@ -546,7 +607,7 @@ write('09_state_dumbbell.json', {
     {'mark': {'type': 'rule', 'strokeWidth': 2.2, 'opacity': 0.55},
      'encoding': {'x2': {'field': 'area_2024'},
                   'color': {'field': 'direction', 'type': 'nominal',
-                            'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], ATTN[4]]}}}},
+                            'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], LOSS[5]]}}}},
     {'mark': {'type': 'point', 'filled': True, 'size': 95, 'color': '#B9BEB3',
               'stroke': PAPER, 'strokeWidth': 1.5},
      'encoding': {'tooltip': [
@@ -557,13 +618,19 @@ write('09_state_dumbbell.json', {
        'x': {'field': 'area_2024', 'type': 'quantitative'},
        'color': {'field': 'direction', 'type': 'nominal',
                  'title': 'Pale dot = 2014, coloured dot = 2024',
-                 'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], ATTN[4]]},
+                 'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], LOSS[5]]},
                  'legend': {'orient': 'bottom', 'direction': 'horizontal', 'titleLimit': 400,
                             'titleColor': INK_SOFT, 'labelColor': INK_SOFT}},
        'tooltip': [
          {'field': 'state', 'type': 'nominal', 'title': 'State'},
          {'field': 'area_2024', 'type': 'quantitative', 'title': '2024 (hectares)', 'format': ',.0f'},
-         {'field': 'pct_change', 'type': 'quantitative', 'title': 'Change (per cent)', 'format': '+.1f'}]}}],
+         {'field': 'pct_change', 'type': 'quantitative', 'title': 'Change (per cent)', 'format': '+.1f'}]}},
+    {'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 10.5, 'fontWeight': 600},
+     'encoding': {
+       'x': {'field': 'row_end', 'type': 'quantitative'},
+       'text': {'field': 'chg_label', 'type': 'nominal'},
+       'color': {'field': 'direction', 'type': 'nominal', 'legend': None,
+                 'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[6], LOSS[6]]}}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 10 waffle ────────────────────────────────────────
@@ -579,35 +646,64 @@ write('10_waffle_share.json', {
   # and the grid had to shrink to make room for it. Underneath, the grid gets the
   # full width of its column back.
   'width': 482, 'height': 482,
-  'mark': {'type': 'square', 'size': 1330, 'stroke': PAPER, 'strokeWidth': 3.4, 'cornerRadius': 2},
-  'encoding': {
-    'x': {'field': 'col', 'type': 'ordinal', 'axis': None},
-    'y': {'field': 'row', 'type': 'ordinal', 'axis': None},
-    'color': {'field': 'group', 'type': 'nominal', 'title': 'State',
-              'scale': {'domain': WAFFLE_DOMAIN, 'range': WAFFLE_RANGE},
-              'legend': {'orient': 'bottom', 'direction': 'horizontal', 'columns': 4,
-                         'titleColor': INK, 'labelColor': INK_SOFT, 'titleOrient': 'top',
-                         'symbolType': 'square', 'symbolSize': 150, 'labelFontSize': 11.5,
-                         'columnPadding': 14, 'rowPadding': 5, 'offset': 10}},
-    'tooltip': [
-      {'field': 'state', 'type': 'nominal', 'title': 'State'},
-      {'field': 'share_pct', 'type': 'quantitative', 'title': 'Share of national area (per cent)', 'format': '.1f'},
-      {'field': 'squares', 'type': 'quantitative', 'title': 'Squares on this chart'}]},
+  'layer': [
+    {'mark': {'type': 'square', 'size': 1330, 'stroke': PAPER, 'strokeWidth': 3.4, 'cornerRadius': 2},
+     'encoding': {
+       'x': {'field': 'col', 'type': 'ordinal', 'axis': None},
+       'y': {'field': 'row', 'type': 'ordinal', 'axis': None},
+       'color': {'field': 'group', 'type': 'nominal', 'title': 'State',
+                 'scale': {'domain': WAFFLE_DOMAIN, 'range': WAFFLE_RANGE},
+                 'legend': {'orient': 'bottom', 'direction': 'horizontal', 'columns': 4,
+                            'titleColor': INK, 'labelColor': INK_SOFT, 'titleOrient': 'top',
+                            'symbolType': 'square', 'symbolSize': 150, 'labelFontSize': 11.5,
+                            'columnPadding': 14, 'rowPadding': 5, 'offset': 10}},
+       'tooltip': [
+         {'field': 'state', 'type': 'nominal', 'title': 'State'},
+         {'field': 'share_pct', 'type': 'quantitative', 'title': 'Share of national area (per cent)', 'format': '.1f'},
+         {'field': 'squares', 'type': 'quantitative', 'title': 'Squares on this chart'}]}},
+    # The marker of Data Visualisation 1 asked for an annotation on the waffle chart
+    # by name. The two blocks worth naming are the largest and the residual.
+    {'data': {'values': [{'col': 0, 'row': 1, 'label': 'Pahang: 36 squares'}]},
+     'transform': [],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 0, 'fontSize': 13.5,
+              'fontWeight': 700, 'color': '#FAF7F0'},
+     'encoding': {'x': {'field': 'col', 'type': 'ordinal'},
+                  'y': {'field': 'row', 'type': 'ordinal'},
+                  'text': {'field': 'label', 'type': 'nominal'}}},
+    {'data': {'values': [{'col': 0, 'row': 9, 'label': 'Every other state combined: 12'}]},
+     'transform': [],
+     'mark': {'type': 'text', 'align': 'left', 'dx': 0, 'fontSize': 11.5,
+              'fontWeight': 600, 'color': INK},
+     'encoding': {'x': {'field': 'col', 'type': 'ordinal'},
+                  'y': {'field': 'row', 'type': 'ordinal'},
+                  'text': {'field': 'label', 'type': 'nominal'}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 11 rainfall heatmap ──────────────────────────────
+# The row order is written out as a list rather than left to an aggregate sort.
+# Inside a layered spec that sort has to resolve against every layer's data, and it
+# silently falls back to alphabetical when one of them cannot supply the field - which
+# is exactly what happened when the annotation layers were added.
+def _rain_order():
+    import csv as _csv, collections
+    total = collections.defaultdict(float)
+    with open('data/climate_states.csv', newline='', encoding='utf-8') as f:
+        for row in _csv.DictReader(f):
+            total[row['state']] += float(row['rain_mm_month'])
+    return [st for st, _ in sorted(total.items(), key=lambda kv: -kv[1])]
+
+RAIN_ORDER = _rain_order()
 write('11_rain_heatmap.json', {
   'description': 'Heatmap: average monthly rainfall by state, from a 25-year NASA POWER climatology.',
   'data': csv('climate_states.csv', {'month': 'number', 'rain_mm_month': 'number'}),
   'width': 950, 'height': 450,
-  'mark': {'type': 'rect', 'stroke': PAPER, 'strokeWidth': 1.5, 'cornerRadius': 1},
   'encoding': {
     'x': {'field': 'month_name', 'type': 'ordinal', 'title': None,
           'sort': MONTHS,
           'axis': {'labelAngle': 0, 'domain': False, 'ticks': False, 'orient': 'top',
                    'labelFontSize': 12, 'labelColor': INK, 'labelPadding': 6}},
     'y': {'field': 'state', 'type': 'nominal', 'title': None,
-          'sort': {'op': 'sum', 'field': 'rain_mm_month', 'order': 'descending'},
+          'sort': RAIN_ORDER,
           'axis': {'domain': False, 'ticks': False, 'labelFontSize': 11.5, 'labelColor': INK}},
     'color': {'field': 'rain_mm_month', 'type': 'quantitative',
               'title': 'Average rainfall (millimetres per month)',
@@ -630,6 +726,18 @@ write('11_rain_heatmap.json', {
       {'field': 'month_name', 'type': 'nominal', 'title': 'Month'},
       {'field': 'rain_mm_month', 'type': 'quantitative', 'title': 'Rainfall (millimetres)', 'format': ',.0f'},
       {'field': 'tmax_c', 'type': 'quantitative', 'title': 'Average daily maximum (°C)', 'format': '.1f'}]},
+  # Both annotations are drawn from the chart's own rows, filtered to a single cell, so
+  # every field the shared scales sort on is still present on the annotation layer.
+  'layer': [
+    {'mark': {'type': 'rect', 'stroke': PAPER, 'strokeWidth': 1.5, 'cornerRadius': 1}},
+    {'transform': [{'filter': "datum.month == 11 && datum.state == 'Terengganu'"}],
+     'mark': {'type': 'text', 'fontSize': 10.5, 'fontWeight': 700,
+              'lineBreak': '|', 'lineHeight': 12},
+     'encoding': {'text': {'value': 'North-east|monsoon'}, 'color': {'value': '#FAF7F0'}}},
+    {'transform': [{'filter': "datum.month == 2 && datum.state == 'Perlis'"}],
+     'mark': {'type': 'text', 'fontSize': 10.5, 'fontWeight': 700,
+              'lineBreak': '|', 'lineHeight': 12},
+     'encoding': {'text': {'value': 'Driest month|of the year'}, 'color': {'value': INK}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 12 custom radial ─────────────────────────────────
@@ -670,8 +778,10 @@ write('12_seasonality_radial.json', {
                   'order': {'field': 'month', 'type': 'quantitative'},
                   'color': {'field': 'series_label', 'type': 'nominal', 'title': None,
                             'scale': {'domain': ['Malaysia', 'Worldwide'], 'range': [ATTN_1, '#8C9AA3']},
-                            'legend': {'orient': 'none', 'legendX': 0, 'legendY': 392,
-                                       'direction': 'horizontal', 'title': None,
+                            # Every other legend on the page sits at the bottom, left-aligned
+                            # to the panel edge. A hand-placed one here broke that sight line.
+                            'legend': {'orient': 'bottom', 'direction': 'horizontal',
+                                       'title': None, 'titleAnchor': 'start',
                                        'labelColor': INK, 'labelFontSize': 12}}}},
     {'data': csv('seasonality_polar.csv', {'x': 'number', 'y': 'number', 'month': 'number', 'value': 'number'}),
      'transform': [{'filter': 'datum.month <= 12'}],
@@ -696,7 +806,6 @@ write('13_planting_window.json', {
                'window_rain_mm': 'number', 'annual_rain_mm': 'number'}),
   'transform': [{'calculate': 'datum.end_month + 1', 'as': 'end_edge'}],
   'width': W_FULL - 110, 'height': 384,
-  'mark': {'type': 'bar', 'cornerRadius': 3, 'height': 20},
   'encoding': {
     'y': {'field': 'state', 'type': 'nominal', 'title': None,
           'sort': {'field': 'start_month'},
@@ -722,6 +831,15 @@ write('13_planting_window.json', {
       {'field': 'window_rain_mm', 'type': 'quantitative', 'title': 'Rain in that window (millimetres)', 'format': ',.0f'},
       {'field': 'wettest_month_name', 'type': 'nominal', 'title': 'Wettest month'},
       {'field': 'annual_rain_mm', 'type': 'quantitative', 'title': 'Annual rainfall (millimetres)', 'format': ',.0f'}]},
+  'layer': [
+    {'mark': {'type': 'bar', 'cornerRadius': 3, 'height': 20}},
+    # The rainfall across each window, printed at the end of its bar. The colour
+    # already carries it, but a reader comparing two states needs the number.
+    {'mark': {'type': 'text', 'align': 'left', 'dx': 9, 'fontSize': 10.5,
+              'fontWeight': 600, 'color': INK_SOFT},
+     'encoding': {'x': {'field': 'end_edge', 'type': 'quantitative'},
+                  'color': {'value': INK_SOFT},
+                  'text': {'field': 'window_rain_mm', 'type': 'quantitative', 'format': ',.0f'}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 14 rainfall against interest ────────────────────

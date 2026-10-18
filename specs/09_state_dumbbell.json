@@ -14,6 +14,16 @@
   },
   "width": 384,
   "height": 594,
+  "transform": [
+    {
+      "calculate": "max(datum.area_2014, datum.area_2024)",
+      "as": "row_end"
+    },
+    {
+      "calculate": "format(datum.pct_change, '+.0f') + ' per cent'",
+      "as": "chg_label"
+    }
+  ],
   "encoding": {
     "y": {
       "field": "state",
@@ -41,7 +51,12 @@
       "type": "quantitative",
       "title": "Vegetable planted area (hectares)",
       "scale": {
-        "type": "sqrt"
+        "type": "sqrt",
+        "domain": [
+          0,
+          36000
+        ],
+        "nice": false
       },
       "axis": {
         "grid": false,
@@ -82,7 +97,7 @@
             ],
             "range": [
               "#2D6C35",
-              "#C2603C"
+              "#73418A"
             ]
           }
         }
@@ -137,7 +152,7 @@
             ],
             "range": [
               "#2D6C35",
-              "#C2603C"
+              "#73418A"
             ]
           },
           "legend": {
@@ -167,6 +182,40 @@
             "format": "+.1f"
           }
         ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "fontSize": 10.5,
+        "fontWeight": 600
+      },
+      "encoding": {
+        "x": {
+          "field": "row_end",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "chg_label",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "direction",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": [
+              "Increase",
+              "Decrease"
+            ],
+            "range": [
+              "#1A4A27",
+              "#5A2E6E"
+            ]
+          }
+        }
       }
     }
   ],

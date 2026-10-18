@@ -96,7 +96,7 @@
                 ],
                 "range": [
                   "#2D6C35",
-                  "#C2603C"
+                  "#73418A"
                 ]
               },
               "legend": {
@@ -224,7 +224,7 @@
                 "test": "datum.direction === 'Increase'",
                 "value": "#1A4A27"
               },
-              "value": "#9E4528"
+              "value": "#5A2E6E"
             }
           }
         }
@@ -324,7 +324,7 @@
                 ],
                 "range": [
                   "#2D6C35",
-                  "#C2603C"
+                  "#73418A"
                 ]
               },
               "legend": null
@@ -443,7 +443,7 @@
                 "test": "datum.direction === 'Increase'",
                 "value": "#1A4A27"
               },
-              "value": "#9E4528"
+              "value": "#5A2E6E"
             }
           }
         }

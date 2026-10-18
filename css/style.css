@@ -11,6 +11,7 @@
          green      = growing, land, production
          terracotta = attention, search interest
          blue       = rainfall, water
+         purple     = farmland lost
    ========================================================================= */
 
 @font-face {
@@ -112,6 +113,10 @@ h1 {
   border-top: 1px solid var(--rule);
   padding-top: 16px;
   margin: 0;
+  /* The global 64ch measure stopped this rule two-thirds across, leaving the
+     masthead with no bottom edge while the KPI grid below it is pinned to both
+     margins. Full width gives the title block a base that lines up with the grid. */
+  max-width: none;
 }
 
 /* ---------- key figures -------------------------------------------------- */
@@ -251,8 +256,10 @@ figcaption { margin-bottom: 14px; }
 .row.single .fig-note { max-width: 96ch; }
 .row.single .callout  { max-width: 86ch; }
 
-.chart { width: 100%; overflow-x: auto; overflow-y: hidden; }
-.chart > .vega-embed { width: 100%; }
+/* The figures are scaled to the column in app.js rather than allowed to scroll
+   sideways, so the panel clips rather than scrolls if anything overruns. */
+.chart { width: 100%; overflow: hidden; }
+.chart > .chart-wrapper { width: 100%; }
 .vega-embed summary { opacity: 0.35; }
 .vega-embed summary:hover { opacity: 1; }
 
@@ -347,9 +354,17 @@ a:hover { color: var(--grow-deep); }
 /* ---------- narrower screens -------------------------------------------- */
 
 @media (max-width: 1100px) {
-  .row, .foot-grid, .map-with-key { grid-template-columns: 1fr; }
+  .foot-grid, .map-with-key { grid-template-columns: 1fr; }
   .sec-body { columns: 1; }
   .kpis { grid-template-columns: repeat(2, 1fr); }
+}
+/* The two-up rows used to collapse at 1100px. On a 1366x768 laptop at 125 per cent
+   scaling - 1093 CSS pixels, a common setup - that dropped a 482px chart into a
+   1037px column and left half of it empty. The pair now holds its columns down to
+   900px, where the charts are scaled to fit instead. */
+@media (max-width: 900px) {
+  .row { grid-template-columns: 1fr; }
+  .row .chart-wrapper { text-align: center; }
 }
 @media (max-width: 620px) {
   .kpis { grid-template-columns: 1fr; }

@@ -15,82 +15,154 @@
   },
   "width": 482,
   "height": 482,
-  "mark": {
-    "type": "square",
-    "size": 1330,
-    "stroke": "#FAF7F0",
-    "strokeWidth": 3.4,
-    "cornerRadius": 2
-  },
-  "encoding": {
-    "x": {
-      "field": "col",
-      "type": "ordinal",
-      "axis": null
+  "layer": [
+    {
+      "mark": {
+        "type": "square",
+        "size": 1330,
+        "stroke": "#FAF7F0",
+        "strokeWidth": 3.4,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+            "domain": [
+              "Pahang",
+              "Johor",
+              "Kelantan",
+              "Sarawak",
+              "Perak",
+              "Sabah",
+              "Other states"
+            ],
+            "range": [
+              "#17401F",
+              "#38763E",
+              "#6BA45F",
+              "#9CC78B",
+              "#C6DEB8",
+              "#E4EFDA",
+              "#D6CEBC"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "columns": 4,
+            "titleColor": "#1C2B22",
+            "labelColor": "#5E6E64",
+            "titleOrient": "top",
+            "symbolType": "square",
+            "symbolSize": 150,
+            "labelFontSize": 11.5,
+            "columnPadding": 14,
+            "rowPadding": 5,
+            "offset": 10
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "type": "nominal",
+            "title": "State"
+          },
+          {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "Share of national area (per cent)",
+            "format": ".1f"
+          },
+          {
+            "field": "squares",
+            "type": "quantitative",
+            "title": "Squares on this chart"
+          }
+        ]
+      }
     },
-    "y": {
-      "field": "row",
-      "type": "ordinal",
-      "axis": null
-    },
-    "color": {
-      "field": "group",
-      "type": "nominal",
-      "title": "State",
-      "scale": {
-        "domain": [
-          "Pahang",
-          "Johor",
-          "Kelantan",
-          "Sarawak",
-          "Perak",
-          "Sabah",
-          "Other states"
-        ],
-        "range": [
-          "#17401F",
-          "#38763E",
-          "#6BA45F",
-          "#9CC78B",
-          "#C6DEB8",
-          "#E4EFDA",
-          "#D6CEBC"
+    {
+      "data": {
+        "values": [
+          {
+            "col": 0,
+            "row": 1,
+            "label": "Pahang: 36 squares"
+          }
         ]
       },
-      "legend": {
-        "orient": "bottom",
-        "direction": "horizontal",
-        "columns": 4,
-        "titleColor": "#1C2B22",
-        "labelColor": "#5E6E64",
-        "titleOrient": "top",
-        "symbolType": "square",
-        "symbolSize": 150,
-        "labelFontSize": 11.5,
-        "columnPadding": 14,
-        "rowPadding": 5,
-        "offset": 10
+      "transform": [],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 0,
+        "fontSize": 13.5,
+        "fontWeight": 700,
+        "color": "#FAF7F0"
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
       }
     },
-    "tooltip": [
-      {
-        "field": "state",
-        "type": "nominal",
-        "title": "State"
+    {
+      "data": {
+        "values": [
+          {
+            "col": 0,
+            "row": 9,
+            "label": "Every other state combined: 12"
+          }
+        ]
       },
-      {
-        "field": "share_pct",
-        "type": "quantitative",
-        "title": "Share of national area (per cent)",
-        "format": ".1f"
+      "transform": [],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 0,
+        "fontSize": 11.5,
+        "fontWeight": 600,
+        "color": "#1C2B22"
       },
-      {
-        "field": "squares",
-        "type": "quantitative",
-        "title": "Squares on this chart"
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        }
       }
-    ]
-  },
+    }
+  ],
   "config": {
     "view": {
       "stroke": null
