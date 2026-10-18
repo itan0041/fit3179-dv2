@@ -113,9 +113,10 @@
               "type": "quantitative",
               "title": "Vegetable production in 2024 (tonnes)",
               "scale": {
-                "type": "sqrt",
+                "type": "linear",
+                "domainMin": 0,
                 "range": [
-                  30,
+                  8,
                   3000
                 ]
               },
@@ -165,12 +166,12 @@
             "values": [
               {
                 "lon": 102.5416,
-                "lat": 2.62,
+                "lat": 3.2,
                 "label": "Pahang|599,700 tonnes"
               },
               {
-                "lon": 103.6,
-                "lat": 1.3,
+                "lon": 103.3854,
+                "lat": 1.52,
                 "label": "Johor|243,400 tonnes"
               }
             ]
@@ -312,9 +313,10 @@
               "type": "quantitative",
               "title": "Vegetable production in 2024 (tonnes)",
               "scale": {
-                "type": "sqrt",
+                "type": "linear",
+                "domainMin": 0,
                 "range": [
-                  30,
+                  8,
                   3000
                 ]
               },

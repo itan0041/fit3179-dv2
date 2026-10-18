@@ -395,7 +395,7 @@ def note_layer(values, color=INK, **mark):
 # The two states the section's prose names are labelled on the map itself, so the
 # comparison can be made without going to the tooltip or back to the paragraph.
 CHORO_NOTES_PEN = [note_layer(
-    [{'lon': 102.60, 'lat': 4.05, 'label': 'Pahang|16.5'}],
+    [{'lon': 102.5416, 'lat': 3.7335, 'label': 'Pahang|16.5'}],
     color='#FAF7F0', fontSize=11.5),
   note_layer(
     [{'lon': 100.95, 'lat': 2.92, 'label': 'Selangor 0.31'}],
@@ -435,9 +435,11 @@ write('05_map_choropleth.json', {
   **shared()})
 
 # ───────────────────────── 06 proportional symbol map ───────────────────────
+# Each label is centred on its state's longitude and sits just clear of the circle
+# drawn there, so it reads as belonging to that circle rather than to a neighbour.
 SYMB_NOTES_PEN = [note_layer(
-    [{'lon': 102.5416, 'lat': 2.62, 'label': 'Pahang|599,700 tonnes'},
-     {'lon': 103.60, 'lat': 1.30, 'label': 'Johor|243,400 tonnes'}],
+    [{'lon': 102.5416, 'lat': 3.20, 'label': 'Pahang|599,700 tonnes'},
+     {'lon': 103.3854, 'lat': 1.52, 'label': 'Johor|243,400 tonnes'}],
     color=INK, fontSize=11, baseline='top')]
 
 def symbol_panel(codes, width, title, legend, proj, notes=()):
@@ -463,7 +465,15 @@ def symbol_panel(codes, width, title, legend, proj, notes=()):
            'latitude': {'field': 'lat', 'type': 'quantitative'},
            'size': {'field': 'veg_prod_tonnes', 'type': 'quantitative',
                     'title': 'Vegetable production in 2024 (tonnes)',
-                    'scale': {'type': 'sqrt', 'range': [30, 3000]},
+                    # The size channel is the mark's AREA in square pixels, so area is
+                    # proportional to tonnes only when the scale is linear and anchored
+                    # at zero. A sqrt scale here made area proportional to the square
+                    # root of tonnes: Pahang grows 2.5 times Johor's crop but its circle
+                    # covered only 1.6 times the area, which is not what the figure note
+                    # claims and not what a proportional symbol map means. The floor of
+                    # 8 square pixels is 0.3 per cent of the largest circle, so it keeps
+                    # Perlis and Labuan visible without disturbing the proportion.
+                    'scale': {'type': 'linear', 'domainMin': 0, 'range': [8, 3000]},
                     'legend': {**BOTTOM_LEGEND, 'format': ',.0f',
                                'values': [50000, 200000, 400000, 600000],
                                'symbolFillColor': GROW[4],
