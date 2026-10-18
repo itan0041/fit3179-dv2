@@ -99,6 +99,45 @@
         "values": [
           {
             "col": 0,
+            "row": 1
+          },
+          {
+            "col": 1,
+            "row": 1
+          },
+          {
+            "col": 2,
+            "row": 1
+          },
+          {
+            "col": 3,
+            "row": 1
+          }
+        ]
+      },
+      "transform": [],
+      "mark": {
+        "type": "rect",
+        "fill": "#17401F",
+        "stroke": null,
+        "cornerRadius": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "col": 0,
             "row": 1,
             "label": "Pahang: 36 squares"
           }
@@ -108,7 +147,7 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 0,
+        "dx": -18,
         "fontSize": 13.5,
         "fontWeight": 700,
         "color": "#FAF7F0"

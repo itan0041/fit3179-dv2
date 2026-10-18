@@ -273,8 +273,13 @@ write('04_land_vs_output.json', {
              'axis': {'grid': True, 'gridColor': RULE, 'gridDash': [2, 3], 'domain': False,
                       'ticks': False, 'labelColor': INK_SOFT, 'titleColor': INK_SOFT}},
        'y2': {'field': 'prod_index_2014'}}},
-    {'mark': {'type': 'rule', 'color': INK_SOFT, 'strokeDash': [3, 3], 'opacity': 0.5},
-     'encoding': {'y': {'datum': 100}}},
+    # One horizontal reference line at the 2014 = 100 level. It has to blank the
+    # inherited x encoding and be filtered to a single row: without both, the layer
+    # takes the top-level x field and draws a VERTICAL rule at every year, each one
+    # running from the top of the plot down to 100.
+    {'transform': [{'filter': 'datum.year == 2014'}],
+     'mark': {'type': 'rule', 'color': INK_SOFT, 'strokeDash': [3, 3], 'opacity': 0.5},
+     'encoding': {'x': None, 'y': {'datum': 100}}},
     {'mark': {'type': 'line', 'strokeWidth': 2.8, 'color': GROW[6], 'interpolate': 'monotone',
               'point': {'filled': True, 'size': 55, 'color': GROW[6]}},
      'encoding': {
@@ -494,13 +499,13 @@ write('06_map_symbol.json', {
 # The three corners of the key, named where they actually fall on the map. Without
 # these the reader has to hold the nine-square key in memory while scanning.
 BIV_NOTES_PEN = [note_layer(
-    [{'lon': 100.05, 'lat': 6.75, 'label': 'Perlis and Kedah|search hard, grow little'}],
+    [{'lon': 100.05, 'lat': 6.48, 'label': 'Perlis and Kedah|search hard, grow little'}],
     color='#8A4A22', fontSize=10.5, align='left'),
   note_layer(
     [{'lon': 102.60, 'lat': 3.62, 'label': 'Pahang|grows most'}],
     color='#FAF7F0', fontSize=10.5),
   note_layer(
-    [{'lon': 100.92, 'lat': 2.80, 'label': 'Selangor|low on both'}],
+    [{'lon': 101.18, 'lat': 2.86, 'label': 'Selangor|low on both'}],
     color=INK_SOFT, fontSize=10.5, align='right')]
 
 def bivariate_panel(codes, width, title, proj, notes=()):
@@ -691,9 +696,18 @@ write('10_waffle_share.json', {
          {'field': 'squares', 'type': 'quantitative', 'title': 'Squares on this chart'}]}},
     # The marker of Data Visualisation 1 asked for an annotation on the waffle chart
     # by name. The two blocks worth naming are the largest and the residual.
+    # White lettering was being cut to pieces by the paper-coloured gaps between the
+    # squares. The four squares the label crosses are filled in behind it, so it runs
+    # over one solid block of Pahang's own colour.
+    {'data': {'values': [{'col': 0, 'row': 1}, {'col': 1, 'row': 1},
+                         {'col': 2, 'row': 1}, {'col': 3, 'row': 1}]},
+     'transform': [],
+     'mark': {'type': 'rect', 'fill': WAFFLE_RANGE[0], 'stroke': None, 'cornerRadius': 2},
+     'encoding': {'x': {'field': 'col', 'type': 'ordinal'},
+                  'y': {'field': 'row', 'type': 'ordinal'}}},
     {'data': {'values': [{'col': 0, 'row': 1, 'label': 'Pahang: 36 squares'}]},
      'transform': [],
-     'mark': {'type': 'text', 'align': 'left', 'dx': 0, 'fontSize': 13.5,
+     'mark': {'type': 'text', 'align': 'left', 'dx': -18, 'fontSize': 13.5,
               'fontWeight': 700, 'color': '#FAF7F0'},
      'encoding': {'x': {'field': 'col', 'type': 'ordinal'},
                   'y': {'field': 'row', 'type': 'ordinal'},
@@ -761,13 +775,15 @@ write('11_rain_heatmap.json', {
     {'mark': {'type': 'rect', 'stroke': PAPER, 'strokeWidth': 1.5, 'cornerRadius': 1}},
     # A row is 28 pixels tall, so these sit at 9 point on a 10 point line: two larger
     # lines overran the cell and were clipped by the row below.
+    # A two-line note anchors on its first line, so without the upward dy the pair
+    # hangs below the cell's middle and the second line sits on the row boundary.
     {'transform': [{'filter': "datum.month == 11 && datum.state == 'Terengganu'"}],
-     'mark': {'type': 'text', 'fontSize': 9, 'fontWeight': 700,
-              'lineBreak': '|', 'lineHeight': 10},
+     'mark': {'type': 'text', 'fontSize': 9, 'fontWeight': 700, 'baseline': 'middle',
+              'lineBreak': '|', 'lineHeight': 10, 'dy': -5},
      'encoding': {'text': {'value': 'North-east|monsoon'}, 'color': {'value': '#FAF7F0'}}},
     {'transform': [{'filter': "datum.month == 2 && datum.state == 'Perlis'"}],
-     'mark': {'type': 'text', 'fontSize': 9, 'fontWeight': 700,
-              'lineBreak': '|', 'lineHeight': 10},
+     'mark': {'type': 'text', 'fontSize': 9, 'fontWeight': 700, 'baseline': 'middle',
+              'lineBreak': '|', 'lineHeight': 10, 'dy': -5},
      'encoding': {'text': {'value': 'Driest cell|on the chart'}, 'color': {'value': INK}}}],
   'config': {'view': {'stroke': None}}})
 

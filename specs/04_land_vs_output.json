@@ -88,6 +88,11 @@
       }
     },
     {
+      "transform": [
+        {
+          "filter": "datum.year == 2014"
+        }
+      ],
       "mark": {
         "type": "rule",
         "color": "#5E6E64",
@@ -98,6 +103,7 @@
         "opacity": 0.5
       },
       "encoding": {
+        "x": null,
         "y": {
           "datum": 100
         }
