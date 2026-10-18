@@ -89,22 +89,34 @@ body {
   margin: 0 0 20px;
 }
 
+/* The title block runs down the left half and the standfirst down the right, split
+   on the same line as the gap between the second and third key figures below it.
+   Stacked, the two left two-fifths of the masthead empty on a wide screen while the
+   key figures underneath were pinned to both margins. The standfirst is set to the
+   foot of the column so its last line sits on the title's baseline. */
+.mast-top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+  align-items: end;
+}
+
 h1 {
   font-family: var(--display);
   font-weight: 600;
-  font-size: clamp(46px, 6.2vw, 78px);
-  line-height: 1.02;
+  font-size: clamp(42px, 4.6vw, 62px);
+  line-height: 1.04;
   letter-spacing: -0.02em;
-  margin: 0 0 22px;
-  max-width: 15ch;
+  margin: 0;
+  max-width: 11ch;
 }
 
 .standfirst {
-  font-size: 20px;
-  line-height: 1.52;
+  font-size: 19.5px;
+  line-height: 1.55;
   color: var(--ink-soft);
-  max-width: 62ch;
-  margin: 0 0 36px;
+  max-width: 46ch;
+  margin: 0 0 6px;
 }
 
 .byline {
@@ -112,7 +124,7 @@ h1 {
   color: var(--ink-faint);
   border-top: 1px solid var(--rule);
   padding-top: 16px;
-  margin: 0;
+  margin: 34px 0 0;
   /* The global 64ch measure stopped this rule two-thirds across, leaving the
      masthead with no bottom edge while the KPI grid below it is pinned to both
      margins. Full width gives the title block a base that lines up with the grid. */
@@ -170,6 +182,14 @@ section:first-of-type { border-top: none; }
    fill the measure AND keep the line length short. Paragraphs are kept whole so a
    figure is never split from its unit across the gutter. */
 .sec-head { display: block; }
+
+.sec-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  /* The eyebrow is letter-spaced; the icon should not inherit that optical shift. */
+  margin-left: -1px;
+}
 .sec-head .lede { max-width: 92ch; margin-bottom: 16px; }
 .sec-body { columns: 2; column-gap: 44px; }
 .sec-body p { max-width: none; margin-top: 0; }
@@ -179,7 +199,14 @@ section:first-of-type { border-top: none; }
    second column empty - the exact white space these columns exist to remove. */
 .sec-body:has(p:nth-child(2)) p { break-inside: avoid; }
 
+/* One mark per section, drawn here as inline SVG rather than taken from an icon set,
+   so nothing on the page is anyone else's artwork. Each is coloured from the page's
+   own scheme and says what the section is about: the loss arrow in section five is
+   purple because purple means farmland lost everywhere else. */
 .sec-num {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   font-size: 12.5px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -363,7 +390,9 @@ a:hover { color: var(--grow-deep); }
    1037px column and left half of it empty. The pair now holds its columns down to
    900px, where the charts are scaled to fit instead. */
 @media (max-width: 900px) {
-  .row { grid-template-columns: 1fr; }
+  .row, .mast-top { grid-template-columns: 1fr; }
+  .mast-top { gap: 22px; }
+  .standfirst { max-width: 62ch; }
   .row .chart-wrapper { text-align: center; }
 }
 @media (max-width: 620px) {

@@ -57,10 +57,14 @@
         ]
       },
       "legend": {
-        "orient": "top",
+        "orient": "none",
+        "legendX": -50,
+        "legendY": 440,
         "direction": "vertical",
-        "offset": 6,
+        "titleAnchor": "start",
+        "titleColor": "#1C2B22",
         "labelColor": "#1C2B22",
+        "titleFontSize": 11.5,
         "labelFontSize": 11.5,
         "labelLimit": 320,
         "symbolType": "square",

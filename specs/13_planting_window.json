@@ -15,6 +15,10 @@
   },
   "transform": [
     {
+      "calculate": "replace(datum.state, 'W.P. ', '')",
+      "as": "state_name"
+    },
+    {
       "calculate": "datum.end_month + 1",
       "as": "end_edge"
     }
@@ -23,7 +27,7 @@
   "height": 384,
   "encoding": {
     "y": {
-      "field": "state",
+      "field": "state_name",
       "type": "nominal",
       "title": null,
       "sort": {
@@ -92,17 +96,20 @@
         ]
       },
       "legend": {
-        "orient": "bottom",
+        "orient": "none",
+        "legendX": -95,
+        "legendY": 410,
         "direction": "horizontal",
-        "gradientLength": 220,
+        "titleAnchor": "start",
         "titleColor": "#1C2B22",
         "labelColor": "#5E6E64",
-        "titleFontSize": 11.5
+        "titleFontSize": 11.5,
+        "gradientLength": 220
       }
     },
     "tooltip": [
       {
-        "field": "state",
+        "field": "state_name",
         "type": "nominal",
         "title": "State"
       },

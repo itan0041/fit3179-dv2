@@ -353,6 +353,17 @@ SUM_DATA = csv('state_summary.csv',
                 'veg_area_ha': 'number', 'population': 'number', 'veg_prod_tonnes': 'number',
                 'veg_kg_per_person': 'number'})
 
+# Charts with state names down the y axis indent their plotting area by the width of
+# those labels, and a bottom legend starts at that indent rather than at the panel edge.
+# Measured in a browser, that put legends on three different vertical lines down the
+# page - the sight-line fault Data Visualisation 1 was marked down for. These four pull
+# their legend back to the panel edge, so every legend on the page starts on the same
+# line as the figure's caption above it. The offsets are the measured axis widths.
+def left_legend(dx, y, **kw):
+    return {'orient': 'none', 'legendX': -dx, 'legendY': y, 'direction': 'horizontal',
+            'titleAnchor': 'start', 'titleColor': INK, 'labelColor': INK_SOFT,
+            'titleFontSize': 11.5, **kw}
+
 BOTTOM_LEGEND = {'orient': 'bottom', 'direction': 'horizontal', 'titleLimit': 1000,
                  'labelLimit': 220, 'titleColor': INK, 'labelColor': INK_SOFT,
                  'titleFontSize': 11.5, 'titleAnchor': 'start'}
@@ -361,6 +372,13 @@ BOTTOM_LEGEND = {'orient': 'bottom', 'direction': 'horizontal', 'titleLimit': 10
 # too few of these ("can add more informative annotations in diagrams"), and the waffle
 # chart was named specifically, so every figure that can carry a label now does.
 NOTE = {'type': 'text', 'fontSize': 11, 'fontWeight': 600, 'lineBreak': '|'}
+
+# The federal territories are published as "W.P. Kuala Lumpur" and the like. W.P. is
+# Wilayah Persekutuan, and an unexpanded short form in the visualisation is the exact
+# thing Data Visualisation 1 was marked down for. Each is shown by its plain name,
+# which is unambiguous to a Malaysian reader, on axes and in tooltips alike.
+STATE_LABEL = "replace(datum.label, 'W.P. ', '')"
+DROP_WP = {'calculate': "replace(datum.state, 'W.P. ', '')", 'as': 'state_name'}
 
 def note_layer(values, color=INK, **mark):
     """A free-standing text layer. It carries its own data and an empty transform so
@@ -589,10 +607,11 @@ write('09_state_dumbbell.json', {
   # reachable only by hovering, which leaves the chart silent in a screenshot and
   # on any device without a mouse.
   'transform': [
+    DROP_WP,
     {'calculate': 'max(datum.area_2014, datum.area_2024)', 'as': 'row_end'},
     {'calculate': "format(datum.pct_change, '+.0f') + ' per cent'", 'as': 'chg_label'}],
   'encoding': {
-    'y': {'field': 'state', 'type': 'nominal', 'title': None,
+    'y': {'field': 'state_name', 'type': 'nominal', 'title': None,
           'sort': {'field': 'area_2024', 'order': 'descending'},
           'axis': {'domain': False, 'ticks': False, 'labelFontSize': 11.5,
                    'labelColor': INK, 'grid': True, 'gridColor': RULE, 'gridDash': [1, 4]}},
@@ -611,7 +630,7 @@ write('09_state_dumbbell.json', {
     {'mark': {'type': 'point', 'filled': True, 'size': 95, 'color': '#B9BEB3',
               'stroke': PAPER, 'strokeWidth': 1.5},
      'encoding': {'tooltip': [
-        {'field': 'state', 'type': 'nominal', 'title': 'State'},
+        {'field': 'state_name', 'type': 'nominal', 'title': 'State'},
         {'field': 'area_2014', 'type': 'quantitative', 'title': '2014 (hectares)', 'format': ',.0f'}]}},
     {'mark': {'type': 'point', 'filled': True, 'size': 130, 'stroke': PAPER, 'strokeWidth': 1.5},
      'encoding': {
@@ -619,10 +638,9 @@ write('09_state_dumbbell.json', {
        'color': {'field': 'direction', 'type': 'nominal',
                  'title': 'Pale dot = 2014, coloured dot = 2024',
                  'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[5], LOSS[5]]},
-                 'legend': {'orient': 'bottom', 'direction': 'horizontal', 'titleLimit': 400,
-                            'titleColor': INK_SOFT, 'labelColor': INK_SOFT}},
+                 'legend': left_legend(95, 622, titleLimit=400, titleColor=INK_SOFT)},
        'tooltip': [
-         {'field': 'state', 'type': 'nominal', 'title': 'State'},
+         {'field': 'state_name', 'type': 'nominal', 'title': 'State'},
          {'field': 'area_2024', 'type': 'quantitative', 'title': '2024 (hectares)', 'format': ',.0f'},
          {'field': 'pct_change', 'type': 'quantitative', 'title': 'Change (per cent)', 'format': '+.1f'}]}},
     {'mark': {'type': 'text', 'align': 'left', 'dx': 10, 'fontSize': 10.5, 'fontWeight': 600},
@@ -696,32 +714,33 @@ RAIN_ORDER = _rain_order()
 write('11_rain_heatmap.json', {
   'description': 'Heatmap: average monthly rainfall by state, from a 25-year NASA POWER climatology.',
   'data': csv('climate_states.csv', {'month': 'number', 'rain_mm_month': 'number'}),
+  'transform': [DROP_WP],
   'width': 950, 'height': 450,
   'encoding': {
     'x': {'field': 'month_name', 'type': 'ordinal', 'title': None,
           'sort': MONTHS,
           'axis': {'labelAngle': 0, 'domain': False, 'ticks': False, 'orient': 'top',
                    'labelFontSize': 12, 'labelColor': INK, 'labelPadding': 6}},
-    'y': {'field': 'state', 'type': 'nominal', 'title': None,
-          'sort': RAIN_ORDER,
+    'y': {'field': 'state_name', 'type': 'nominal', 'title': None,
+          'sort': [st.replace('W.P. ', '') for st in RAIN_ORDER],
           'axis': {'domain': False, 'ticks': False, 'labelFontSize': 11.5, 'labelColor': INK}},
     'color': {'field': 'rain_mm_month', 'type': 'quantitative',
               'title': 'Average rainfall (millimetres per month)',
-              # Four breaks, not six. Vega-Lite discards gradientLength on a threshold
-              # scale and draws a fixed 200px banded key, so six break labels landed a
-              # single pixel apart and could not be read. Four round breaks fit that band
-              # with air between them and still split the data sensibly: 16 / 37 / 19 / 20
-              # / 8 per cent of state-months fall in the five bands. The palest step is
-              # dropped because it sat within a shade of the paper and made dry cells
-              # disappear into the background.
-              'scale': {'type': 'threshold', 'domain': [150, 200, 250, 325],
-                        'range': [RAIN[1], RAIN[2], RAIN[3], RAIN[4], RAIN[6]]},
-              'legend': {'orient': 'bottom', 'direction': 'horizontal', 'titleColor': INK,
-                         'labelColor': INK_SOFT, 'titleFontSize': 11.5,
-                         'labelFontSize': 11.5, 'labelOverlap': False,
-                         'labelPadding': 6, 'titlePadding': 8}},
+              # Four breaks, not six: Vega-Lite discards gradientLength on a threshold
+              # scale and draws a fixed banded key, so six labels landed a pixel apart.
+              # The breaks are the quintiles of the 192 state-months, rounded, so the
+              # five bands hold 19 / 22 / 18 / 21 / 19 per cent of the cells. The earlier
+              # round numbers put 38 per cent of the chart in a single shade, which
+              # flattened the very contrast the chart exists to show. The ramp is five
+              # consecutive steps; it previously skipped one, so the step from the fourth
+              # band to the fifth read as twice the size of the others. The palest step
+              # of the scale is unused because it sits within a shade of the paper.
+              'scale': {'type': 'threshold', 'domain': [155, 185, 215, 270],
+                        'range': [RAIN[2], RAIN[3], RAIN[4], RAIN[5], RAIN[6]]},
+              'legend': left_legend(95, 476, labelFontSize=11.5, labelOverlap=False,
+                                    labelPadding=6, titlePadding=8)},
     'tooltip': [
-      {'field': 'state', 'type': 'nominal', 'title': 'State'},
+      {'field': 'state_name', 'type': 'nominal', 'title': 'State'},
       {'field': 'city', 'type': 'nominal', 'title': 'Measured at'},
       {'field': 'month_name', 'type': 'nominal', 'title': 'Month'},
       {'field': 'rain_mm_month', 'type': 'quantitative', 'title': 'Rainfall (millimetres)', 'format': ',.0f'},
@@ -730,14 +749,16 @@ write('11_rain_heatmap.json', {
   # every field the shared scales sort on is still present on the annotation layer.
   'layer': [
     {'mark': {'type': 'rect', 'stroke': PAPER, 'strokeWidth': 1.5, 'cornerRadius': 1}},
+    # A row is 28 pixels tall, so these sit at 9 point on a 10 point line: two larger
+    # lines overran the cell and were clipped by the row below.
     {'transform': [{'filter': "datum.month == 11 && datum.state == 'Terengganu'"}],
-     'mark': {'type': 'text', 'fontSize': 10.5, 'fontWeight': 700,
-              'lineBreak': '|', 'lineHeight': 12},
+     'mark': {'type': 'text', 'fontSize': 9, 'fontWeight': 700,
+              'lineBreak': '|', 'lineHeight': 10},
      'encoding': {'text': {'value': 'North-east|monsoon'}, 'color': {'value': '#FAF7F0'}}},
     {'transform': [{'filter': "datum.month == 2 && datum.state == 'Perlis'"}],
-     'mark': {'type': 'text', 'fontSize': 10.5, 'fontWeight': 700,
-              'lineBreak': '|', 'lineHeight': 12},
-     'encoding': {'text': {'value': 'Driest month|of the year'}, 'color': {'value': INK}}}],
+     'mark': {'type': 'text', 'fontSize': 9, 'fontWeight': 700,
+              'lineBreak': '|', 'lineHeight': 10},
+     'encoding': {'text': {'value': 'Driest cell|on the chart'}, 'color': {'value': INK}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 12 custom radial ─────────────────────────────────
@@ -804,10 +825,10 @@ write('13_planting_window.json', {
   'data': csv('planting_window.csv',
               {'start_month': 'number', 'end_month': 'number',
                'window_rain_mm': 'number', 'annual_rain_mm': 'number'}),
-  'transform': [{'calculate': 'datum.end_month + 1', 'as': 'end_edge'}],
+  'transform': [DROP_WP, {'calculate': 'datum.end_month + 1', 'as': 'end_edge'}],
   'width': W_FULL - 110, 'height': 384,
   'encoding': {
-    'y': {'field': 'state', 'type': 'nominal', 'title': None,
+    'y': {'field': 'state_name', 'type': 'nominal', 'title': None,
           'sort': {'field': 'start_month'},
           'axis': {'domain': False, 'ticks': False, 'labelFontSize': 11.5, 'labelColor': INK}},
     'x': {'field': 'start_month', 'type': 'quantitative',
@@ -822,10 +843,9 @@ write('13_planting_window.json', {
     'color': {'field': 'window_rain_mm', 'type': 'quantitative',
               'title': 'Rainfall across the window (millimetres)',
               'scale': {'range': [RAIN[1], RAIN[6]]},
-              'legend': {'orient': 'bottom', 'direction': 'horizontal', 'gradientLength': 220,
-                         'titleColor': INK, 'labelColor': INK_SOFT, 'titleFontSize': 11.5}},
+              'legend': left_legend(95, 410, gradientLength=220)},
     'tooltip': [
-      {'field': 'state', 'type': 'nominal', 'title': 'State'},
+      {'field': 'state_name', 'type': 'nominal', 'title': 'State'},
       {'field': 'region', 'type': 'nominal', 'title': 'Region'},
       {'field': 'window_label', 'type': 'nominal', 'title': 'Driest three months'},
       {'field': 'window_rain_mm', 'type': 'quantitative', 'title': 'Rain in that window (millimetres)', 'format': ',.0f'},
@@ -866,9 +886,9 @@ write('14_rain_vs_interest.json', {
                    'labelColor': INK, 'labelFontSize': 11.5}},
     'color': {'datum': SERIES[0], 'type': 'nominal', 'title': None,
               'scale': SERIES_SCALE,
-              'legend': {'orient': 'top', 'direction': 'vertical', 'offset': 6,
-                         'labelColor': INK, 'labelFontSize': 11.5, 'labelLimit': 320,
-                         'symbolType': 'square', 'symbolSize': 150, 'rowPadding': 2}}},
+              'legend': left_legend(50, 440, direction='vertical', labelColor=INK,
+                                    labelFontSize=11.5, labelLimit=320,
+                                    symbolType='square', symbolSize=150, rowPadding=2)}},
   'layer': [
     {'mark': {'type': 'bar', 'cornerRadiusTopLeft': 3, 'cornerRadiusTopRight': 3, 'size': 20},
      'encoding': {

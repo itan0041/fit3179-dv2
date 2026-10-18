@@ -10,8 +10,20 @@
 
 ## 1. Domain, why and who
 
-**Domain.** Gardening in Malaysia, approached through three angles the topic brief names: popular
-plant categories, seasonal planting, and gardening as a recreational activity.
+**Domain.** Gardening in Malaysia. The assigned brief names three things, and each has a section
+of the page and a set of figures answering it:
+
+| The brief asks for | Where the page answers it |
+|---|---|
+| *"explore popular plants, seasonal planting or home gardening participation"* | Seasonal planting is section six — the rainfall heatmap, the radial year, the rain-against-interest chart and the planting-window intervals (figures 11–14). Popular plants are section two, which ranks nine crop categories. |
+| *"Compare plant categories on trends over time"* | Section two sets all nine categories against their own 2014 level: the slope graph (figure 2) for where each began and ended, the bump chart (figure 3) for the year-by-year movement between them. |
+| *"Investigate how gardening has grown as a recreational activity"* | Section one traces twelve years of Malaysian search interest in gardening terms (figure 1), and section four maps that interest against where food is actually grown (figure 7). The finding is negative — the growth was real and it did not last — which is an answer, not an omission. |
+
+**A note on what the crop data can and cannot say.** No Malaysian agency counts hobby gardeners;
+the Department of Statistics surveys commercial establishments. Rather than treat search interest
+as a proxy for participation, the page keeps the two measures apart and makes the distance between
+them the subject of section four. Where a claim needs household gardening specifically, the page
+says the data cannot supply it.
 
 **Why.** Malaysians were told, repeatedly during the pandemic, that growing food at home was a
 national good. Six years later nobody has checked what happened. The question matters beyond
@@ -120,6 +132,15 @@ not earn its place.
   appropriate because the entire country lies within eight degrees of the equator.
 - **A bivariate colour key** built as its own small Vega-Lite specification, with a 3 × 3 matrix
   classified by tertiles on each axis.
+- **Six section marks, drawn for this page.** Each section opens with a small symbol built as
+  inline SVG rather than taken from an icon set, so no part of the page is another author's
+  artwork. They are coloured from the page's own scheme and carry its meaning: the paired arrows
+  on section five are green rising and purple falling, because those are the two colours the
+  spike map and the dumbbell use for the same two things.
+- **A masthead on the same grid as the page.** The title runs down the left half and the
+  standfirst down the right, split on the line that divides the second and third key figures
+  below, so the opening screen is structured in columns rather than stacked against an empty
+  right-hand third.
 - **Self-hosted rendering.** The Vega libraries and both typefaces ship with the page; nothing
   loads from a CDN, so the page renders identically offline.
 - **A reproducible pipeline.** Five scripts rebuild every data file and every specification from
@@ -141,6 +162,8 @@ not earn its place.
 - *"Sight lines can be reduced. Legends can be better aligned using sight lines."* Every legend is
   bottom-left of its panel; the radial chart's hand-placed one was the last exception.
 - *"Should not use short forms."* Axis titles, legend titles and tooltips are written out in full.
+  The federal territories are published by the department as "W.P. Kuala Lumpur" and the like;
+  W.P. abbreviates Wilayah Persekutuan, so each is shown by its plain name instead.
 - *"Storytelling can be improved by adding concise paragraphs with good insights."* Each section
   opens with a standfirst and a short argued passage, and the figure notes were cut back so the
   explanation does not outweigh the insight.
@@ -151,5 +174,5 @@ not earn its place.
 
 Anthropic's Claude was used to assist with locating and retrieving the source datasets, writing the
 Python data-preparation scripts and the Vega-Lite specifications, drafting and editing the narrative
-text, and reviewing the page layout. All data is unmodified public data from the sources listed
-above. The analysis, interpretation and final design decisions are my own.
+text, and reviewing and revising the page layout. Every dataset is unmodified public data from the
+sources listed above. The analysis, interpretation and final design decisions are my own.

@@ -11,6 +11,12 @@
       }
     }
   },
+  "transform": [
+    {
+      "calculate": "replace(datum.state, 'W.P. ', '')",
+      "as": "state_name"
+    }
+  ],
   "width": 950,
   "height": 450,
   "encoding": {
@@ -43,7 +49,7 @@
       }
     },
     "y": {
-      "field": "state",
+      "field": "state_name",
       "type": "nominal",
       "title": null,
       "sort": [
@@ -51,11 +57,11 @@
         "Terengganu",
         "Pahang",
         "Sabah",
-        "W.P. Labuan",
+        "Labuan",
         "Selangor",
         "Kelantan",
-        "W.P. Kuala Lumpur",
-        "W.P. Putrajaya",
+        "Kuala Lumpur",
+        "Putrajaya",
         "Perak",
         "Negeri Sembilan",
         "Johor",
@@ -78,22 +84,25 @@
       "scale": {
         "type": "threshold",
         "domain": [
-          150,
-          200,
-          250,
-          325
+          155,
+          185,
+          215,
+          270
         ],
         "range": [
-          "#D2E2EC",
           "#A9C8DE",
           "#7CA9CC",
           "#5089B7",
+          "#2F6A9A",
           "#1C4B72"
         ]
       },
       "legend": {
-        "orient": "bottom",
+        "orient": "none",
+        "legendX": -95,
+        "legendY": 476,
         "direction": "horizontal",
+        "titleAnchor": "start",
         "titleColor": "#1C2B22",
         "labelColor": "#5E6E64",
         "titleFontSize": 11.5,
@@ -105,7 +114,7 @@
     },
     "tooltip": [
       {
-        "field": "state",
+        "field": "state_name",
         "type": "nominal",
         "title": "State"
       },
@@ -150,10 +159,10 @@
       ],
       "mark": {
         "type": "text",
-        "fontSize": 10.5,
+        "fontSize": 9,
         "fontWeight": 700,
         "lineBreak": "|",
-        "lineHeight": 12
+        "lineHeight": 10
       },
       "encoding": {
         "text": {
@@ -172,14 +181,14 @@
       ],
       "mark": {
         "type": "text",
-        "fontSize": 10.5,
+        "fontSize": 9,
         "fontWeight": 700,
         "lineBreak": "|",
-        "lineHeight": 12
+        "lineHeight": 10
       },
       "encoding": {
         "text": {
-          "value": "Driest month|of the year"
+          "value": "Driest cell|on the chart"
         },
         "color": {
           "value": "#1C2B22"
