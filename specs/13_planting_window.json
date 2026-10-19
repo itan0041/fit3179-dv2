@@ -164,6 +164,7 @@
           "field": "end_edge",
           "type": "quantitative"
         },
+        "x2": null,
         "color": {
           "value": "#5E6E64"
         },

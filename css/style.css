@@ -30,7 +30,12 @@
 :root {
   --paper:      #FAF7F0;
   --paper-2:    #F3EFE5;
-  --panel:      #FFFDF8;
+  /* Retired. Every panel used to sit on a near-white card a shade lighter than the
+     paper, which read as a white box floating on the page. Panels are now the paper
+     itself, separated by a hairline rule alone, so the figures and the page share one
+     colour and the chart marks that are stroked in the paper colour cut cleanly
+     through them. */
+  --panel:      #FAF7F0;
   --ink:        #1C2B22;
   --ink-soft:   #5E6E64;
   --ink-faint:  #8A9890;
@@ -141,7 +146,7 @@ h1 {
 }
 
 .kpi {
-  background: var(--panel);
+  background: transparent;
   border: 1px solid var(--rule);
   border-radius: 3px;
   padding: 20px 22px 18px;
@@ -251,7 +256,7 @@ strong { font-weight: 650; color: var(--ink); }
 
 figure {
   margin: 0;
-  background: var(--panel);
+  background: transparent;
   border: 1px solid var(--rule);
   border-radius: 3px;
   padding: 21px 26px 17px;
@@ -287,8 +292,16 @@ figcaption { margin-bottom: 14px; }
    sideways, so the panel clips rather than scrolls if anything overruns. */
 .chart { width: 100%; overflow: hidden; }
 .chart > .chart-wrapper { width: 100%; }
-.vega-embed summary { opacity: 0.35; }
-.vega-embed summary:hover { opacity: 1; }
+/* vega-embed sets its class on the container it is handed, so .chart carries the
+   class itself. ".chart .vega-embed" therefore matches nothing - the rules below
+   address .chart directly. The action menu and its button are the only two surfaces
+   vega paints white; both are brought onto the paper. */
+.chart.vega-embed summary {
+  opacity: 0.35;
+  background: var(--paper);
+  color: var(--ink-faint);
+}
+.chart.vega-embed summary:hover { opacity: 1; }
 
 /* annotation callouts sitting outside the charts */
 .callout {
@@ -316,7 +329,7 @@ figcaption { margin-bottom: 14px; }
   border-top: 1px solid var(--rule);
 }
 .key-block .chart { flex: 0 0 auto; width: auto; }
-.key-block .chart > .vega-embed { width: auto; }
+.key-block .chart > .chart-wrapper { width: auto; }
 .key-block p { font-size: 13.5px; color: var(--ink-soft); margin: 0; max-width: 60ch; }
 
 /* ---------- controls ----------------------------------------------------- */
@@ -405,7 +418,7 @@ a:hover { color: var(--grow-deep); }
 
 /* vega-embed emits a bindings container for every chart, empty when the chart has
    no controls. Only the slope graph has one, so hide the other 14 empty pills. */
-.chart .vega-bindings:empty { display: none; }
+.chart.vega-embed .vega-bindings:empty { display: none; }
 
 .chart .vega-bindings {
   display: flex;
@@ -435,15 +448,17 @@ a:hover { color: var(--grow-deep); }
 
 .chart .vega-bind input[type='radio'] { accent-color: var(--grow); margin: 0; }
 
-.chart .vega-embed .vega-actions {
+.chart.vega-embed .vega-actions {
   border: 1px solid var(--rule);
   border-radius: 3px;
-  background: var(--panel);
+  background: var(--paper);
+  box-shadow: none;
 }
-.chart .vega-embed .vega-actions a { color: var(--ink); font-size: 13px; text-decoration: none; }
-.chart .vega-embed .vega-actions a:hover { background: var(--paper-2); }
+.chart.vega-embed .vega-actions a { color: var(--ink); font-size: 13px; text-decoration: none; }
+.chart.vega-embed .vega-actions a:hover { background: var(--paper-2); }
+.chart.vega-embed .vega-actions::before, .chart.vega-embed .vega-actions::after { display: none; }
 
-.chart .vega-embed details[open] > summary { opacity: 1; }
+.chart.vega-embed details[open] > summary { opacity: 1; }
 
 /* ---------- section transitions ----------------------------------------- */
 /* One bridging line at the close of a section, carrying the reader into the

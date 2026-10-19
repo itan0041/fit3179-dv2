@@ -662,8 +662,7 @@ write('09_state_dumbbell.json', {
      'encoding': {
        'x': {'field': 'row_end', 'type': 'quantitative'},
        'text': {'field': 'chg_label', 'type': 'nominal'},
-       'color': {'field': 'direction', 'type': 'nominal', 'legend': None,
-                 'scale': {'domain': ['Increase', 'Decrease'], 'range': [GROW[6], LOSS[6]]}}}}],
+       'color': {'field': 'direction', 'type': 'nominal', 'legend': None}}}],
   'config': {'view': {'stroke': None}}})
 
 # ───────────────────────── 10 waffle ────────────────────────────────────────
@@ -883,7 +882,7 @@ write('13_planting_window.json', {
     # already carries it, but a reader comparing two states needs the number.
     {'mark': {'type': 'text', 'align': 'left', 'dx': 9, 'fontSize': 10.5,
               'fontWeight': 600, 'color': INK_SOFT},
-     'encoding': {'x': {'field': 'end_edge', 'type': 'quantitative'},
+     'encoding': {'x': {'field': 'end_edge', 'type': 'quantitative'}, 'x2': None,
                   'color': {'value': INK_SOFT},
                   'text': {'field': 'window_rain_mm', 'type': 'quantitative', 'format': ',.0f'}}}],
   'config': {'view': {'stroke': None}}})

@@ -3,7 +3,7 @@
 **Malaysia's gardening decade, 2014–2026.** An interactive single-page data visualisation built
 with Vega-Lite for FIT3179 Data Visualisation 2, Monash University Malaysia.
 
-**Live page:** _(add your GitHub Pages URL here once published)_
+**Live page:** https://itan0041.github.io/fit3179-dv2/
 **Sketch:** [`sketch/sketch.pdf`](sketch/sketch.pdf)
 **Author:** Isaac Yeak Sern Tan · October 2026
 

@@ -212,17 +212,7 @@
         "color": {
           "field": "direction",
           "type": "nominal",
-          "legend": null,
-          "scale": {
-            "domain": [
-              "Increase",
-              "Decrease"
-            ],
-            "range": [
-              "#1A4A27",
-              "#5A2E6E"
-            ]
-          }
+          "legend": null
         }
       }
     }
