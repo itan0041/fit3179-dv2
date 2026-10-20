@@ -162,6 +162,32 @@
         "filled": true,
         "size": 120,
         "opacity": 0
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "keyword_label",
+            "type": "nominal",
+            "title": "Search term"
+          },
+          {
+            "field": "date",
+            "type": "temporal",
+            "title": "Month",
+            "format": "%B %Y"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Interest that month"
+          },
+          {
+            "field": "smooth",
+            "type": "quantitative",
+            "title": "Five-month average",
+            "format": ".1f"
+          }
+        ]
       }
     },
     {

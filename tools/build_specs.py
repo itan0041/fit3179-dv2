@@ -108,7 +108,15 @@ write('01_search_interest.json', {
     {'params': [{'name': 'hover', 'select': {'type': 'point', 'fields': ['keyword_label'],
                                              'on': 'pointerover', 'clear': 'pointerout',
                                              'nearest': True}}],
-     'mark': {'type': 'point', 'filled': True, 'size': 120, 'opacity': 0}},
+     'mark': {'type': 'point', 'filled': True, 'size': 120, 'opacity': 0},
+     # The invisible target sits above the line and absorbs the pointer, so the
+     # tooltip must live here too: on the line alone it almost never fires.
+     'encoding': {
+       'tooltip': [
+         {'field': 'keyword_label', 'type': 'nominal', 'title': 'Search term'},
+         {'field': 'date', 'type': 'temporal', 'title': 'Month', 'format': '%B %Y'},
+         {'field': 'value', 'type': 'quantitative', 'title': 'Interest that month'},
+         {'field': 'smooth', 'type': 'quantitative', 'title': 'Five-month average', 'format': '.1f'}]}},
     # berkebun and kebun sayur end within a few index points of each other, so the
     # lower label is nudged clear of the upper one.
     {'transform': [{'filter': 'datum.date >= toDate("2026-09-01")'},
