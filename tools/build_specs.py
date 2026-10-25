@@ -853,7 +853,7 @@ write('12_seasonality_radial.json', {
 
 # ───────────────────────── 13 planting window ───────────────────────────────
 write('13_planting_window.json', {
-  'description': 'Interval chart: the three consecutive months with the least rainfall in each '
+  'description': 'Gantt chart: the three consecutive months with the least rainfall in each '
                  'state, from the NASA POWER climatology. Bars span that drier window.',
   'data': csv('planting_window.csv',
               {'start_month': 'number', 'end_month': 'number',

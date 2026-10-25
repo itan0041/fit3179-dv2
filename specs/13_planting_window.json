@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Interval chart: the three consecutive months with the least rainfall in each state, from the NASA POWER climatology. Bars span that drier window.",
+  "description": "Gantt chart: the three consecutive months with the least rainfall in each state, from the NASA POWER climatology. Bars span that drier window.",
   "data": {
     "url": "data/planting_window.csv",
     "format": {
