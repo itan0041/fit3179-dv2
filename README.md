@@ -71,7 +71,7 @@ Fourteen charts, four of them maps. Every specification is a readable JSON file 
 | 11 | Heatmap | How does rainfall vary by state and month? |
 | 12 | Radial chart (custom-built) | How does Malaysia's gardening year differ from the world's? |
 | 13 | Dual-axis chart | Does interest track the rain? |
-| 14 | Interval chart | When is each state's driest planting window? |
+| 14 | Gantt chart | When is each state's driest planting window? |
 
 **Custom-built element.** Vega-Lite has no polar line mark, so the radial chart (12) is drawn from
 polar coordinates computed in Python (`tools/build_derived.py`) and rendered as Cartesian line,
